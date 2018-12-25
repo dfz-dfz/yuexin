@@ -5,24 +5,33 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width"/>
 	<title>选分店</title>
-	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="../css/sm.min.css">
+	<link rel="stylesheet" href="../css/sm-extend.min.css">
 </head>
 <style>
-	*{padding:0;margin:0;font-size:20px;font-family:PingFangSC-Regular;}
+	*{padding:0;margin:0;font-size:20px;font-family:PingFangSC-Regular!important;}
 	ul li{padding: 0;margin: 0;list-style: none;}
 
 	header{height:2.2rem;text-align: center;line-height: 2.2rem;background:rgba(255,255,255,1);font-size:
-		0.9rem;font-family:PingFangSC-Medium;font-weight:500;color:rgba(15,15,15,1);}
+		.9rem;font-family:PingFangSC-Medium;font-weight:500;color:rgba(15,15,15,1);}
 	
 	section{height:100%;background:rgba(247,247,247,1);}
-	.logo_box{width:10.4rem;height:7.35rem;margin:0 auto;padding-top:0.95rem;}
-	.logo_box .logo_img{width:6.75rem;height:6.75rem;margin:0 auto;padding-top: 0.6rem;}
+	.logo_box{width:10.4rem;height:7.35rem;margin:0 auto;padding-top:.95rem;}
+	.logo_box .logo_img{width:6.75rem;height:6.75rem;margin:0 auto;margin-top: .6rem;}
 	.logo_img img{border-radius: 50%;width:100%;height:100%;}
-	.list_box{margin-top: 2.2rem;font-size:0.7rem;font-weight:400;padding:0 0.6rem;}
-	.list_box span{margin-bottom: 0.4rem;margin:0.6rem;}
-	.list_box ul{height:auto;overflow:hidden;margin:0 auto;}
-	.list_box li{height:4.7rem;padding:0.6rem;}
-	.list_box li img{width:4.35rem;height: 100%;}
+
+	/*门面列表*/
+	.list_box{margin-top: 2.2rem;font-size:.7rem;font-weight:400;padding:0 .6rem;}
+	.list_box span{margin-bottom: .4rem;margin-left:.6rem;display: inline-block;}
+	.list_box .list-block ul{border-radius: unset;background: none;}
+	.list_box .list-block li{height: 4.7rem;margin-bottom: .5rem;background-color: #fff;border-radius: .35rem;}
+	.list_box .list-block li a{min-height: 4.7rem;padding: .6rem;}
+	.list_box .item-link .item-media{padding: 0;    width: 4.35rem;height: 3.5rem;}
+	.item-link .item-media img{width: 100%;height: 100%;}
+	.list-block .item-link .item-inner{margin-left: .4rem;padding-right: 0;background-position: calc(100% - -.2rem) center;background-size: .9rem;}
+	.list-block .item-inner:after{display: none;}
+	.list-block.media-list .item-title{font-size: .8rem;font-weight: 400;color: #0F0F0F;height: 1.1rem;line-height: 1.1rem;margin-bottom: .15rem;}
+	.list-block.media-list .item-subtitle{height: .9rem;font-size: .55rem;font-weight: 400;color: #555;line-height: .8rem;}
 </style>
 <body>
 	<header>上海小馆</header>
@@ -37,16 +46,58 @@
 		<div class="list_box">
 			<span>门面列表</span>
 
-			<ul>
-				<li>
-					<img src="../image/icon.png" alt="">
-				</li>
-			</ul>
+			<div class="list-block media-list inset" style="margin: 0;">
+			    <ul>
+			      	<li>
+				        <a href="#" class="item-link item-content">
+					        <div class="item-media">
+					        	<img src="../image/index_1.jpg">
+					        </div>
+					        <div class="item-inner">
+					            <div class="item-title-row">
+					            	<div class="item-title">标题</div>
+					            </div>
+					            <div class="item-subtitle">子标题</div>
+					        </div>
+				        </a>
+			      	</li>
+
+			      	<li>
+				        <a href="#" class="item-link item-content">
+					        <div class="item-media">
+					        	<img src="../image/index_2.jpg">
+					        </div>
+					        <div class="item-inner">
+					            <div class="item-title-row">
+					            	<div class="item-title">标题</div>
+					            </div>
+					            <div class="item-subtitle">子标题</div>
+					        </div>
+				        </a>
+			      	</li>
+
+			      	<li>
+				        <a href="#" class="item-link item-content">
+					        <div class="item-media">
+					        	<img src="../image/index_3.jpg">
+					        </div>
+					        <div class="item-inner">
+					            <div class="item-title-row">
+					            	<div class="item-title">标题</div>
+					            </div>
+					            <div class="item-subtitle">子标题</div>
+					        </div>
+				        </a>
+			      	</li>
+			    </ul>
+			</div>
 		</div>
 	</section>
-</body>
-<script src="../js/jquery-1.10.1.js"></script>
+	
+<script src="../js/jquery-1.10.1.js"></script><script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
 <script>
-
+	
 </script>
+</body>
 </html>
