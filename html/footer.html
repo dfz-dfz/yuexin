@@ -17,18 +17,18 @@
 </head>
 <body>
 <nav class="bar bar-tab">
-	<a class="tab-item external active" href="#">
+	<a class="tab-item external active" href="#" target="headFrame">
 		<span class="icon icon-home"></span>
-		<span class="tab-label">文案</span>
+		<span class="tab-label">首页</span>
 	</a>
-	<a class="tab-item external" href="#">
+	<a class="tab-item external" href="#" target="headFrame">
 		<span class="icon icon-me"></span>
-		<span class="tab-label">文案</span>
+		<span class="tab-label">订单</span>
 		<!-- <span class="badge">2</span> -->
 	</a>
-	<a class="tab-item external" href="#">
+	<a class="tab-item external" href="#" target="headFrame">
 		<span class="icon icon-star"></span>
-		<span class="tab-label">文案</span>
+		<span class="tab-label">我的</span>
 	</a>
 </nav>
 
@@ -36,7 +36,20 @@
 <script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
 <script>
-	
+	$(function(){
+		// // 从本地存储中获取存储的id
+		// var aClick = sessionStorage.getItem('aClick');
+		// if(aClick){
+		// 	//改变id对应的a标签的字体颜色以及加粗
+		// 	$('#'+aClick).css('color','green');
+		// 	$('#'+aClick).css('font-weight','400');
+		// }
+
+		// //点击时存储id
+		// $('.left').find('a').on('click',function(){
+		// 	sessionStorage.setItem('aClick',$(this).attr('id'));
+		// })
+	});
 </script>
 </body>
 </html>
