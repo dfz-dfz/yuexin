@@ -8,13 +8,21 @@
 	<link rel="stylesheet" href="">
 </head>
 <style>
-	*{padding:0;margin:0;font-size:62.5%;font-family:PingFangSC-Regular;}
-	header{height:44px;text-align: center;line-height: 44px;background:rgba(255,255,255,1);font-size:18px;font-family:PingFangSC-Medium;font-weight:500;color:rgba(15,15,15,1);}
+	*{padding:0;margin:0;font-size:20px;font-family:PingFangSC-Regular;}
+	ul li{padding: 0;margin: 0;list-style: none;}
+
+	header{height:2.2rem;text-align: center;line-height: 2.2rem;background:rgba(255,255,255,1);font-size:
+		0.9rem;font-family:PingFangSC-Medium;font-weight:500;color:rgba(15,15,15,1);}
 	
 	section{height:100%;background:rgba(247,247,247,1);}
-	.logo_box{width:208px;height:147px;margin:0 auto;padding-top:19px;}
-	.logo_box .logo_img{width:135px;height:135px;border-radius: 50%;margin:0 auto;padding-top: 12px;}
-	.list_title{margin-left: 24px;margin-top: 44px;font-size:14px;font-weight:400;}
+	.logo_box{width:10.4rem;height:7.35rem;margin:0 auto;padding-top:0.95rem;}
+	.logo_box .logo_img{width:6.75rem;height:6.75rem;margin:0 auto;padding-top: 0.6rem;}
+	.logo_img img{border-radius: 50%;width:100%;height:100%;}
+	.list_box{margin-top: 2.2rem;font-size:0.7rem;font-weight:400;padding:0 0.6rem;}
+	.list_box span{margin-bottom: 0.4rem;margin:0.6rem;}
+	.list_box ul{height:auto;overflow:hidden;margin:0 auto;}
+	.list_box li{height:4.7rem;padding:0.6rem;}
+	.list_box li img{width:4.35rem;height: 100%;}
 </style>
 <body>
 	<header>上海小馆</header>
@@ -22,11 +30,19 @@
 	<section>
 		<div class="logo_box">
 			<div class="logo_img">
-				<img src="../image/logo.png" alt="">
+				<img src="../image/icon.png" alt="">
 			</div>
 		</div>
 
-		<div class="list_title">门面列表</div>
+		<div class="list_box">
+			<span>门面列表</span>
+
+			<ul>
+				<li>
+					<img src="../image/icon.png" alt="">
+				</li>
+			</ul>
+		</div>
 	</section>
 </body>
 <script src="../js/jquery-1.10.1.js"></script>
