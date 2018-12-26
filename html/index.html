@@ -22,16 +22,21 @@
 
 	/*门面列表*/
 	.list_box{margin-top: 2.2rem;font-size:.7rem;font-weight:400;padding:0 .6rem;}
-	.list_box span{margin-bottom: .4rem;margin-left:.6rem;display: inline-block;}
+	.list_box span{margin-bottom: .4rem;margin-left:.45rem;display: inline-block;font-size:.7rem;font-weight: 400;color:#494949;}
 	.list_box .list-block ul{border-radius: unset;background: none;}
 	.list_box .list-block li{height: 4.7rem;margin-bottom: .5rem;background-color: #fff;border-radius: .35rem;}
-	.list_box .list-block li a{min-height: 4.7rem;padding: .6rem;}
+	.list_box .list-block li a{min-height: 4.7rem;}
 	.list_box .item-link .item-media{padding: 0;    width: 4.35rem;height: 3.5rem;}
 	.item-link .item-media img{width: 100%;height: 100%;}
-	.list-block .item-link .item-inner{margin-left: .4rem;padding-right: 0;background-position: calc(100% - -.2rem) center;background-size: .9rem;}
+	.list-block .item-link .item-inner{margin-left: .4rem;padding: 0;background-position: calc(100% - .2rem) center;background-size: .9rem;}
 	.list-block .item-inner:after{display: none;}
-	.list-block.media-list .item-title{font-size: .8rem;font-weight: 400;color: #0F0F0F;height: 1.1rem;line-height: 1.1rem;margin-bottom: .15rem;}
-	.list-block.media-list .item-subtitle{height: .9rem;font-size: .55rem;font-weight: 400;color: #555;line-height: .8rem;}
+	.media-list .item-title{font-size: .8rem;font-weight: 400;color: #0F0F0F;height: 1.1rem;line-height: 1.1rem;margin-bottom: .15rem;margin-top: .4rem;}
+	.list-block.media-list .first-subtitle{height: .9rem;margin-bottom: .1rem;}
+	.media-list .item-subtitle{height: .8rem;font-size: .55rem;font-weight: 400;color: #555;line-height: .8rem;max-width: 90%;}
+	.item-subtitle .answer{border: 1px solid #DA4D60;border-radius: 50%;margin-right: .2rem;width: .7rem;height:.7rem;padding: .05rem;}
+	.item-subtitle .ative{border: 1px solid #1BA00E;}
+	.item-subtitle span{margin-right: .9rem;}
+	.icontitle{display: flex;align-items: center;}
 </style>
 <body>
 	<header>上海小馆</header>
@@ -55,9 +60,14 @@
 					        </div>
 					        <div class="item-inner">
 					            <div class="item-title-row">
-					            	<div class="item-title">标题</div>
+					            	<div class="item-title">上海小馆&nbsp;（提督马路店）</div>
 					            </div>
-					            <div class="item-subtitle">子标题</div>
+					            <div class="item-subtitle first-subtitle">澳门提督马路店20号地铺1楼</div>
+					            <div class="item-subtitle">0592-57345667&nbsp;营业时间7:00-23:00</div>
+					            <div class="item-subtitle icontitle">
+					            	<img class="answer ative" src="../image/Group Copy 3(1).png" alt="">堂食<span></span>
+					            	<img class="answer" src="../image/Group Copy 3.png" alt="">外卖
+					            </div>
 					        </div>
 				        </a>
 			      	</li>
@@ -69,9 +79,14 @@
 					        </div>
 					        <div class="item-inner">
 					            <div class="item-title-row">
-					            	<div class="item-title">标题</div>
+					            	<div class="item-title">上海小馆&nbsp;（提督马路店）</div>
 					            </div>
-					            <div class="item-subtitle">子标题</div>
+					            <div class="item-subtitle first-subtitle">子标题</div>
+					            <div class="item-subtitle">0592-57345667&nbsp;营业时间7:00-23:00</div>
+					            <div class="item-subtitle icontitle">
+					            	<img class="answer ative" src="../image/Group Copy 3(1).png" alt="">堂食<span></span>
+					            	<img class="answer" src="../image/Group Copy 3.png" alt="">外卖
+					            </div>
 					        </div>
 				        </a>
 			      	</li>
@@ -83,9 +98,14 @@
 					        </div>
 					        <div class="item-inner">
 					            <div class="item-title-row">
-					            	<div class="item-title">标题</div>
+					            	<div class="item-title">上海小馆&nbsp;（提督马路店）</div>
 					            </div>
-					            <div class="item-subtitle">子标题</div>
+					            <div class="item-subtitle first-subtitle">子标题</div>
+					            <div class="item-subtitle">0592-57345667&nbsp;营业时间7:00-23:00</div>
+					            <div class="item-subtitle icontitle">
+					            	<img class="answer ative" src="../image/Group Copy 3(1).png" alt="">堂食<span></span>
+					            	<img class="answer" src="../image/Group Copy 3.png" alt="">外卖
+					            </div>
 					        </div>
 				        </a>
 			      	</li>
@@ -94,7 +114,8 @@
 		</div>
 	</section>
 	
-<script src="../js/jquery-1.10.1.js"></script><script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script src="../js/jquery-1.10.1.js"></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
 <script>
 	
