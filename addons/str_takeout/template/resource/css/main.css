@@ -20,7 +20,16 @@ html, body{height: 100%;}
 .ml13{margin-left: 13px}
 
 .container{position: relative; max-width: 640px; padding:0; min-height: 100%; margin: 0 auto; }
-.fixed{position: fixed; left: 0; bottom: 40px; width: 100%; background-color: #fff; border-width: 1px 0 0; z-index: 1000;}
+.fixed{
+	position: fixed;
+	left: 0;
+	bottom: 49px;
+	width: 100%;
+	background-color: #fff;
+	border-width: 1px 0 0;
+	z-index: 1000;
+	height: 49px;
+}
 
 .search input, .ico_takeout, .ico_order, .ico_addres, .ico_tel, .ico_arrow, .ico_addres1, .ico_menu i, .menu_list .btn_n, .cart_num, .ico_close, .pay_type li input:checked::after, .dialog_close, .ico_status i, .shopping_cart .cart_bg, .ico_rest{display: inline-block; background: url(../images/s.png) no-repeat; background-size: 150px auto;}
 
@@ -169,7 +178,7 @@ html, body{height: 100%;}
 	.sales .sale_9{width: 61px;}
 	.sales .sale_10{width: 66px;}
 
-.shopping_cart{height: 43px;}
+.shopping_cart{height: 49px;}
 .shopping_cart .fixed{padding: 6px 15px; -webkit-box-sizing: border-box; color: #ff510c;}
 .shopping_cart .cart_bg{width: 32px; height: 32px; background-position: 0 -71px;}
 	.cart_num{display: block; width: 32px; height: 32px; line-height: 32px; text-align: center; background-position: -26px 0;}
@@ -428,17 +437,13 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .nav_common >ul>li:first-child{  border-left:none;}
 .nav_common >ul>li>a{
 	margin: 0 auto;
-	font-size:14px;
+	font-size:10px;
 	line-height:28px;
 	color:#848484;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	border-bottom:0;
-	display:block;
 	height:100%;
-	padding:10px 0;
 	text-align:center;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	text-decoration:none;
 	width:80px;
 }
@@ -446,11 +451,12 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .nav_common >ul>li>a.middle{ width:62px}
 
 .nav_common li>a.on, .nav_common li>a.active{
-	color:#fff;
+	color:#2BA3DC;
 }
 .nav_common li>a>*{
 	pointer-events:none;
 }
+.nav_common li>a>img{width: 32px;height: 32px;display: inline-block;margin-top: 2px;}
 .nav_common li>a>span{
 	display: block;
 	width:20px;
@@ -488,7 +494,10 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 	text-overflow:ellipsis;
 	white-space: nowrap;
 	font-weight:normal;
-	display: table-cell;
+	font-size: 10px;
+    height: 12px;
+    line-height: 12px;
+    margin-bottom: 8px;
 }
 
 .nav_common li.more{

@@ -118,7 +118,7 @@
 										<div class="info"><?php  echo $ds['description'];?></div>
 									</div>
 									<div class="price_wrap">
-										<strong>￥<span class="unit_price"><?php  echo $ds['member_price'];?></span></strong>
+										<strong>$<span class="unit_price"><?php  echo $ds['member_price'];?></span></strong>
 										<?php  if($store['business_hours_flag']) { ?>
 											<?php  if($ds['total'] == -1 || $ds['total'] > 0) { ?>
 											<div class="fr" max="<?php  echo $ds['total'];?>" data-first-order-limit="<?php  echo $ds['first_order_limit'];?>" data-buy-limit="<?php  echo $ds['buy_limit'];?>" data-first-order="<?php  echo $is_first_order;?>">
@@ -136,9 +136,9 @@
 											<?php  $i++;?>
 											<?php  if($i < 4) { ?>
 												<?php  if(!$k) { ?>
-													<div><i class="fa fa-heart-o"></i> 原价￥<?php  echo $v;?></div>
+													<div><i class="fa fa-heart-o"></i> 原价$<?php  echo $v;?></div>
 												<?php  } else { ?>
-													<div><i class="fa fa-heart-o"></i> <?php  echo $groups[$k]['title'];?>￥<?php  echo $v;?></div>
+													<div><i class="fa fa-heart-o"></i> <?php  echo $groups[$k]['title'];?>$<?php  echo $v;?></div>
 												<?php  } ?>
 											<?php  } ?>
 										<?php  } } ?>
@@ -156,7 +156,7 @@
 				<div class="cart_bg">
 					<span class="cart_num" id="cartNum"></span>
 				</div>
-				<div>￥<span id="totalPrice">0</span></div>
+				<div>$<span id="totalPrice">0</span></div>
 				<div>
 					<span class="comm_btn disabled">还差<span id="sendCondition"><?php  echo $store['send_price'];?>元</span>起送</span>
 					<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="display: none;">去结算</a>
@@ -169,7 +169,7 @@
 				<div class="cart_bg">
 					<span class="cart_num" id="cartNum"></span>
 				</div>
-				<div>￥<span id="totalPrice">0</span></div>
+				<div>$<span id="totalPrice">0</span></div>
 				<div>
 					<?php  if($mode == 3) { ?>
 						<span class="comm_btn disabled"><span id="sendCondition" class="hide">0元</span>点餐</span>
@@ -193,7 +193,7 @@
 		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
 		<dl>
 			<dt>价格：</dt>
-			<dd class="highlight">￥<span class="price"></span></dd>
+			<dd class="highlight">$<span class="price"></span></dd>
 		</dl>
 		<p>月售<span class="sale_num"></span>份</p>
 		<dl>
