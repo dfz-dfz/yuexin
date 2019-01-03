@@ -1,0 +1,106 @@
+10
+
+dir
+87
+svn://118.89.40.174/yue/framework/library/alicom-dysms-api/.metadata/.plugins
+svn://118.89.40.174
+
+
+
+2018-12-25T15:47:28.923420Z
+87
+ljl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6b747536-0f77-4e58-b3b1-46ce82b15230
+
+org.eclipse.mylyn.commons.notifications.ui
+dir
+
+org.eclipse.wst.jsdt.core
+dir
+
+org.eclipse.jdt.core
+dir
+
+org.eclipse.dltk.ui
+dir
+
+org.eclipse.core.runtime
+dir
+
+org.eclipse.debug.core
+dir
+
+org.eclipse.ui.ide
+dir
+
+org.eclipse.php.core
+dir
+
+org.eclipse.tm.terminal.view.ui
+dir
+
+org.eclipse.rse.core
+dir
+
+com.zend.php.core
+dir
+
+org.eclipse.dltk.core
+dir
+
+org.zend.php.framework.resource
+dir
+
+org.eclipse.equinox.p2.discovery.compatibility
+dir
+
+org.eclipse.e4.workbench
+dir
+
+org.eclipse.wst.jsdt.ui
+dir
+
+org.eclipse.jdt.ui
+dir
+
+org.eclipse.a.wst.html.webresources.core
+dir
+
+org.eclipse.wst.sse.core
+dir
+
+org.eclipse.ui.workbench
+dir
+
+org.zend.php.framework
+dir
+
+org.eclipse.core.resources
+dir
+
+org.eclipse.debug.ui
+dir
+
+org.eclipse.php.formatter.ui
+dir
+
+org.eclipse.dltk.core.index.lucene
+dir
+
+org.eclipse.rse.ui
+dir
+

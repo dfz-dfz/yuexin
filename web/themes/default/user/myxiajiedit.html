@@ -1,0 +1,179 @@
+{template 'common/header'}
+<ol class="breadcrumb we7-breadcrumb">
+	<div class="we7-page-title">我的账户</div>
+</ol>
+<div id="js-user-profile" ng-controller="UserProfileDisplay" ng-cloak>
+	{if $_W['role'] != 'founder'}
+	<div class="user-head-info we7-padding-bottom" >
+		<span class="icon pull-left"><i class="wi wi-user"></i></span>
+		<img ng-src="{{profile.avatar}}" class="img-circle user-avatar pull-left">
+		<h3 class="pull-left" ng-bind="user.username"></h3>
+	</div>
+	<div class="btn-group we7-btn-group we7-padding-bottom">
+		<a href="{php echo url('user/myxiajiedit', array('uid' => $user['uid'], 'user_type' => PERSONAL_BASE_TYPE))}" class="btn btn-default {if $user_type == '' || $user_type == PERSONAL_BASE_TYPE}active{/if}">基础信息</a>
+	</div>
+	{/if}
+	{if $user_type=='' || $user_type == PERSONAL_BASE_TYPE}
+	<div class="base">
+		<table class="table we7-table table-hover table-form">
+			<col width="140px " />
+			<col />
+			<col width="120px" />
+			<tr>
+				<th class="text-left" colspan="3">账户设置</th>
+			</tr>
+			<tr>
+				<td class="table-label">头像</td>
+				<td><img ng-src="{{profile.avatar}}" class="img-circle" width="65px" height="65px" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="table-label">用户</td>
+				<td ng-bind="user.username"></td>
+				<td></td>
+			</tr>
+
+			<tr>
+			<td class="table-label">账号余额</td>
+				<td ng-bind="user.credit2"></td>
+				<td><div class="link-group"><a href="javascript:;" data-toggle="modal" data-target="#credit2" ng-click="editInfo('credit2', user.credit2)">充值</a></div></td>
+			</tr>
+			{if !empty($user['founder_groupid'])}
+			<tr>
+				<td class="table-label">注册链接</td>
+				<td>{$user['url']}</td>
+				<td><div class="link-group"><a href="javascript:;" data-url="{$user['url']}" class="js-clip">复制链接</a></div></td>
+			</tr>
+			{/if}
+		</table>
+		<div class="modal fade" id="name" role="dialog">
+			<div class="we7-modal-dialog modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<div class="modal-title">修改用户名</div>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" ng-model="userOriginal.username" class="form-control" placeholder="用户名" />
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" ng-click="httpChange('username')">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="pass" role="dialog">
+			<div class="we7-modal-dialog modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<div class="modal-title">修改密码</div>
+					</div>
+					<div class="modal-body text-center">
+						<div class="we7-form" style="width: 450px; margin: 0 auto;">
+							<div class="form-group">
+								<label for="" class="control-label col-sm-2">原密码</label>
+								<div class="form-controls col-sm-10">
+									<input type="password" value="" class="form-control old-password">
+
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label col-sm-2">新密码</label>
+								<div class="form-controls col-sm-10">
+									<input type="password" value="" class="form-control new-password">
+
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label col-sm-2">确认新密码</label>
+								<div class="form-controls col-sm-10">
+									<input type="password" value="" class="form-control renew-password">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" ng-click="httpChange('password')">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="credit2" role="dialog">
+		<form action="" method="post"  class="form-horizontal" role="form" enctype="multipart/form-data" id="form1">
+		<div class="we7-modal-dialog modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<div class="modal-title">修改账号余额</div>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="text" name="credit2" value="{$user['credit2']}" class="form-control" placeholder="账号余额" />
+						<span class="help-block"></span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input  class="btn btn-primary" name="submit" type="submit" value="提交"/>
+					<input type="hidden" name="token" value="{$_W['token']}" />
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
+		<table class="table we7-table table-hover table-form">
+			<col width="140px " />
+			<col />
+			<col width="100px" />
+			<tr>
+				<th class="text-left" colspan="3">基础信息</th>
+			</tr>
+			<tr>
+				<td class="table-label">上次登录时间</td>
+				<td ng-bind="user.last_visit"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="table-label">上次登录IP</td>
+				<td ng-bind="user.lastip"></td>
+				<td></td>
+			</tr>
+				<tr>
+					<td class="table-label">注册时间</td>
+					<td ng-bind="user.joindate"></td>
+					<td></td>
+				</tr>
+			{if $_W['isfounder'] && !user_is_vice_founder()}
+				<tr>
+					<td class="table-label">备注</td>
+					<td ng-bind="user.remark"></td>
+					<td><div class="link-group"><a href="javascript:;" data-toggle="modal" data-target="#remark" ng-click="editInfo('remark', user.remark)">修改</a></div></td>
+				</tr>
+			{/if}
+		</table>
+	{/if}
+</div>
+</div>
+<script>
+require(['underscore'], function(){
+	angular.module('userProfile').value('config', {
+		user: {php echo !empty($user) ? json_encode($user) : 'null'},
+		profile: {php echo !empty($profile) ? json_encode($profile) : 'null'},
+		group_info: {php echo !empty($group_info) ? json_encode($group_info) : 'null'},
+		groups: {php echo !empty($groups) ? json_encode($groups) : 'null'},
+		wechats: {php echo !empty($account_detail['wechat']) ? json_encode($account_detail['wechat']) : 'null'},
+		wxapps: {php echo !empty($account_detail['wxapp']) ? json_encode($account_detail['wxapp']) : 'null'},
+		links: {
+			userPost: "{php echo url('user/myxiajiedit')}",
+		},
+	});
+	angular.bootstrap($('#js-user-profile'), ['userProfile']);
+});
+</script>
+{template 'common/footer'}

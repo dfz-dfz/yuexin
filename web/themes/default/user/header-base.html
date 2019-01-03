@@ -1,0 +1,76 @@
+<?php 
+    $nav_list = array();
+    //$tablename, $condition = array(), $fields = array(), $keyfield = '', $orderby = array(), $limit = array()
+    $where = array("type"=>2,"state"=>1);
+    $fields = array("navid","name","model","lianjie","pagename","moban");
+    $rs = pdo_getall('appsplus_myweb_nav',$where,$fields,'navid',array("nub desc","navid asc"));
+    if($rs){
+        foreach ($rs as $arr){
+            //取一级导航
+            if($arr['parentid']==0){
+                $nav_list[$arr['navid']] = $arr;
+            }else{
+                $nav_list[$arr['parentid']]['navitem'][]=$arr;
+            }
+        }
+    }
+    
+    
+    $configRS = pdo_get('appsplus_myweb_config',array('id' =>1));
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>{php if(isset($title)) $_W['page']['title'] = $title}{if !empty($_W['page']['title'])}{$_W['page']['title']}{/if}{if empty($_W['page']['copyright']['sitename'])}{if IMS_FAMILY != 'x'}{if !empty($_W['page']['title'])} - {/if}微赞 - 公众平台自助引擎 -  Powered by weizancms.com{/if}{else}{if !empty($_W['page']['title'])} - {/if}{$_W['page']['copyright']['sitename']}{/if}</title>
+  <meta name="keywords" content="{if empty($_W['page']['copyright']['keywords'])}{if IMS_FAMILY != 'x'}微赞,微信,微信公众平台,weizancms.com{/if}{else}{$_W['page']['copyright']['keywords']}{/if}" />
+  <meta name="description" content="{if empty($_W['page']['copyright']['description'])}{if IMS_FAMILY != 'x'}公众平台自助引擎（www.weizancms.com），简称微赞，微赞是一款免费开源的微信公众平台管理系统，是国内最完善移动网站及移动互联网技术解决方案。{/if}{else}{$_W['page']['copyright']['description']}{/if}" />
+  <link rel="shortcut icon" href="{if !empty($_W['setting']['copyright']['icon'])}{$_W['attachurl']}{$_W['setting']['copyright']['icon']}{else}./resource/images/favicon.ico{/if}" />
+
+  <link rel="stylesheet" href="/addons/appsplus_index/template/web/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/addons/appsplus_index/template/web/css/iconfont.css">
+  <link rel="stylesheet" href="/addons/appsplus_index/template/web/css/public.css">
+</head><body>
+<!-- head start -->
+<nav class="navbar navbar-default navbar-fixed-top c_apps_head" data-role="navigation">
+  <div class="container">
+    <span class="glyphicon glyphicon-menu-hamburger fl c_apps_head_icon" onclick="head_nav()"></span>
+    <ul class="c_head_nav">
+        <?php 
+            if($nav_list){
+                foreach ($nav_list as $arr){
+                    if($arr['model']==4){//外链
+                        $navStr.='<li><a href="'.$arr["lianjie"].'" target="_blank">'.$arr["name"].'</a></li>';
+                    }else{
+                        if($arr['moban']=="index"){
+                              $navStr.='<li><a href="/">'.$arr["name"].'</a></li>';
+                        }else{
+                              $navStr.='<li><a href="/'.$arr["pagename"].'/">'.$arr["name"].'</a></li>';
+                        }
+                    }
+                }
+                echo $navStr;
+            }
+        ?>
+    </ul>
+    <a class="navbar-brand" href="/">
+      <img src="{php echo $configRS['logo']}" alt="{php echo $configRS['sitename']}" width="100%">
+    </a>
+
+    <div class="c_apps_login fr">
+      <a href="{url 'user/register'}">注册</a>
+      <span>/</span>
+      <a href="{url 'user/login'}">登录</a>
+    </div>
+    <div class="collapse navbar-collapse fr">
+      <div class="menu-container">
+        <ul class="nav navbar-nav">
+          <?php echo $navStr;?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
