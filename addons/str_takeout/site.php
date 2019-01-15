@@ -968,6 +968,29 @@ class Str_takeoutModuleSite extends WeModuleSite
                 echo 'ok';
 				exit;
 			}
+        
+			if ($_GPC['out_put'] == 'total_output') {
+				$sql = "select t2.title as store_name, sum(t1.card_fee) as total_fee,count(*) as total, sum(case t1.order_type when 2 then t1.card_fee else 0 end ) as out_fee, sum(case t1.order_type when 2 then 1 else 0 end ) as out_num, sum(case t1.order_type when 1 then t1.card_fee else 0 end ) as in_fee, sum(case t1.order_type when 1 then 1 else 0 end ) as in_num from ims_str_order t1 left join ims_str_store t2 on t1.sid=t2.id group by t2.id";
+				
+				$data = pdo_fetchall($sql);
+				
+				//表头信息
+				$header=array(
+					'store_name'=>'門店名稱',
+					'total_fee'=>'總交易金額',
+					'total'=>'總交易筆數',
+					'out_fee'=>'外賣交易金額',
+					'out_num'=>'外賣交易筆數',
+					'in_fee'=>'堂食交易金額',
+					'in_num'=>'堂食交易筆數'
+				);
+
+				//执行导出
+//				export2excel($header,$data,'订单数据');
+                $this->exportExcel($header,$data);
+                echo 'ok';
+				exit;
+			}
             $pager = pagination($total, $pindex, $psize);
             $types = order_types();
             include $this->template('order');

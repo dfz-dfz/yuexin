@@ -12,33 +12,26 @@
 	<?php  } ?>
 </style>
 <div class="container" onselectstart="return true;" ondragstart="return false;">
-	<?php  if($store['comment_status'] == 1) { ?>
-		<header class="comment-area">
-			<div>
-				<h2><?php  echo sprintf('%.2f', $comment_stat['avg_taste']);?>分</h2>
-				<span class="bottom">菜品口味</span>
-			</div>
-			<div>
-				<h2><?php  echo sprintf('%.2f', $comment_stat['avg_serve']);?>分</h2>
-				<span class="bottom">服务态度</span>
-			</div>
-			<div>
-				<h2><?php  echo sprintf('%.2f', $comment_stat['avg_speed']);?>分</h2>
-				<span class="bottom">配送速度</span>
-			</div>
-			<div>
-				<a style="color:#ff510c" href="<?php  echo $this->createMobileUrl('comment_list', array('sid' => $_GPC['sid']))?>"><?php  echo $comment_stat['total'];?>条</a>
-				<span class="bottom">用户评论</span>
-			</div>
-		</header>
-	<?php  } ?>
+	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">店名店名店名</header>
+
 	<header class="nav menu">
+		<div class="title_message">
+			<div style="margin-bottom: 6px;">
+				<span style="font-size: 12px;margin-right: 5px;">[換門店]</span>
+				<span style="margin-right:5px;font-size: 14px;color:#0f0f0f;">分店名分店名分店名</span>
+				<span style="font-size: 11px;">地址地址地址</span>
+			</div>
+			<div>
+				<span style="font-size: 11px;margin-right: 5px;">聯繫電話：0000000</span>
+				<span style="font-size: 11px;">營業時間：7：00-18:00</span>
+			</div>
+		</div>
 		<div>
-			<a href="<?php  echo $this->createMobileUrl('dish', array('sid' => $_GPC['sid']))?>" class="on">菜单</a>
+			<a href="<?php  echo $this->createMobileUrl('dish', array('sid' => $_GPC['sid']))?>" class="on">點菜</a>
 			<?php  if($store['comment_status'] == 1) { ?>
-			<a href="<?php  echo $this->createMobileUrl('comment_list', array('sid' => $_GPC['sid']));?>">用户评论</a>
+			<a href="<?php  echo $this->createMobileUrl('comment_list', array('sid' => $_GPC['sid']));?>">評價</a>
 			<?php  } ?>
-			<a href="<?php  echo murl('mc/home');?>">会员中心</a>
+			<!-- <a href="<?php  echo murl('mc/home');?>">会员中心</a> -->
 		</div>
 	</header>
 	<section>
@@ -90,8 +83,24 @@
 				</div>
 			</div>
 			<div class="menu_container">
+				<section>
+					<?php  if(!empty($store['thumbs']) && $store['slide_status'] == 1) { ?>
+						<div id="imgSwipe" class="img_swipe" style="visibility: visible;">
+							<ul style="width: 0px;">
+								<?php  if(is_array($store['thumbs'])) { foreach($store['thumbs'] as $li) { ?>
+									<li><a href="<?php  echo $li['url'];?>"><img src="<?php  echo tomedia($li['image']);?>" /></a></li>
+								<?php  } } ?>
+							</ul>
+							<ol id="swipeNum">
+								<?php  if(is_array($store['thumbs'])) { foreach($store['thumbs'] as $li) { ?>
+									<li class=""></li>
+								<?php  } } ?>
+							</ol>
+						</div>
+					<?php  } ?>
+				</section>
 				<?php  if(is_array($category)) { foreach($category as $cate_row) { ?>
-					<div class="menu_tt" id="cate-<?php  echo $cate_row['id'];?>"><h2 style="color:#ff510c"><?php  echo $cate_row['title'];?></h2></div>
+					<div class="menu_tt" id="cate-<?php  echo $cate_row['id'];?>"><h2><?php  echo $cate_row['title'];?></h2></div>
 					<ul class="menu_list">
 						<?php  if(is_array($cate_dish[$cate_row['id']])) { foreach($cate_dish[$cate_row['id']] as $ds) { ?>
 							<li id="<?php  echo $ds['id'];?>" class="xian" onclick="showDetail(this)">
@@ -107,43 +116,44 @@
 										<?php  } ?>
 									</div>
 									<div>
-										<h3><?php  echo $ds['title'];?></h3>
-										<p>
-											已售<span class="sale_num"><?php  echo $ds['sailed'];?></span><span class="sale_unit"><?php  echo $ds['unitname'];?></span>
+										<h3 style="font-size: 14px;color:#333;"><?php  echo $ds['title'];?></h3>
+										<p style="font-size: 12px;color:#898989;">
+											已售<span class="sale_num" style="font-size:12px;"><?php  echo $ds['sailed'];?></span><span class="sale_unit" style="font-size:12px;"><?php  echo $ds['unitname'];?></span>
 											<?php  if($ds['total'] == 0) { ?>
-												<span class="text-danger">已售完</span>
+												<span class="text-danger" style="font-size:12px;">已售完</span>
 											<?php  } ?>
-											赠<?php  echo $ds['grant_credit'];?>积分
+											<!-- 赠<?php  echo $ds['grant_credit'];?>积分 -->
 										</p>
 										<div class="info"><?php  echo $ds['description'];?></div>
+										<?php  $i=0;?>
+										<?php  if($ds['show_group_price'] == 1) { ?>
+											<div>
+												<?php  if(is_array($ds['price'])) { foreach($ds['price'] as $k => $v) { ?>
+													<?php  $i++;?>
+													<?php  if($i < 4) { ?>
+														<?php  if(!$k) { ?>
+															<span style="font-size: 18px;color:#333;">$<?php  echo $v;?></span>
+														<?php  } else { ?>
+															<span style="font-size: 14px;color:#c3c3c3;text-decoration: line-through;"><?php  echo $groups[$k]['title'];?>$<?php  echo $v;?></span>
+														<?php  } ?>
+													<?php  } ?>
+												<?php  } } ?>
+											</div>
+										<?php  } ?>
 									</div>
 									<div class="price_wrap">
-										<strong>$<span class="unit_price"><?php  echo $ds['member_price'];?></span></strong>
+										<strong style="display: none;">$<span class="unit_price"><?php  echo $ds['member_price'];?></span></strong>
 										<?php  if($store['business_hours_flag']) { ?>
 											<?php  if($ds['total'] == -1 || $ds['total'] > 0) { ?>
 											<div class="fr" max="<?php  echo $ds['total'];?>" data-first-order-limit="<?php  echo $ds['first_order_limit'];?>" data-buy-limit="<?php  echo $ds['buy_limit'];?>" data-first-order="<?php  echo $is_first_order;?>">
-												<a href="javascript:void(0);" class="btn_n add" data-num="<?php  echo $cart['data'][$ds['id']];?>"></a>
+												<a href="javascript:void(0);" style="display: none;" class="btn_n add" data-num="<?php  echo $cart['data'][$ds['id']];?>"></a>
 												<input autocomplete="off" class="h_num" type="hidden" name="dish[<?php  echo $ds['id'];?>]" value="<?php  echo $cart['data'][$ds['id']];?>">
+												選規格
 											</div>
 											<?php  } ?>
 										<?php  } ?>
 									</div>
 								</div>
-								<?php  $i=0;?>
-								<?php  if($ds['show_group_price'] == 1) { ?>
-									<div class="bottom">
-										<?php  if(is_array($ds['price'])) { foreach($ds['price'] as $k => $v) { ?>
-											<?php  $i++;?>
-											<?php  if($i < 4) { ?>
-												<?php  if(!$k) { ?>
-													<div><i class="fa fa-heart-o"></i> 原价$<?php  echo $v;?></div>
-												<?php  } else { ?>
-													<div><i class="fa fa-heart-o"></i> <?php  echo $groups[$k]['title'];?>$<?php  echo $v;?></div>
-												<?php  } ?>
-											<?php  } ?>
-										<?php  } } ?>
-									</div>
-								<?php  } ?>
 							</li>
 						<?php  } } ?>
 					</ul>
@@ -151,23 +161,31 @@
 			</div>
 		</section>
 		<?php  if($_GPC['mode'] == 2) { ?>
-		<footer class="shopping_cart">
+		<footer class="shopping_cart" id="shopping_box" style="display: none;">
 			<div class="fixed">
-				<div class="cart_bg">
-					<span class="cart_num" id="cartNum"></span>
+				<div class="cart_bgs">
+					<div class="cart_nums">
+						<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
+						購物車
+					</div>
+					<span id="cartNum"></span>
 				</div>
 				<div>$<span id="totalPrice">0</span></div>
 				<div>
-					<span class="comm_btn disabled">还差<span id="sendCondition"><?php  echo $store['send_price'];?>元</span>起送</span>
-					<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="display: none;">去结算</a>
+					<span class="comm_btn disabled">還差<span id="sendCondition"><?php  echo $store['send_price'];?></span>起送</span>
+					<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="">結算</a>
 				</div>
 			</div>
 		</footer>
 		<?php  } else { ?>
-		<footer class="shopping_cart">
+		<footer class="shopping_cart" id="shopping_box" style="display: none;">
 			<div class="fixed">
-				<div class="cart_bg">
-					<span class="cart_num" id="cartNum"></span>
+				<div class="cart_bgs">
+					<div class="cart_nums">
+						<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
+						購物車
+					</div>
+					<span id="cartNum"></span>
 				</div>
 				<div>$<span id="totalPrice">0</span></div>
 				<div>
@@ -178,8 +196,7 @@
 						<span class="comm_btn disabled">还差<span id="sendCondition"><?php  echo $table_category['limit_price'];?>元</span>起送</span>
 						<a id="reserveSubmit" href="javascript:;" class="comm_btn" style="display: none;">选好了</a>
 					<?php  } else { ?>
-						<span class="comm_btn disabled"><span id="sendCondition" class="hide">0元</span>点餐</span>
-						<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="display: none;">去结算</a>
+						<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="">結算</a>
 					<?php  } ?>
 				</div>
 			</div>
@@ -216,6 +233,8 @@ $(function(){
 		$('#cart_form').attr('action', action);
 		$('#cart_form').submit();
 	});
+
+
 });
 var menu = {
 	offsetAry: [0],

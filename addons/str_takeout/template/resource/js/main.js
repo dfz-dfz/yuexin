@@ -129,6 +129,7 @@ $.amountCb = function(){
 	var _condition = $('#sendCondition'),
 		_total = $('#totalPrice'),
 		_cartNum = $('#cartNum'),
+		_shopping_box = $('#shopping_box'),
 		sendCondition = parseFloat(_condition.text()).toFixed(3);
 
 	return function(sign){
@@ -148,8 +149,10 @@ $.amountCb = function(){
 		}
 
 		if(disNumber > 0){
+			_shopping_box.show();
 			_cartNum.addClass('has_num');
 		}else{
+			_shopping_box.hide();
 			_cartNum.removeClass('has_num').text('');
 		}
 		return false;
