@@ -160,47 +160,78 @@
 				<?php  } } ?>
 			</div>
 		</section>
-		<?php  if($_GPC['mode'] == 2) { ?>
-		<footer class="shopping_cart" id="shopping_box" style="display: none;">
-			<div class="fixed">
-				<div class="cart_bgs">
-					<div class="cart_nums">
-						<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
-						購物車
-					</div>
-					<span id="cartNum"></span>
+		<?php  if(!$store['business_hours_flag']) { ?>
+			<footer class="shopping_cart" id="shopping_box">
+				<div class="fixeds">
+					本店已打烊
 				</div>
-				<div>$<span id="totalPrice">0</span></div>
-				<div>
-					<span class="comm_btn disabled">還差<span id="sendCondition"><?php  echo $store['send_price'];?></span>起送</span>
-					<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="">結算</a>
-				</div>
-			</div>
-		</footer>
+			</footer>
 		<?php  } else { ?>
-		<footer class="shopping_cart" id="shopping_box" style="display: none;">
-			<div class="fixed">
-				<div class="cart_bgs">
-					<div class="cart_nums">
-						<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
-						購物車
+			<?php  if($_GPC['mode'] == 2) { ?>
+			<footer class="shopping_cart" id="shopping_box" style="display: none;">
+				<!-- 購物車詳情 -->
+				<div class="shopp_cat_details">
+					<div class="head">
+						<span class="hadchoes">已選商品</span>
+						<span class="empty">清空</span>
 					</div>
-					<span id="cartNum"></span>
+					<div class="goods_list">
+						<div class="list_top">
+							<span>牛排套餐</span>
+							<span>
+								<?php  if($ds['total'] == -1 || $ds['total'] > 0) { ?>
+									<div class="fr" max="<?php  echo $ds['total'];?>" data-first-order-limit="<?php  echo $ds['first_order_limit'];?>" data-buy-limit="<?php  echo $ds['buy_limit'];?>" data-first-order="<?php  echo $is_first_order;?>">
+										<a href="javascript:void(0);" class="btn_n add" data-num="<?php  echo $cart['data'][$ds['id']];?>"></a>
+										<input autocomplete="off" class="h_num" type="hidden" name="dish[<?php  echo $ds['id'];?>]" value="<?php  echo $cart['data'][$ds['id']];?>">
+									</div>
+								<?php  } ?>
+							</span>
+							<span>$40</span>
+						</div>
+						<div>牛排，牛奶，正常冰</div>
+					</div>
 				</div>
-				<div>$<span id="totalPrice">0</span></div>
-				<div>
-					<?php  if($mode == 3) { ?>
-						<span class="comm_btn disabled"><span id="sendCondition" class="hide">0元</span>点餐</span>
-						<a id="assignSubmit" href="javascript:;" class="comm_btn" style="display: none;">选好了</a>
-					<?php  } else if($mode == 4) { ?>
-						<span class="comm_btn disabled">还差<span id="sendCondition"><?php  echo $table_category['limit_price'];?>元</span>起送</span>
-						<a id="reserveSubmit" href="javascript:;" class="comm_btn" style="display: none;">选好了</a>
-					<?php  } else { ?>
+				<!-- 購物車詳情end -->
+				<div class="fixed">
+					<div class="cart_bgs">
+						<div class="cart_nums">
+							<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
+							購物車
+						</div>
+						<span id="cartNum"></span>
+					</div>
+					<div>$<span id="totalPrice">0</span></div>
+					<div>
+						<span class="comm_btn disabled">還差<span id="sendCondition"><?php  echo $store['send_price'];?></span>起送</span>
 						<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="">結算</a>
-					<?php  } ?>
+					</div>
 				</div>
-			</div>
-		</footer>
+			</footer>
+			<?php  } else { ?>
+			<footer class="shopping_cart" id="shopping_box" style="display: none;">
+				<div class="fixed">
+					<div class="cart_bgs">
+						<div class="cart_nums">
+							<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
+							購物車
+						</div>
+						<span id="cartNum"></span>
+					</div>
+					<div>$<span id="totalPrice">0</span></div>
+					<div>
+						<?php  if($mode == 3) { ?>
+							<span class="comm_btn disabled"><span id="sendCondition" class="hide">0元</span>点餐</span>
+							<a id="assignSubmit" href="javascript:;" class="comm_btn" style="display: none;">选好了</a>
+						<?php  } else if($mode == 4) { ?>
+							<span class="comm_btn disabled">还差<span id="sendCondition"><?php  echo $table_category['limit_price'];?>元</span>起送</span>
+							<a id="reserveSubmit" href="javascript:;" class="comm_btn" style="display: none;">选好了</a>
+						<?php  } else { ?>
+							<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="">結算</a>
+						<?php  } ?>
+					</div>
+				</div>
+			</footer>
+			<?php  } ?>
 		<?php  } ?>
 	</form>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>

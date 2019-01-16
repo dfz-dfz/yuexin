@@ -187,6 +187,7 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 
 .shopping_cart{height: 49px;}
 .shopping_cart .fixed{-webkit-box-sizing: border-box; color: #ff510c;background-color: #f2f2f2;}
+.shopping_cart .fixeds{font-size:18px;font-weight:400px;text-align:center;color: #fff;background:rgba(188,188,188,1);width: 100%;height: 49px;line-height: 49px;}
 .shopping_cart .cart_bg{width: 32px; height: 32px; background-position: 0 -71px;}
 	.cart_nums{display: block; width: 98px; height: 46px;background-color:#fff;border-radius:23px;position: absolute;top: -12px;left: 12px;text-align: center;line-height: 46px;font-size: 14px;color: #333;}
 	.cart_nums.has_num{background: none;}
@@ -195,6 +196,18 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .shopping_cart .fixed > div{display: table-cell; vertical-align: middle;position: relative;}
 .shopping_cart .fixed > div:nth-of-type(2){width: 100%; font-size: 18px; padding-right:17px;text-align: right;color: #333;}
 #totalPrice{font-size: 18px;}
+
+/*購物車詳情*/
+.shopp_cat_details{position: fixed;border-radius: 8px;background-color: #fff;padding: 12px;bottom: 88px;width: 100%;z-index: 999;padding-bottom: 40px;}
+.shopp_cat_details div{height: auto;overflow: hidden;}
+.shopp_cat_details .head span:nth-of-type(1){float: left;font-size: 14px;font-weight: 400;color:#666;}
+.shopp_cat_details .head span:nth-of-type(2){float: right;font-size: 12px;font-weight: 400;color: #B4B4B4;margin-top: 2px;}
+.shopp_cat_details .goods_list{margin-top: 20px;}
+.goods_list .list_top span:nth-of-type(1){float: left;font-size: 14px;color: #333;font-weight: 400;}
+.goods_list .list_top span:nth-of-type(2){float: right;font-size: 14px;color: #333;font-weight: 400;}
+.goods_list .list_top span:nth-of-type(3){float: right;}
+.goods_list div{font-size: 13px;color:#929292;font-weight: 400;}
+/*購物車詳情end*/
 
 .comm_btn{display: inline-block; height: 49px; line-height: 49px;width:98px; font-size: 18px; color: #fff; background-color: #2BA3DC;white-space: nowrap;text-align: center;}
 .disabled{background-color: #b6b6b6 !important; cursor: default;}
