@@ -170,7 +170,7 @@
 			<?php  if($_GPC['mode'] == 2) { ?>
 			<footer class="shopping_cart" id="shopping_box" style="display: none;">
 				<!-- 購物車詳情 -->
-				<div class="shopp_cat_details">
+				<div class="shopp_cat_details" style="display: none;">
 					<div class="head">
 						<span class="hadchoes">已選商品</span>
 						<span class="empty">清空</span>
@@ -267,6 +267,12 @@ $(function(){
 
 
 });
+//显示购物车详情
+$('.cart_bgs').click(function() {
+	$('.shopp_cat_details').show();
+	return false;
+});
+
 var menu = {
 	offsetAry: [0],
 	_is_left_menu_addclass:true,
