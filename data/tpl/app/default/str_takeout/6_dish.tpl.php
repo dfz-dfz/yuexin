@@ -236,18 +236,38 @@
 	</form>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 	<div class="menu_detail" id="menuDetail">
-		<img style="display: none;">
-		<div class="nopic"><img src=""></div>
+		<!-- <img style="display: none;"> -->
+		<div class="choice_box">
+			<div class="title">主食</div>
+			<div class="types">
+				<span>羊排</span><span>牛排</span>
+			</div>
+		</div>
+
+		<div class="choice_box">
+			<div class="title">飲料</div>
+			<div class="types">
+				<span>牛奶</span><span>咖啡</span><span>奶茶</span><span>湯</span>
+			</div>
+		</div>
+				
+		<div class="choice_box">
+			<div class="title">溫度</div>
+			<div class="types">
+				<span>正常冰</span><span>少冰</span><span>常溫</span><span>熱</span>
+			</div>
+		</div>
+		<!-- <div class="nopic"><img src=""></div> -->
 		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
 		<dl>
 			<dt>价格：</dt>
 			<dd class="highlight">$<span class="price"></span></dd>
 		</dl>
-		<p>月售<span class="sale_num"></span>份</p>
+		<!-- <p>月售<span class="sale_num"></span>份</p>
 		<dl>
 			<dt>介绍：</dt>
 			<dd class="info"></dd>
-		</dl>
+		</dl> -->
 	</div>
 </div>
 

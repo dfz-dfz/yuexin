@@ -222,6 +222,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .menu_detail dl dd{overflow: auto;}
 .menu_detail .comm_btn{position: absolute; right: 14px; margin-top: 5px;}
 .ico_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
+.menu_detail .choice_box{margin-bottom: 20px;}
+.menu_detail .choice_box .title{height:20px;font-size:14px;font-weight:400;color:rgba(51,51,51,1);line-height:20px;margin-bottom: 10px;}
+.choice_box .types span{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;}
 
 /* skin1 */
 .menu_wrap.skin1 .menu_nav{right: auto; left: 0; width: 80px; background-color: #f7f7f7; background-size: 100% 100%; border-width: 0 1px 0 0;}
@@ -289,12 +292,12 @@ textarea.txt{height: 92px; line-height: 24px;}
 .txt.max{height: 140px;}
 
 /* dialog */
-.dialog{position: fixed; left: 0; top: 0; width: 100%; height: 100%; padding: 0 20px; z-index: 2000; -webkit-box-sizing: border-box; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center;}
+.dialog{position: fixed; left: 0; top: 0; width: 100%; height: 100%; padding: 0 44px; z-index: 2000; -webkit-box-sizing: border-box; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center;}
 .dialog.mask{background-color: rgba(0, 0, 0, .2);}
-	.dialog_wrap{position: relative; width: 100%; max-width: 640px; border-radius: 5px; overflow: hidden; -webkit-animation:bounceIn .5s .2s ease both;}
+	.dialog_wrap{position: relative; width: 100%; max-width: 640px; border-radius: 15px; overflow: hidden; -webkit-animation:bounceIn .5s .2s ease both;}
 	.dialog_scroller{position: relative; float: left; width: 100%; overflow: hidden; background-color: #fff; border-radius: 0 0 5px 5px;}
 		.dialog_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
-		.dialog_tt{height: 42px; line-height: 42px; color: #fff; text-align: center; font-size: 16px; border-radius: 5px 5px 0 0;}
+		.dialog_tt{height: 42px; line-height: 42px; color: #333;font-weight: 500; text-align: center; font-size: 18px; border-radius: 5px 5px 0 0;background-color: #fff;background-image: none;}
 .dialog .sales{vertical-align: 0;}
 .highlight{color: #ff5f32; font-size: 16px;}
 
