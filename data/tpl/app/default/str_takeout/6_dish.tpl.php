@@ -240,21 +240,22 @@
 		<div class="choice_box">
 			<div class="title">主食</div>
 			<div class="types">
-				<span>羊排</span><span>牛排</span>
+				<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
+				<label for="2">牛排<input type="radio" name="food" id="2"></label>
 			</div>
 		</div>
 
 		<div class="choice_box">
 			<div class="title">飲料</div>
 			<div class="types">
-				<span>牛奶</span><span>咖啡</span><span>奶茶</span><span>湯</span>
+				<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
 			</div>
 		</div>
 				
 		<div class="choice_box">
 			<div class="title">溫度</div>
 			<div class="types">
-				<span>正常冰</span><span>少冰</span><span>常溫</span><span>熱</span>
+				<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
 			</div>
 		</div>
 		<!-- <div class="nopic"><img src=""></div> -->
@@ -287,6 +288,12 @@ $(function(){
 
 
 });
+
+$('.types label').click(function(){
+	$('.types label').removeClass('isChecked')
+	$(this).attr('class','isChecked');
+});
+
 //显示购物车详情
 $('.cart_bgs').click(function() {
 	$('.shopp_cat_details').show();

@@ -224,7 +224,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .ico_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
 .menu_detail .choice_box{margin-bottom: 20px;}
 .menu_detail .choice_box .title{height:20px;font-size:14px;font-weight:400;color:rgba(51,51,51,1);line-height:20px;margin-bottom: 10px;}
-.choice_box .types span{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;}
+.choice_box .types input{display: none;}
+.choice_box .types label{padding: 3px 13px;background-color: #fff;color: #333;border-radius: 15px;border:1px solid #D2D2D2;font-size: 14px;margin-right: 10px;}
+.choice_box .types .isChecked{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;}
 
 /* skin1 */
 .menu_wrap.skin1 .menu_nav{right: auto; left: 0; width: 80px; background-color: #f7f7f7; background-size: 100% 100%; border-width: 0 1px 0 0;}
