@@ -18,12 +18,12 @@
 		<div class="title_message">
 			<div style="margin-bottom: 6px;">
 				<span style="font-size: 12px;margin-right: 5px;">[換門店]</span>
-				<span style="margin-right:5px;font-size: 14px;color:#0f0f0f;">分店名分店名分店名</span>
-				<span style="font-size: 11px;">地址地址地址</span>
+				<span style="margin-right:5px;font-size: 14px;color:#0f0f0f;"><?php echo $store['title'];?></span>
+				<span style="font-size: 11px;"><?php echo $store['address'];?></span>
 			</div>
 			<div>
-				<span style="font-size: 11px;margin-right: 5px;">聯繫電話：0000000</span>
-				<span style="font-size: 11px;">營業時間：7：00-18:00</span>
+				<span style="font-size: 11px;margin-right: 5px;">聯繫電話：<?php echo $store['telephone'];?></span>
+				<span style="font-size: 11px;">營業時間：<?php echo $store['business_hours'][0]['s'];?>-<?php echo $store['business_hours'][0]['e'];?></span>
 			</div>
 		</div>
 		<div>
