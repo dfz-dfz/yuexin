@@ -178,18 +178,30 @@ $(function(){
 });
 
 //隐藏购物车
-$(document).click(function () {
-    $(".shopp_cat_details").hide();
-});
+// $(document).click(function () {
+// 	alert(111)
+//     $(".shopp_cat_details").hide();
+// });
 
-$(".shopp_cat_details").on("click", function (event) {
-    //取消事件冒泡
-    var e = arguments.callee.caller.arguments[0] || event; //若省略此句，下面的e改为event，IE运行可以，但是其他浏览器就不兼容
-    if (e && e.stopPropagation) {
-        // this code is for Mozilla and Opera
-        e.stopPropagation();
-    } else if (window.event) {
-        // this code is for IE
-         window.event.cancelBubble = true;
-    }
+// $(".shopp_cat_details").on("click", function (event) {
+// 	alert(123)
+//     //取消事件冒泡
+//     var e = arguments.callee.caller.arguments[0] || event; //若省略此句，下面的e改为event，IE运行可以，但是其他浏览器就不兼容
+//     if (e && e.stopPropagation) {
+//         // this code is for Mozilla and Opera
+//         e.stopPropagation();
+//     } else if (window.event) {
+//         // this code is for IE
+//          window.event.cancelBubble = true;
+//     }
+// });
+$('body').bind('click', function(event) {
+    // IE支持 event.srcElement ， FF支持 event.target    
+    var evt = event.srcElement ? event.srcElement : event.target;
+    alert(event.id)
+    if(evt.id == 'shopp_cat_details' ) return; // 如果是元素本身，则返回
+    else {
+    	alert(2)
+        $('#shopp_cat_details').hide(); // 如不是则隐藏元素
+    }   
 });

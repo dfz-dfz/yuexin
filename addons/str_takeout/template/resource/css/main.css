@@ -212,15 +212,17 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .comm_btn{display: inline-block; height: 49px; line-height: 49px;width:98px; font-size: 18px; color: #fff; background-color: #2BA3DC;white-space: nowrap;text-align: center;}
 .disabled{background-color: #b6b6b6 !important; cursor: default;}
 
-.menu_detail{padding: 8px 14px; display: none;}
+.menu_detail{display: none;}
+.menu_detail .checkBox{padding: 8px 14px;}
 .menu_detail .nopic{height: 132px;}
 .menu_detail img, .menu_detail .nopic{margin-bottom: 5px;}
 .menu_detail img{display: block; margin-bottom: 5px; width: 100%; border-radius: 3px; max-height: 263px;}
-.menu_detail p, .menu_detail dl{padding-left: 10px; line-height: 24px;}
+.menu_detail p, .menu_detail dl{padding-left: 15px;height: 69px;line-height: 69px;background-color: #F3F4F5;}
 .menu_detail dl{color: #959595;}
-.menu_detail dl dt{float: left;}
-.menu_detail dl dd{overflow: auto;}
-.menu_detail .comm_btn{position: absolute; right: 14px; margin-top: 5px;}
+.menu_detail dl dt{}
+.menu_detail dl dd{}
+.menu_detail .choices{position: absolute;width: 50%;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;font-size: 13px;color:#929292;}
+.menu_detail .comm_btn{position: absolute; right: 9px; margin-top: -24px;width: 115px;height: 42px;line-height:42px;border-radius: 9px;font-size: 14px;font-weight: 500;}
 .ico_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
 .menu_detail .choice_box{margin-bottom: 20px;}
 .menu_detail .choice_box .title{height:20px;font-size:14px;font-weight:400;color:rgba(51,51,51,1);line-height:20px;margin-bottom: 10px;}
@@ -301,7 +303,7 @@ textarea.txt{height: 92px; line-height: 24px;}
 		.dialog_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
 		.dialog_tt{height: 42px; line-height: 42px; color: #333;font-weight: 500; text-align: center; font-size: 18px; border-radius: 5px 5px 0 0;background-color: #fff;background-image: none;}
 .dialog .sales{vertical-align: 0;}
-.highlight{color: #ff5f32; font-size: 16px;}
+.highlight{color: #333; font-size: 18px;font-weight: 500;line-height: 25px;padding-top: 10px;}
 
 @-webkit-keyframes bounceIn{
 	0%{opacity:0;-webkit-transform:scale(.3)}

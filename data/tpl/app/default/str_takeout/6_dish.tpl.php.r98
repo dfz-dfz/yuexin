@@ -12,14 +12,8 @@
 	<?php  } ?>
 </style>
 <div class="container" onselectstart="return true;" ondragstart="return false;">
-<<<<<<< .mine
-	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">越新科技</header>
-||||||| .r97
-	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">店名店名店名</header>
-=======
 	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>店名店名店名</header>
 	
->>>>>>> .r98
 
 	<header class="nav menu">
 		<div class="title_message">
@@ -177,7 +171,7 @@
 			<?php  if($_GPC['mode'] == 2) { ?>
 			<footer class="shopping_cart" id="shopping_box" style="display: none;">
 				<!-- 購物車詳情 -->
-				<div class="shopp_cat_details" id="shopp_cat_details" style="display: none;">
+				<div class="shopp_cat_details" style="display: none;">
 					<div class="head">
 						<span class="hadchoes">已選商品</span>
 						<span class="empty">清空</span>
@@ -243,34 +237,39 @@
 	</form>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 	<div class="menu_detail" id="menuDetail">
-		<div class="checkBox">
-			<div class="choice_box">
-				<div class="title">主食</div>
-				<div class="types">
-					<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
-					<label for="2">牛排<input type="radio" name="food" id="2"></label>
-				</div>
-			</div>
-
-			<div class="choice_box">
-				<div class="title">飲料</div>
-				<div class="types">
-					<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
-				</div>
-			</div>
-					
-			<div class="choice_box">
-				<div class="title">溫度</div>
-				<div class="types">
-					<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
-				</div>
+		<!-- <img style="display: none;"> -->
+		<div class="choice_box">
+			<div class="title">主食</div>
+			<div class="types">
+				<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
+				<label for="2">牛排<input type="radio" name="food" id="2"></label>
 			</div>
 		</div>
+
+		<div class="choice_box">
+			<div class="title">飲料</div>
+			<div class="types">
+				<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
+			</div>
+		</div>
+				
+		<div class="choice_box">
+			<div class="title">溫度</div>
+			<div class="types">
+				<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
+			</div>
+		</div>
+		<!-- <div class="nopic"><img src=""></div> -->
+		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
 		<dl>
-			<dt class="highlight">$<span class="price"></span></dt>
-			<dt class="choices"></dt>
-			<a href="javascript:void(0);" class="comm_btn" id="detailBtn">加入購物車</a>
+			<dt>价格：</dt>
+			<dd class="highlight">$<span class="price"></span></dd>
 		</dl>
+		<!-- <p>月售<span class="sale_num"></span>份</p>
+		<dl>
+			<dt>介绍：</dt>
+			<dd class="info"></dd>
+		</dl> -->
 	</div>
 </div>
 
