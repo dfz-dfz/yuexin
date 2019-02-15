@@ -12,18 +12,17 @@
 	<?php  } ?>
 </style>
 <div class="container" onselectstart="return true;" ondragstart="return false;">
-	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">店名店名店名</header>
-
+	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>越新科技</header>
 	<header class="nav menu">
 		<div class="title_message">
 			<div style="margin-bottom: 6px;">
 				<span style="font-size: 12px;margin-right: 5px;">[換門店]</span>
-				<span style="margin-right:5px;font-size: 14px;color:#0f0f0f;">分店名分店名分店名</span>
-				<span style="font-size: 11px;">地址地址地址</span>
+				<span style="margin-right:5px;font-size: 14px;color:#0f0f0f;"><?php echo $store['title'];?></span>
+				<span style="font-size: 11px;"><?php echo $store['address'];?></span>
 			</div>
 			<div>
-				<span style="font-size: 11px;margin-right: 5px;">聯繫電話：0000000</span>
-				<span style="font-size: 11px;">營業時間：7：00-18:00</span>
+				<span style="font-size: 11px;margin-right: 5px;">聯繫電話：<?php echo $store['telephone'];?></span>
+				<span style="font-size: 11px;">營業時間：<?php echo $store['business_hours'][0]['s'];?>-<?php echo $store['business_hours'][0]['e'];?></span>
 			</div>
 		</div>
 		<div>
@@ -134,7 +133,7 @@
 														<?php  if(!$k) { ?>
 															<span style="font-size: 18px;color:#333;">$<?php  echo $v;?></span>
 														<?php  } else { ?>
-															<span style="font-size: 14px;color:#c3c3c3;text-decoration: line-through;"><?php  echo $groups[$k]['title'];?>$<?php  echo $v;?></span>
+															<span style="font-size: 14px;color:#c3c3c3;text-decoration: line-through;"><?php  //echo $groups[$k]['title'];?>$<?php  echo $v;?></span>
 														<?php  } ?>
 													<?php  } ?>
 												<?php  } } ?>
@@ -170,7 +169,7 @@
 			<?php  if($_GPC['mode'] == 2) { ?>
 			<footer class="shopping_cart" id="shopping_box" style="display: none;">
 				<!-- 購物車詳情 -->
-				<div class="shopp_cat_details" style="display: none;">
+				<div class="shopp_cat_details" id="shopp_cat_details" style="display: none;">
 					<div class="head">
 						<span class="hadchoes">已選商品</span>
 						<span class="empty">清空</span>
@@ -236,39 +235,34 @@
 	</form>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 	<div class="menu_detail" id="menuDetail">
-		<!-- <img style="display: none;"> -->
-		<div class="choice_box">
-			<div class="title">主食</div>
-			<div class="types">
-				<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
-				<label for="2">牛排<input type="radio" name="food" id="2"></label>
+		<div class="checkBox">
+			<div class="choice_box">
+				<div class="title">主食</div>
+				<div class="types">
+					<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
+					<label for="2">牛排<input type="radio" name="food" id="2"></label>
+				</div>
 			</div>
-		</div>
 
-		<div class="choice_box">
-			<div class="title">飲料</div>
-			<div class="types">
-				<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
+			<div class="choice_box">
+				<div class="title">飲料</div>
+				<div class="types">
+					<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
+				</div>
+			</div>
+					
+			<div class="choice_box">
+				<div class="title">溫度</div>
+				<div class="types">
+					<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
+				</div>
 			</div>
 		</div>
-				
-		<div class="choice_box">
-			<div class="title">溫度</div>
-			<div class="types">
-				<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
-			</div>
-		</div>
-		<!-- <div class="nopic"><img src=""></div> -->
-		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
 		<dl>
-			<dt>价格：</dt>
-			<dd class="highlight">$<span class="price"></span></dd>
+			<dt class="highlight">$<span class="price"></span></dt>
+			<dt class="choices"></dt>
+			<a href="javascript:void(0);" class="comm_btn" id="detailBtn">加入購物車</a>
 		</dl>
-		<!-- <p>月售<span class="sale_num"></span>份</p>
-		<dl>
-			<dt>介绍：</dt>
-			<dd class="info"></dd>
-		</dl> -->
 	</div>
 </div>
 
@@ -297,6 +291,9 @@ $('.types label').click(function(){
 //显示购物车详情
 $('.cart_bgs').click(function() {
 	$('.shopp_cat_details').show();
+	return false;
+});
+$("#shopp_cat_details").click(function(event){
 	return false;
 });
 

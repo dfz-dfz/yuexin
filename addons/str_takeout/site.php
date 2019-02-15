@@ -1674,7 +1674,7 @@ class Str_takeoutModuleSite extends WeModuleSite
                 message('桌台类型不存在或已删除', referer(), 'error');
             }
         }
-        $store = pdo_fetch('SELECT title,logo,id,content,delivery_price,business_hours,slide_status,send_price,dish_style,is_meal,is_takeout,comment_status,notice,copyright,thumbs FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
+        $store = pdo_fetch('SELECT address,telephone,title,logo,id,content,delivery_price,business_hours,slide_status,send_price,dish_style,is_meal,is_takeout,comment_status,notice,copyright,thumbs FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
             ':aid' => $_W['uniacid'],
             ':id' => $sid
         ));
