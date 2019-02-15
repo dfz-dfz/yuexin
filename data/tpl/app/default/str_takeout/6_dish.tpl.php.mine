@@ -12,19 +12,8 @@
 	<?php  } ?>
 </style>
 <div class="container" onselectstart="return true;" ondragstart="return false;">
-<<<<<<< HEAD
-	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>越新科技</header>
-=======
-<<<<<<< .mine
 	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">越新科技</header>
-||||||| .r97
-	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">店名店名店名</header>
-=======
-	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>店名店名店名</header>
-	
->>>>>>> .r98
 
->>>>>>> a72113b1055bf1f597e4f2e461393e692776a5fd
 	<header class="nav menu">
 		<div class="title_message">
 			<div style="margin-bottom: 6px;">
@@ -145,7 +134,7 @@
 														<?php  if(!$k) { ?>
 															<span style="font-size: 18px;color:#333;">$<?php  echo $v;?></span>
 														<?php  } else { ?>
-															<span style="font-size: 14px;color:#c3c3c3;text-decoration: line-through;"><?php  //echo $groups[$k]['title'];?>$<?php  echo $v;?></span>
+															<span style="font-size: 14px;color:#c3c3c3;text-decoration: line-through;"><?php  echo $groups[$k]['title'];?>$<?php  echo $v;?></span>
 														<?php  } ?>
 													<?php  } ?>
 												<?php  } } ?>
@@ -303,9 +292,6 @@ $('.types label').click(function(){
 //显示购物车详情
 $('.cart_bgs').click(function() {
 	$('.shopp_cat_details').show();
-	return false;
-});
-$("#shopp_cat_details").click(function(event){
 	return false;
 });
 
