@@ -12,23 +12,11 @@
 	<?php  } ?>
 </style>
 <div class="container" onselectstart="return true;" ondragstart="return false;">
-<<<<<<< HEAD
 	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>越新科技</header>
-=======
-<<<<<<< .mine
-	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">越新科技</header>
-||||||| .r97
-	<header class="top_nav"><img src="../addons/str_takeout/template/resource/images/close.png" alt="">店名店名店名</header>
-=======
-	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>店名店名店名</header>
-	
->>>>>>> .r98
-
->>>>>>> a72113b1055bf1f597e4f2e461393e692776a5fd
 	<header class="nav menu">
 		<div class="title_message">
 			<div style="margin-bottom: 6px;">
-				<span style="font-size: 12px;margin-right: 5px;">[換門店]</span>
+				<span style="font-size: 12px;margin-right: 5px;"><a style="margin: 0;" href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>">[換門店]</a></span>
 				<span style="margin-right:5px;font-size: 14px;color:#0f0f0f;"><?php echo $store['title'];?></span>
 				<span style="font-size: 11px;"><?php echo $store['address'];?></span>
 			</div>
@@ -204,7 +192,7 @@
 				</div>
 				<!-- 購物車詳情end -->
 				<div class="fixed">
-					<div class="cart_bgs">
+					<div class="cart_bgs" id="cart_bgs">
 						<div class="cart_nums">
 							<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
 							購物車
@@ -221,7 +209,7 @@
 			<?php  } else { ?>
 			<footer class="shopping_cart" id="shopping_box" style="display: none;">
 				<div class="fixed">
-					<div class="cart_bgs">
+					<div class="cart_bgs" id="cart_bgs">
 						<div class="cart_nums">
 							<img src="../addons/str_takeout/template/resource/images/gouwuche.png" alt="">
 							購物車
@@ -248,24 +236,24 @@
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 	<div class="menu_detail" id="menuDetail">
 		<div class="checkBox">
-			<div class="choice_box">
+			<div class="choice_box choice1">
 				<div class="title">主食</div>
-				<div class="types">
+				<div class="types types1">
 					<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
 					<label for="2">牛排<input type="radio" name="food" id="2"></label>
 				</div>
 			</div>
 
-			<div class="choice_box">
+			<div class="choice_box choice2">
 				<div class="title">飲料</div>
-				<div class="types">
+				<div class="types types2">
 					<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
 				</div>
 			</div>
 					
-			<div class="choice_box">
+			<div class="choice_box choice3">
 				<div class="title">溫度</div>
-				<div class="types">
+				<div class="types types3">
 					<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
 				</div>
 			</div>
@@ -295,20 +283,36 @@ $(function(){
 
 });
 
-$('.types label').click(function(){
-	$('.types label').removeClass('isChecked')
+//選擇套餐
+$('.choice1 label').click(function(){
+	$('.types1 label').removeClass('isChecked')
 	$(this).attr('class','isChecked');
 });
 
+$('.choice2 label').click(function(){
+	$('.types2 label').removeClass('isChecked')
+	$(this).attr('class','isChecked');
+});
+
+$('.choice3 label').click(function(){
+	$('.types3 label').removeClass('isChecked')
+	$(this).attr('class','isChecked');
+});
+
+$('#detailBtn').click(function(){
+	$('.dialog').hide();
+});
+//選擇套餐end
+
 //显示购物车详情
-$('.cart_bgs').click(function() {
+$('#cart_bgs').click(function() {
 	$('.shopp_cat_details').show();
 	return false;
 });
 $("#shopp_cat_details").click(function(event){
 	return false;
 });
-
+//显示购物车详情end
 var menu = {
 	offsetAry: [0],
 	_is_left_menu_addclass:true,

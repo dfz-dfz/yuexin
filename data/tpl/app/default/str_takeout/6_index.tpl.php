@@ -100,7 +100,7 @@ jQuery.browser={};
 <div id="lat" class="hide"></div>
 <div id="lng" class="hide"></div>
 
-<header>上海小館</header>
+<header>越新科技</header>
 
 	<section>
 		<div class="logo_box">

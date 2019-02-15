@@ -189,9 +189,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .shopping_cart .fixed{-webkit-box-sizing: border-box; color: #ff510c;background-color: #f2f2f2;}
 .shopping_cart .fixeds{font-size:18px;font-weight:400px;text-align:center;color: #fff;background:rgba(188,188,188,1);width: 100%;height: 49px;line-height: 49px;}
 .shopping_cart .cart_bg{width: 32px; height: 32px; background-position: 0 -71px;}
-	.cart_nums{display: block; width: 98px; height: 46px;background-color:#F9F9F9;border-radius:23px;position: absolute;top: -12px;left: 12px;text-align: center;line-height: 46px;font-size: 14px;color: #333;}
+	.cart_nums{display: block; width: 98px; height: 46px;background-color:#F9F9F9;border-radius:23px;position: absolute;top: -12px;left: 12px;text-align: center;line-height: 46px;font-size: 14px;color: #333;z-index: 99;}
 	.cart_nums.has_num{background: none;}
-	#cartNum{position: absolute;right: -114px;top: -15px;background: linear-gradient(90deg,rgba(232,103,129,1) 0%,rgba(239,67,88,1) 100%);border: 1px solid rgba(255,255,255,1);border-radius: 50%;width: 23px;height: 23px;color: #fff;font-size: 14px;text-align: center;line-height: 23px;}
+	#cartNum{position: absolute;right: -114px;top: -15px;background: linear-gradient(90deg,rgba(232,103,129,1) 0%,rgba(239,67,88,1) 100%);border: 1px solid rgba(255,255,255,1);border-radius: 50%;width: 23px;height: 23px;color: #fff;font-size: 14px;text-align: center;line-height: 23px;z-index: 999;}
 		
 .shopping_cart .fixed > div{display: table-cell; vertical-align: middle;position: relative;}
 .shopping_cart .fixed > div:nth-of-type(2){width: 100%; font-size: 18px; padding-right:17px;text-align: right;color: #333;}
