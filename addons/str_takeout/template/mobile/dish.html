@@ -190,7 +190,7 @@
 	<div class="menu_detail" id="menuDetail">
 		<img style="display: none;">
 		<div class="nopic"><img src=""></div>
-		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
+		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">加入購物車</a>
 		<dl>
 			<dt>价格：</dt>
 			<dd class="highlight">￥<span class="price"></span></dd>

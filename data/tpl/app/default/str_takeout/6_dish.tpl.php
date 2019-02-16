@@ -258,11 +258,11 @@
 				</div>
 			</div>
 		</div>
-		<dl>
-			<dt class="highlight">$<span class="price"></span></dt>
-			<dt class="choices"></dt>
+		<div class="dialogBox">
+			<div class="highlight">$<span class="price"></span></div>
+			<div class="choices"></div>
 			<a href="javascript:void(0);" class="comm_btn" id="detailBtn">加入購物車</a>
-		</dl>
+		</div>
 	</div>
 </div>
 
@@ -299,9 +299,10 @@ $('.choice3 label').click(function(){
 	$(this).attr('class','isChecked');
 });
 
-$('#detailBtn').click(function(){
-	$('.dialog').hide();
-});
+// $('#detailBtn').click(function(){
+// 	alert(1111)
+// 	$('.dialog').css('display','none');
+// });
 //選擇套餐end
 
 //显示购物车详情

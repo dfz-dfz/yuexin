@@ -303,7 +303,8 @@ textarea.txt{height: 92px; line-height: 24px;}
 		.dialog_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
 		.dialog_tt{height: 42px; line-height: 42px; color: #333;font-weight: 500; text-align: center; font-size: 18px; border-radius: 5px 5px 0 0;background-color: #fff;background-image: none;}
 .dialog .sales{vertical-align: 0;}
-.highlight{color: #333; font-size: 18px;font-weight: 500;line-height: 25px;padding-top: 10px;}
+.highlight{color: #333; font-size: 18px;font-weight: 500;line-height: 25px;}
+.dialogBox{height: 69px;padding: 10px 15px;background:rgba(243,244,245,1);}
 
 @-webkit-keyframes bounceIn{
 	0%{opacity:0;-webkit-transform:scale(.3)}
