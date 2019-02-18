@@ -42,6 +42,10 @@ $.fn.dialog = function(opts){
 			opts.closeCb();
 		}
 
+		$('#detailBtn').click(function(){
+			close();
+		});
+
 		el.addClass('dialog_content').wrap('<div class="dialog"><div class="dialog_wrap"><div class="dialog_scroller"></div></div></div>').show();
 
 		_dialog = el.parents('.dialog');

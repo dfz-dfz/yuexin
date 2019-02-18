@@ -239,28 +239,38 @@
 			<div class="choice_box choice1">
 				<div class="title">主食</div>
 				<div class="types types1">
-					<label for="1" class="isChecked">羊排<input type="radio" name="food" id="1" checked="checked"></label>
-					<label for="2">牛排<input type="radio" name="food" id="2"></label>
+					<label for="1" class="isChecked">羊排</label>
+					<label for="2">牛排</label>
 				</div>
 			</div>
 
 			<div class="choice_box choice2">
 				<div class="title">飲料</div>
 				<div class="types types2">
-					<label>牛奶</label><label>咖啡</label><label>奶茶</label><label>湯</label>
+					<label class="isChecked">牛奶</label>
+					<label>咖啡</label>
+					<label>奶茶</label>
+					<label>湯</label>
 				</div>
 			</div>
 					
 			<div class="choice_box choice3">
 				<div class="title">溫度</div>
 				<div class="types types3">
-					<label>正常冰</label><label>少冰</label><label>常溫</label><label>熱</label>
+					<label class="isChecked">正常冰</label>
+					<label>少冰</label>
+					<label>常溫</label>
+					<label>熱</label>
 				</div>
 			</div>
 		</div>
 		<div class="dialogBox">
 			<div class="highlight">$<span class="price"></span></div>
-			<div class="choices"></div>
+			<div class="choices">
+				<span class="choices1"></span>
+				<span class="choices2"></span>
+				<span class="choices3"></span>
+			</div>
 			<a href="javascript:void(0);" class="comm_btn" id="detailBtn">加入購物車</a>
 		</div>
 	</div>
@@ -284,26 +294,39 @@ $(function(){
 });
 
 //選擇套餐
+$('.fr').click(function(){
+	var text1 = $('.types1 .isChecked').text();
+	var text2 = $('.types2 .isChecked').text();
+	var text3 = $('.types3 .isChecked').text();
+	$('.choices1').html(text1);
+	$('.choices2').html("，"+text2);
+	$('.choices3').html("，"+text3);
+});
+
 $('.choice1 label').click(function(){
 	$('.types1 label').removeClass('isChecked')
 	$(this).attr('class','isChecked');
+	$('.choices1').html($(this).text());
 });
 
 $('.choice2 label').click(function(){
 	$('.types2 label').removeClass('isChecked')
 	$(this).attr('class','isChecked');
+	$('.choices2').html('，'+$(this).text());
 });
 
 $('.choice3 label').click(function(){
 	$('.types3 label').removeClass('isChecked')
 	$(this).attr('class','isChecked');
+	$('.choices3').html('，'+$(this).text());
 });
-
-// $('#detailBtn').click(function(){
-// 	alert(1111)
-// 	$('.dialog').css('display','none');
-// });
 //選擇套餐end
+
+//加入到購物車
+	$('#detailBtn').click(function(){
+		
+	});
+//加入到購物車end
 
 //显示购物车详情
 $('#cart_bgs').click(function() {

@@ -38,7 +38,7 @@ function showDetail(obj) {
 	_wraper.parents('.dialog').find('.dialog_tt').text(title);
 
 	if(F('.add').length){
-		$('#detailBtn').removeClass('disabled').text('来一'+saleunit);
+		// $('#detailBtn').removeClass('disabled').text('加入購物車');
 	}else{
 		$('#detailBtn').addClass('disabled').text('已售完');
 	}
@@ -50,7 +50,7 @@ function showDetail(obj) {
 	}
 
 	dialogTarget = _this;
-	$('#detailBtn').unbind();
+	// $('#detailBtn').unbind();
 	$('#detailBtn').click(function(){
 		if(!$(this).hasClass('detail')){
 			dialogTarget.find('.add ').click();

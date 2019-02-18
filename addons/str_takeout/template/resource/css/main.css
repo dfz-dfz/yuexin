@@ -219,10 +219,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .menu_detail img{display: block; margin-bottom: 5px; width: 100%; border-radius: 3px; max-height: 263px;}
 .menu_detail p, .menu_detail dl{padding-left: 15px;height: 69px;line-height: 69px;background-color: #F3F4F5;}
 .menu_detail dl{color: #959595;}
-.menu_detail dl dt{}
-.menu_detail dl dd{}
 .menu_detail .choices{position: absolute;width: 50%;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;font-size: 13px;color:#929292;}
-.menu_detail .comm_btn{position: absolute; right: 9px; margin-top: -24px;width: 115px;height: 42px;line-height:42px;border-radius: 9px;font-size: 14px;font-weight: 500;}
+.menu_detail .choices span{font-size: 13px;}
+.menu_detail .comm_btn{position: absolute; right: 9px; margin-top: -24px;width: 115px;height: 42px;line-height:42px;border-radius: 9px;font-size: 14px;font-weight: 500;text-decoration: none;}
 .ico_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
 .menu_detail .choice_box{margin-bottom: 20px;}
 .menu_detail .choice_box .title{height:20px;font-size:14px;font-weight:400;color:rgba(51,51,51,1);line-height:20px;margin-bottom: 10px;}
