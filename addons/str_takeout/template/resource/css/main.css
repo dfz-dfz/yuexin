@@ -206,7 +206,15 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .goods_list .list_top span:nth-of-type(1){float: left;font-size: 14px;color: #333;font-weight: 400;}
 .goods_list .list_top span:nth-of-type(2){float: right;font-size: 14px;color: #333;font-weight: 400;}
 .goods_list .list_top span:nth-of-type(3){float: right;}
-.goods_list div{font-size: 13px;color:#929292;font-weight: 400;}
+.goods_list div{font-size: 13px;color:#929292;font-weight: 400;line-height: 20px;}
+.goods_list div a{position:relative;width: 20px;height: 20px;line-height: 20px;background-color: #F2F2F2;border-radius: 50%;display: inline-block;text-align: center;text-decoration: none;font-size: 20px;}
+.goods_list .add{background-color: #2BA3DC;}
+.goods_list .reduce div{position: absolute;width: 12px;height: 2px;border:1px solid #333;top: 9px;left: 4px;}
+.goods_list .add div:nth-of-type(1){position: absolute;width: 12px;height: 2px;border:1px solid #fff;top: 9px;left: 4px;}
+.goods_list .add div:nth-of-type(2){position: absolute;width: 2px;height: 12px;border:1px solid #fff;top: 4px;left: 9px;}
+.goods_list .fr{display: inline-flex;margin-left: 22px;}
+.goods_list .fr input{width: 20px;border: none;text-align: center;font-size: 16px;color: #333;font-weight: 500;}
+.list_top span:nth-of-type(3){font-weight: 400;font-size: 14px;color:#333;}
 /*購物車詳情end*/
 
 .comm_btn{display: inline-block; height: 49px; line-height: 49px;width:98px; font-size: 18px; color: #fff; background-color: #2BA3DC;white-space: nowrap;text-align: center;}

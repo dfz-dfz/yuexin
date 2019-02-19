@@ -172,24 +172,24 @@
 				<div class="shopp_cat_details" id="shopp_cat_details" style="display: none;">
 					<div class="head">
 						<span class="hadchoes">已選商品</span>
-						<span class="empty">清空</span>
-					</div>
-					<div class="goods_list">
-						<div class="list_top">
-							<span>牛排套餐</span>
-							<span>
-								<?php  if($ds['total'] == -1 || $ds['total'] > 0) { ?>
-									<div class="fr" max="<?php  echo $ds['total'];?>" data-first-order-limit="<?php  echo $ds['first_order_limit'];?>" data-buy-limit="<?php  echo $ds['buy_limit'];?>" data-first-order="<?php  echo $is_first_order;?>">
-										<a href="javascript:void(0);" class="btn_n add" data-num="<?php  echo $cart['data'][$ds['id']];?>"></a>
-										<input autocomplete="off" class="h_num" type="hidden" name="dish[<?php  echo $ds['id'];?>]" value="<?php  echo $cart['data'][$ds['id']];?>">
-									</div>
-								<?php  } ?>
-							</span>
-							<span>$40</span>
-						</div>
-						<div>牛排，牛奶，正常冰</div>
+						<span class="empty" id="comfir_empty">清空</span>
 					</div>
 				</div>
+				<!-- 清空購物車 -->
+				<!-- <div class="dialog mask" style="display: none;">
+					<div class="dialog_wrap">
+						<div class="dialog_tt">确定清空購物車</div>
+						<div class="dialog_scroller">
+							<div class="confirm_box dialog_content" style="display: block;" id="emptyBox">
+								<p>確認清空已選菜品嗎？</p>
+								<div>
+									<span><a href="javascript:void(0);" class="comm_btn disabled" id="cancel_empty">取消</a></span>
+									<span><a href="javascript:void(0);" class="comm_btn" id="confirm_empty">確認</a></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
 				<!-- 購物車詳情end -->
 				<div class="fixed">
 					<div class="cart_bgs" id="cart_bgs">
@@ -324,9 +324,33 @@ $('.choice3 label').click(function(){
 
 //加入到購物車
 	$('#detailBtn').click(function(){
-		
+		var choices = $('.choices').text();
+		var price = $('.price').text();
+
+		var hmtls = '';
+			hmtls += '<div class="goods_list">';
+				hmtls += '<div class="list_top">';
+					hmtls += '<span>牛排套餐</span>';
+					hmtls += '<span>';
+						hmtls += '<div class="fr">';
+							hmtls += '<a href="javascript:void(0);" class="btn_n reduce"><div></div></a>';
+							hmtls += '<input autocomplete="off" class="h_num" name="1" value="1">';
+							hmtls += '<a href="javascript:void(0);" class="btn_n add"><div></div><div></div></a>';
+						hmtls += '</div>';
+					hmtls += '</span>';
+					hmtls += '<span>$'+price+'</span>';
+				hmtls += '</div>';
+				hmtls += '<div>'+choices+'</div>';
+			hmtls += '</div>';
+		$('#shopp_cat_details').append(hmtls);
 	});
 //加入到購物車end
+
+//清空購物車
+$('#comfir_empty').click(function() {
+	location.href="./index.php?i=6&c=entry&sid=10&f=1&mode=2&do=dish&m=str_takeout";
+	return false;
+});
 
 //显示购物车详情
 $('#cart_bgs').click(function() {
