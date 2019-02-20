@@ -86,6 +86,8 @@ html, body{height: 100%;}
 .nav a:first-child{border-right: none;}
 .nav a:last-child{border-left: none;}
 .nav a.on{background-color: #fff; color: #2BA3DC;border-bottom:4px solid #2BA3DC;}
+.menu{height: 44px;width: 100%;line-height:44px;background-color: #fff;text-align: center;font-size:18px;color: #0F0F0F;font-weight: 500;position: relative;}
+.menu span{position: absolute;background: url(../images/jiantou.png) 0 0 no-repeat;background-position-y: 12px;background-size: 20px;width: 20px;left: 5px;height: 100%;}
 
 .img_swipe{position: relative; overflow: hidden;}
 .img_swipe ul{overflow: hidden;}
@@ -172,8 +174,8 @@ html, body{height: 100%;}
 border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#fff;}
 .menu_list .info{display: none;}
 
-	.sales{display: inline-block; width: 160px; height: 23px; background: url(../images/star1.png) 0 0 repeat-x; background-size: 33px auto; margin-left: 4px; vertical-align: -1px;}
-	.sales strong{display: inline-block; height: 23px; background: url(../images/star1.png) 0 -24px repeat-x; background-size: 33px auto; vertical-align: top;}
+	.sales{display: inline-block; width: 120px; height: 18px; background: url(../images/star1.png) 0 0 repeat-x; background-size: 25px auto; vertical-align: -1px;}
+	.sales strong{display: inline-block; height: 18px; background: url(../images/star1.png) 0 -18px repeat-x; background-size: 25px auto; vertical-align: top;}
 	.sales .sale_1{width: 5px;} /*4*/
 	.sales .sale_2{width: 10px;}
 	.sales .sale_3{width: 19px;}
@@ -186,7 +188,7 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 	.sales .sale_10{width: 66px;}
 
 .shopping_cart{height: 49px;}
-.shopping_cart .fixed{-webkit-box-sizing: border-box; color: #ff510c;background-color: #f2f2f2;}
+.shopping_cart .fixed{-webkit-box-sizing: border-box; color: #ff510c;background-color: #f2f2f2;max-width: 640px;left: auto;}
 .shopping_cart .fixeds{font-size:18px;font-weight:400px;text-align:center;color: #fff;background:rgba(188,188,188,1);width: 100%;height: 49px;line-height: 49px;}
 .shopping_cart .cart_bg{width: 32px; height: 32px; background-position: 0 -71px;}
 	.cart_nums{display: block; width: 98px; height: 46px;background-color:#F9F9F9;border-radius:23px;position: absolute;top: -12px;left: 12px;text-align: center;line-height: 46px;font-size: 14px;color: #333;z-index: 99;}
@@ -198,8 +200,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 #totalPrice{font-size: 18px;}
 
 /*購物車詳情*/
-.shopp_cat_details{position: fixed;border-radius: 8px;background-color: #fff;padding: 12px;bottom: 88px;width: 100%;z-index: 999;padding-bottom: 40px;}
-.shopp_cat_details div{height: auto;overflow: hidden;}
+.shopp_cat_details{position: fixed;border-radius: 8px;background-color: #fff;padding: 12px;bottom: 88px;width: 100%;z-index: 999;padding-bottom: 40px;max-height: 70%;max-width: 640px;}
+.shopp_cat_details div{max-height: 430px;overflow: hidden;}
+.shopp_cat_details .details_box{overflow: auto;height: 90%;padding-bottom: 20px;}
 .shopp_cat_details .head span:nth-of-type(1){float: left;font-size: 14px;font-weight: 400;color:#666;}
 .shopp_cat_details .head span:nth-of-type(2){float: right;font-size: 12px;font-weight: 400;color: #B4B4B4;margin-top: 2px;}
 .shopp_cat_details .goods_list{margin-top: 20px;}
@@ -469,7 +472,7 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .addressedit .btn_div a span{ display:block; width:110px; margin:0 auto; font-size:14px;}
 
 .nav_common{text-align:center;height:49px;}
-.nav_common>ul{height:49px;position:fixed;	z-index:200;bottom:0px;left:0;width:100%;background: #fdfdfd;list-style-type: none;	display: -webkit-box;-webkit-box-orient: horizontal;  border-top:1px solid #e7e7e7; min-width:320px;}
+.nav_common>ul{height:49px;position:fixed;	z-index:200;bottom:0px;width:100%;background: #fdfdfd;list-style-type: none;	display: -webkit-box;-webkit-box-orient: horizontal;  border-top:1px solid #e7e7e7; min-width:320px;max-width: 640px;}
 .nav_common >ul>li{list-style: none; -webkit-box-align: center; -webkit-box-flex: 1;  border-left:1px solid #d9d9d9;border: none;}
 .nav_common >ul>li:first-child{  border-left:none;}
 .nav_common >ul>li>a{
@@ -580,11 +583,13 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .comment-area div span{color:#ccc;}
 
 .comment-stat{background: #FFF;border-bottom: 1px solid #d9d9d9;}
-.comment-stat .left{float:left;padding:30px 0;width:25%;text-align: center;font-size: 14px;color:#333;}
-.comment-stat .left span{font-weight: 600;}
+.comment-stat .left{float:left;width:18%;text-align: center;font-size: 14px;color:#333;border-right: 1px solid #D8D8D8;}
+.comment-stat .left span{width:40px;height:25px;font-size:18px;font-weight:600;color:#EE455A;line-height:25px;}
+.comment-stat .left div{width:100%;height:17px;font-size:12px;font-weight:400;color:#0F0F0F;line-height:17px;}
 .comment-stat .left h2{font-weight: 600;margin-top: 10px;}
 .comment-stat .left h2 span{font-size:18px;color:#ff510c;}
-.comment-stat .right{float:left;width:75%;padding: 10px 0;}
+.comment-stat .right{float:left;width:82%;padding:0 10px;}
+.comment-stat .right div{height:17px;font-size:12px;font-weight:400;color:#898989;line-height:17px;}
 .comment-stat .right ul li{height:23px;line-height: 29px;font-size: 14px;}
 
 .comment_list{background-color: #fff;}

@@ -7,14 +7,9 @@
 	.nav a{width:33.333%;}
 	<?php  } ?>
 </style>
-<header class="nav menu">
-	<div>
-		<a href="javascript:;" class="on">订单详情</a>
-		<?php  if($store['comment_status'] == 1) { ?>
-		<a href="<?php  echo $this->createMobileUrl('comment_list', array('sid' => $_GPC['sid']));?>">用户评论</a>
-		<?php  } ?>
-		<a href="<?php  echo murl('mc/home');?>">会员中心</a>
-	</div>
+<header class="menu">
+	<span></span>
+	確認訂單
 </header>
 <div class="container">
 	<form name="cart_confirm_form" id="cart_confirm_form" action="<?php  echo $this->createMobileUrl('orderconfirm', array('sid' => $sid, 'mode' => $mode), true)?>" method="post">

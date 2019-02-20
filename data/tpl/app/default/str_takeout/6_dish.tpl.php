@@ -174,22 +174,10 @@
 						<span class="hadchoes">已選商品</span>
 						<span class="empty" id="comfir_empty">清空</span>
 					</div>
-				</div>
-				<!-- 清空購物車 -->
-				<!-- <div class="dialog mask" style="display: none;">
-					<div class="dialog_wrap">
-						<div class="dialog_tt">确定清空購物車</div>
-						<div class="dialog_scroller">
-							<div class="confirm_box dialog_content" style="display: block;" id="emptyBox">
-								<p>確認清空已選菜品嗎？</p>
-								<div>
-									<span><a href="javascript:void(0);" class="comm_btn disabled" id="cancel_empty">取消</a></span>
-									<span><a href="javascript:void(0);" class="comm_btn" id="confirm_empty">確認</a></span>
-								</div>
-							</div>
-						</div>
+					<div>
+						<div class="details_box"></div>
 					</div>
-				</div> -->
+				</div>
 				<!-- 購物車詳情end -->
 				<div class="fixed">
 					<div class="cart_bgs" id="cart_bgs">
@@ -326,25 +314,35 @@ $('.choice3 label').click(function(){
 	$('#detailBtn').click(function(){
 		var choices = $('.choices').text();
 		var price = $('.price').text();
+		var dialog_tt = $('.dialog_tt').text();
 
 		var hmtls = '';
 			hmtls += '<div class="goods_list">';
 				hmtls += '<div class="list_top">';
-					hmtls += '<span>牛排套餐</span>';
+					hmtls += '<span>'+dialog_tt+'</span>';
 					hmtls += '<span>';
 						hmtls += '<div class="fr">';
-							hmtls += '<a href="javascript:void(0);" class="btn_n reduce"><div></div></a>';
-							hmtls += '<input autocomplete="off" class="h_num" name="1" value="1">';
-							hmtls += '<a href="javascript:void(0);" class="btn_n add"><div></div><div></div></a>';
+							hmtls += '<a href="javascript:void(0);" class="btn_n reduce" id="reduce"><div></div></a>';
+							hmtls += '<input autocomplete="off" class="h_num" name="" value="1">';
+							hmtls += '<a href="javascript:void(0);" class="btn_n add" id="add"><div></div><div></div></a>';
 						hmtls += '</div>';
 					hmtls += '</span>';
 					hmtls += '<span>$'+price+'</span>';
 				hmtls += '</div>';
 				hmtls += '<div>'+choices+'</div>';
 			hmtls += '</div>';
-		$('#shopp_cat_details').append(hmtls);
+		$('.details_box').append(hmtls);
+		var detalisBox = $('.details_box').html();
 	});
 //加入到購物車end
+
+$('#reduce').click(function(){
+	alert(1);
+});
+
+$('#add').click(function(){
+	alert(2);
+});
 
 //清空購物車
 $('#comfir_empty').click(function() {
