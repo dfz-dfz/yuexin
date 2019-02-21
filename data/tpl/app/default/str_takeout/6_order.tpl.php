@@ -6,36 +6,73 @@
 	<?php  if($store['comment_status'] == 1) { ?>
 	.nav a{width:33.333%;}
 	<?php  } ?>
+	body{background-color: #F7F7F7;}
 </style>
-<header class="menu">
+<header class="menus">
 	<span></span>
 	確認訂單
 </header>
 <div class="container">
 	<form name="cart_confirm_form" id="cart_confirm_form" action="<?php  echo $this->createMobileUrl('orderconfirm', array('sid' => $sid, 'mode' => $mode), true)?>" method="post">
 		<section class="menu_wrap">
+			<!-- 選擇按鈕 -->
+			<div class="type_btn">
+				<div class="left_btn">
+					<a href="javascript:void(0);" class="ative" id="invite">自提</a>
+					<a href="javascript:void(0);" id="takeout">外賣</a>
+				</div>
+				<div class="right_time">
+					<div>立即取餐</div>
+					<div class="invite_time">約20：30可取</div>
+					<div class="takeout_time" style="display: none;">約20：30送達</div>
+				</div>
+			</div>
+			<!-- 選擇按鈕end -->
+
+			<!-- 類型詳情 -->
+			<div class="type_box invite_box">
+				<div class="type_title">自取門店</div>
+				<div class="type_details">
+					<div>澳門提督馬路店20號地鋪1樓</div>
+					<div>提督馬路店</div>
+				</div>
+			</div>
+
+			<div class="type_box takeout_box" style="display: none;">
+				<div class="type_title">配送信息</div>
+				<div class="type_details">
+					<div>13568932001 吳先生</div>
+					<div>東南亞商業中心</div>
+				</div>
+			</div>
+			<!-- 類型詳情end -->
 			<ul class="menu_list order_list" id="orderList">
+				<div class="order_message">訂單信息</div>
 			<?php  if(is_array($dish_info)) { foreach($dish_info as $li) { ?>
 				<li id="<?php  echo $li['id'];?>">
 					<div class="top">
-						<div>
+						<div class="img_box">
 							<img src="<?php  echo tomedia($li['thumb']);?>" alt="">
 						</div>
-						<div>
+						<div class="detalis_message">
 							<h3><?php  echo $li['title'];?></h3>
-							<div>
-								<div class="fr" max="<?php  echo $li['total'];?>" data-first-order-limit="<?php  echo $li['first_order_limit'];?>" data-buy-limit="<?php  echo $li['buy_limit'];?>" data-first-order="<?php  echo $is_first_order;?>">
-									<a href="javascript:void(0);" class="btn_n add active"></a>
-								</div>
-								<input autocomplete="off" class="number" type="hidden" name="dish[<?php  echo $li['id'];?>]" value="<?php  echo $dishes[$li['id']];?>">
-								<span class="count"><?php  echo $dishes[$li['id']];?></span>
-								<strong>￥<span class="unit_price"><?php  echo $li['member_price'];?></span></strong>
-							</div>
+							<div class="detalis">牛排，牛奶，正常冰</div>
 						</div>
+						<div class="num_box">×<?php  echo $dishes[$li['id']];?></div>
+						<div class="price_box">$<span class="unit_price"><?php  echo $li['member_price'];?></span></div>
 					</div>
 				</li>
 			<?php  } } ?>
+				<div class="lunch_box">
+					<div>餐盒費</div>
+					<div>$5</div>
+				</div>
+				<div class="dispatching_box">
+					<div>配送費</div>
+					<div>$10</div>
+				</div>
 			</ul>
+			<div class="pay_total">實付  $40</div>
 			<div class="tips" id="addtip" style="background-color:#e1943c;display:none" data-flag="0">亲，您可能还需要以下菜品</div>
 			<!-- 提醒客户需要点的菜品（比如：米饭）-->
 			<?php  if(!empty($dish_add)) { ?>
@@ -53,7 +90,7 @@
 								</div>
 								<input autocomplete="off" class="number" type="hidden" name="dish[<?php  echo $add_li['id'];?>]" value="0">
 								<span class="count">0</span>
-								<strong>￥<span class="unit_price"><?php  echo $add_li['member_price'];?></span></strong>
+								<strong>$<span class="unit_price"><?php  echo $add_li['member_price'];?></span></strong>
 							</div>
 						</div>
 					</li>
@@ -67,11 +104,11 @@
 		<footer class="order_fixed">
 			<div class="fixed">
 				<p>
-					<span class="fr">总计：<strong>￥<span id="totalPrice"></span></strong> / <span id="cartNum" class="has_num"></span>份</span>
+					<span class="fr">总计：<strong>$<span id="totalPrice"></span></strong> / <span id="cartNum" class="has_num"></span>份</span>
 					<?php  if($_GPC['mode'] == 2) { ?>
-						配送费：￥<?php  echo $store['delivery_price'];?>
+						配送费：$<?php  echo $store['delivery_price'];?>
 					<?php  } else { ?>
-						配送费：￥0
+						配送费：$0
 					<?php  } ?>
 				</p>
 				<a href="<?php  echo $this->createMobileUrl('dish', array('sid' => $sid, 'mode' => $mode, 'tid' => $_GPC['__z']));?>" class="add"><label><span>加菜</span></label></a>
@@ -109,7 +146,31 @@
 			}
 			_add.amount(count, amountCb);
 		});
+
+		//獲取實付總價格
+		var prices = $('#orderList .unit_price').text();
+		alert(prices)
 	});
+
+	// 配送類型
+	$('#invite').click(function(){
+		$(this).addClass('ative');
+		$('#takeout').removeClass('ative');
+		$('.invite_box').css('display','block');
+		$('.takeout_box').css('display','none');
+		$('.invite_time').css('display','block');
+		$('.takeout_time').css('display','none');
+	});
+
+	$('#takeout').click(function(){
+		$(this).addClass('ative');
+		$('#invite').removeClass('ative');
+		$('.invite_box').css('display','none');
+		$('.takeout_box').css('display','block');
+		$('.invite_time').css('display','none');
+		$('.takeout_time').css('display','block');
+	});
+	// 配送類型end
 
 	$('#emptyBtn').click(function(){
 		$('#emptyBox').dialog({title: '确定重选菜品'});
