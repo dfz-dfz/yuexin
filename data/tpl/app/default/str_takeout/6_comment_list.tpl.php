@@ -6,12 +6,15 @@
 <div class="container" onselectstart="return true;" ondragstart="return false;">
 	<header class="comment-stat clearfix">
 		<div class="left">
-			<span>80%</span>
-			<div>好評率</div>
+			<span>综合评分</span>
+			<h2><span><?php  echo sprintf('%.2f', $avg);?></span>分</h2>
 		</div>
 		<div class="right">
-			<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%"></strong></span>
-			<div>共有123人評價</div>
+			<ul>
+				<li>口味：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_taste'];?>分</li>
+				<li>服务：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_serve']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_serve'];?>分</li>
+				<li>速度：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_speed']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_speed'];?>分</li>
+			</ul>
 		</div>
 	</header>
 	<section>
