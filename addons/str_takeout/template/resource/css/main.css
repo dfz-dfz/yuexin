@@ -162,6 +162,7 @@ html, body{height: 100%;}
 .menu_list .price_box{text-align: right;font-size: 14px;color: #333;width: 40px;}
 .menu_list .price_box span{font-size: 14px;color: #333;}
 .menu_wrap .menu_list li .top .num_box{vertical-align: middle;text-align: right;font-size: 12px;color: #898989;}
+.menu_wrap .menu_list li .top .num_box span{font-size: 12px;color: #898989;}
 
 .menu_list .dispatching_box,
 .menu_list .lunch_box{height: 20px;width: 100%;line-height: 20px;margin-top: 10px;}

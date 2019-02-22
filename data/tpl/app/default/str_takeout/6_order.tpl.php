@@ -58,18 +58,23 @@
 							<h3><?php  echo $li['title'];?></h3>
 							<div class="detalis">牛排，牛奶，正常冰</div>
 						</div>
-						<div class="num_box">×<?php  echo $dishes[$li['id']];?></div>
+						<div class="num_box">×<span class="nums"><?php  echo $dishes[$li['id']];?></span></div>
 						<div class="price_box">$<span class="unit_price"><?php  echo $li['member_price'];?></span></div>
+						<input type="hidden" calss="total_price" name="<?php  echo $dishes[$li['id']];?>*<?php  echo $li['member_price'];?>">
 					</div>
 				</li>
 			<?php  } } ?>
 				<div class="lunch_box">
 					<div>餐盒費</div>
-					<div>$5</div>
+					<div class="lunch_price">$5</div>
 				</div>
 				<div class="dispatching_box">
 					<div>配送費</div>
-					<div>$10</div>
+					<?php  if($_GPC['mode'] == 2) { ?>
+						<div class="dispatching_price">$<?php  echo $store['delivery_price'];?></div>
+					<?php  } else { ?>
+						<div class="dispatching_price">$0</div>
+					<?php  } ?>
 				</div>
 			</ul>
 			<div class="pay_total">實付  $40</div>
@@ -102,15 +107,7 @@
 			</div>
 		</section>
 		<footer class="order_fixed">
-			<div class="fixed">
-				<p>
-					<span class="fr">总计：<strong>$<span id="totalPrice"></span></strong> / <span id="cartNum" class="has_num"></span>份</span>
-					<?php  if($_GPC['mode'] == 2) { ?>
-						配送费：$<?php  echo $store['delivery_price'];?>
-					<?php  } else { ?>
-						配送费：$0
-					<?php  } ?>
-				</p>
+			<div class="fixed" style="bottom:0;padding: 0;">
 				<a href="<?php  echo $this->createMobileUrl('dish', array('sid' => $sid, 'mode' => $mode, 'tid' => $_GPC['__z']));?>" class="add"><label><span>加菜</span></label></a>
 				<a href="javascript:;" class="comm_btn submit_order" style="display: inline-block;">订单确认</a>
 			</div>
@@ -148,8 +145,17 @@
 		});
 
 		//獲取實付總價格
-		var prices = $('#orderList .unit_price').text();
-		alert(prices)
+		var arr = [];
+		var arrs = [];
+		var length = $('#orderList input[type="hidden"]').length;
+		for(var n = 0;n < length;n++){
+			var totals = $('#orderList input[type="hidden"]').eq(n).attr('name');
+			arrs = totals.split('*');
+			var total = Number(arrs[0])*Number(arrs[1]);
+			arr.push(total);
+		}
+		var prices = parseInt(eval(arr.join('+')))+parseInt($('.lunch_price').text().substring(1))+parseInt($('.dispatching_price').text().substring(1));
+		$('.pay_total').text('實付   $'+prices)
 	});
 
 	// 配送類型
