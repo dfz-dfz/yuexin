@@ -5,38 +5,57 @@
 	.nav div{width:80%;}
 	.nav a{width:20%;}
 </style>
-<div class="container">
+<div class="container" id="order_page">
+	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>越新科技</header>
 	<header class="nav menu">
-		<div>
-			<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '', 'sid' => $_GPC['sid']))?>" <?php  if($status == '') { ?>class="on"<?php  } ?>>全部</a>
-			<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '1', 'sid' => $_GPC['sid']))?>" <?php  if($status == '1') { ?>class="on"<?php  } ?>>待确认</a>
-			<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '2', 'sid' => $_GPC['sid']))?>" <?php  if($status == '2') { ?>class="on"<?php  } ?>>处理中</a>
-			<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '3', 'sid' => $_GPC['sid']))?>" <?php  if($status == '3') { ?>class="on"<?php  } ?>>已完成</a>
-			<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '5', 'sid' => $_GPC['sid']))?>" <?php  if($status == '5') { ?>class="on"<?php  } ?>>待付款</a>
+		<div class="nav_box">
+			<div class="a_box">
+				<div></div>
+				<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '', 'sid' => $_GPC['sid']))?>" <?php  if($status == '') { ?>class="on"<?php  } ?>>全部</a>
+			</div>
+			<div class="a_box">
+				<div></div>
+				<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '1', 'sid' => $_GPC['sid']))?>" <?php  if($status == '1') { ?>class="on"<?php  } ?>>待支付</a>
+			</div>
+			<div class="a_box">
+				<div></div>
+				<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '3', 'sid' => $_GPC['sid']))?>" <?php  if($status == '3') { ?>class="on"<?php  } ?>>待評價</a>
+			</div>
+			<div class="a_box">
+				<div></div>
+				<a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '9', 'sid' => $_GPC['sid']))?>" <?php  if($status == '9') { ?>class="on"<?php  } ?>>退款</a>
+			</div>
+			
+			<!-- <a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '1', 'sid' => $_GPC['sid']))?>" <?php  if($status == '1') { ?>class="on"<?php  } ?>>待确认</a> -->
+			<!-- <a href="<?php  echo $this->createMobileUrl('myorder', array('status' => '2', 'sid' => $_GPC['sid']))?>" <?php  if($status == '2') { ?>class="on"<?php  } ?>>处理中</a> -->
 		</div>
 	</header>
 	<section class="pay_wrap">
 		<ul class="my_order">
 			<?php  if(!empty($data)) { ?>
 				<?php  if(is_array($data)) { foreach($data as $row) { ?>
-					<li>
+					<li class="order_list">
 						<a href="<?php  echo $this->createMobileUrl('orderdetail', array('id' => $row['id'], 'sid' => $row['sid']))?>">
-							<div>
-								<?php  if($row['status'] == 1) { ?>
-									<div class="ico_status pending"><i></i>待确认</div>
-								<?php  } else if($row['status'] == 2) { ?>
-									<div class="ico_status inhand"><i></i>处理中</div>
-								<?php  } else if($row['status'] == 3) { ?>
-									<div class="ico_status complete"><i></i>已完成</div>
-								<?php  } else if($row['status'] == 4) { ?>
-									<div class="ico_status cancle"><i></i>已取消</div>
-								<?php  } else if($row['status'] == 8) { ?>
-									<div class="ico_status pending"><i></i>退款中</div>
-								<?php  } else if($row['status'] == 9) { ?>
-									<div class="ico_status complete"><i></i>已退款</div>
-								<?php  } ?>
+							<div class="title">
+								<div>提督馬路店</div>
+								<div>
+									<?php  if($row['status'] == 1) { ?>
+										待支付
+									<?php  } else if($row['status'] == 2) { ?>
+										处理中
+									<?php  } else if($row['status'] == 3) { ?>
+										待評價
+									<?php  } else if($row['status'] == 4) { ?>
+										已取消
+									<?php  } else if($row['status'] == 8) { ?>
+										退款中
+									<?php  } else if($row['status'] == 9) { ?>
+										已退款
+									<?php  } ?>
+								</div>
 							</div>
-							<div>
+							
+							<div class="details">
 								<h3 class="highlight"><?php  echo $row['title'];?></h3>
 								<p><?php  echo $row['num'];?>份/￥<?php  echo $row['price'];?></p>
 								<div><?php  echo date('Y-m-d H:i', $row['addtime'])?></div>
@@ -45,7 +64,12 @@
 					</li>
 				<?php  } } ?>
 			<?php  } else { ?>
-				<li class="on-info"><i class="fa fa-info-circle"></i> 暂无订单</li>
+				<li class="on-info">
+					<div class="info_img"></div>
+					<div class="tips">你還沒有下單哦</div>
+					<div class="tips">快去選餐吧</div>
+					<a href="">去點餐</a>
+				</li>
 			<?php  } ?>
 		</ul>
 	</section>	

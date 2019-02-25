@@ -10,6 +10,15 @@
 	.order_fixed .fixed{bottom:0;padding: 0;height: 49px;width: 100%;display: flex;align-items: center;justify-content: space-between;}
 	.order_fixed .fixed span{margin-left: 14px;font-size: 15px;color: #333;font-weight: 400;}
 	.order_fixed .submit_order{width: 119px;height: 49px;margin: 0;line-height: 49px;font-size: 15px;}
+	.confirm_box{position: fixed;bottom: 0;z-index: 9999;width: 100%;height: 265px;background-color: #fff;padding: 0;}
+	.confirm_box .title{text-align: center;color: #333;font-size: 15px;height: 56px;line-height: 56px;border-top: 1px solid #f3f3f3;}
+	.confirm_box ul li{height: 50px;line-height: 50px;display: flex;align-items: center;padding:0 13px;border-top: 1px solid #f3f3f3;}
+	.confirm_box li div{font-size: 14px;color: #333;font-weight: 400px;}
+	.confirm_box li span{width: 30px;height: 100%;margin-right: 10px;}
+	.confirm_box li input{height: 18px;width: 18px;margin: 0;display: none;}
+	.confirm_box li input+label{background: url('../addons/str_takeout/template/resource/images/checked.png') 0 0 no-repeat;width: 25px;height: 25px;margin: 0;}
+	.confirm_box li .cash_pay{background:url('../addons/str_takeout/template/resource/images/cash_pay.png') 0 0 no-repeat;background-position-y: 15px;background-position-x: 2px;}
+	.confirm_box li .weixin_pay{background:url('../addons/str_takeout/template/resource/images/weixin_pay.png') 0 0 no-repeat;background-position-y: 15px;background-position-x: 1px;}
 </style>
 <header class="menus">
 	<span></span>
@@ -90,7 +99,7 @@
 			<div class="pay_type">
 				<div class="pay">
 					<div>支付方式</div>
-					<div>現金支付</div>
+					<div id="pay">現金支付</div>
 					<span></span>
 				</div>
 				<div class="remarks">
@@ -124,6 +133,21 @@
 		<span><a href="javascript:void(0);" class="comm_btn" id="add_go">不需要，提交订单</a></span>
 	</div>
 </div> -->
+<div class="confirm_box">
+	<div class="title">選擇支付方式</div>
+	<ul>
+		<li id="cash_pay">
+			<span class="cash_pay"></span>
+			<div>現金支付</div>
+			<input type="checkbox" checked="checked" id="cash"><label for="cash"></label>
+		</li>
+		<li id="weixin_pay">
+			<span class="weixin_pay"></span>
+			<div>微信支付</div>
+			<input type="checkbox" id="weixin"><label for="weixin" style="visibility: hidden;"></label>
+		</li>
+	</ul>
+</div>
 
 <script type="text/javascript">
 	$(function(){
@@ -156,7 +180,30 @@
 
 	//支付方式
 	$('.pay').click(function(){
-
+		$('.confirm_box').show();
+		return false;
+	});
+	$('#cash_pay').click(function() {
+		$('#cash_pay input').attr('checked','checked');
+		$('#weixin_pay input').removeAttr('checked');
+		$('#cash+label').css('visibility','visible');
+		$('#weixin+label').css('visibility','hidden');
+		$('#pay').html('現金支付');
+		$('.confirm_box').hide();
+	});
+	$('#weixin_pay').click(function() {
+		$('#weixin_pay input').attr('checked','checked');
+		$('#cash_pay input').removeAttr('checked');
+		$('#cash+label').css('visibility','hidden');
+		$('#weixin+label').css('visibility','visible');
+		$('#pay').html('微信支付');
+		$('.confirm_box').hide();
+	});
+	$('.confirm_box').click(function() {
+		return false;
+	});
+	$(document).click(function(event) {
+		$('.confirm_box').hide();
 	});
 
 	// 配送類型

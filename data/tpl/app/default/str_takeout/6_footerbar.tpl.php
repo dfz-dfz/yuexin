@@ -10,14 +10,14 @@
 				</a>
 			</li>
 			<li class="<?php  if($_GPC['do'] == 'store') { ?>on<?php  } ?>">
-				<a class="tab-item external" href="<?php  echo $this->createMobileUrl('store', array('sid' => $_GPC['sid']));?>">
+				<a class="tab-item external" href="<?php  echo $this->createMobileUrl('myorder', array('sid' => $_GPC['sid']));?>">
 					<img src="../addons/str_takeout/template/resource/images/dingdan.png" alt="">
 					<label>訂單</label>
 					<!-- <span class="badge">2</span> -->
 				</a>
 			</li>
 			<li class="more <?php  if($_GPC['do'] == 'myorder' || $_GPC['do'] == 'orderdetail') { ?>on<?php  } ?>">
-				<a class="tab-item external" href="<?php  echo $this->createMobileUrl('myorder', array('sid' => $_GPC['sid']));?>">
+				<a class="tab-item external" href="<?php  echo murl('mc/home');?>">
 					<img src="../addons/str_takeout/template/resource/images/wode.png" alt="">
 					<label>我的</label>
 				</a>
