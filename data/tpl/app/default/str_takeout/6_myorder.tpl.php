@@ -56,10 +56,35 @@
 							</div>
 							
 							<div class="details">
-								<h3 class="highlight"><?php  echo $row['title'];?></h3>
-								<p><?php  echo $row['num'];?>份/￥<?php  echo $row['price'];?></p>
-								<div><?php  echo date('Y-m-d H:i', $row['addtime'])?></div>
+								<div class="details_box">
+									<img src="http://118.89.40.174/yue/attachment/images/6/2018/12/n1O3d72O27o2d2vO32G3V7DvgoL7JZ.jpg" alt="">
+								</div>
+								<div class="details_box">
+									<div class="details_message">
+										<h3 class="highlight">牛排套餐</h3>
+										<span>×<?php  echo $row['num'];?></span>
+										<span>$<?php  echo $row['price'];?></span>
+									</div>
+									<div>下單時間：<?php  echo date('Y-m-d H:i', $row['addtime'])?></div>
+								</div>
 							</div>
+							
+							<div class="btn_box">
+								<?php  if($row['status'] == 1) { ?>
+									<div class="btn1">立即支付</div>
+								<?php  } else if($row['status'] == 2) { ?>
+									处理中
+								<?php  } else if($row['status'] == 3) { ?>
+									<div class="btn3">評價</div>
+								<?php  } else if($row['status'] == 4) { ?>
+									已取消
+								<?php  } else if($row['status'] == 8) { ?>
+									退款中
+								<?php  } else if($row['status'] == 9) { ?>
+									<div class="btn9">退款成功</div>
+								<?php  } ?>	
+							</div>
+							
 						</a>
 					</li>
 				<?php  } } ?>
@@ -68,7 +93,7 @@
 					<div class="info_img"></div>
 					<div class="tips">你還沒有下單哦</div>
 					<div class="tips">快去選餐吧</div>
-					<a href="">去點餐</a>
+					<a href="<?php  echo $this->createMobileUrl('dish', array('sid' => $sid, 'mode' => 2));?>">去點餐</a>
 				</li>
 			<?php  } ?>
 		</ul>
