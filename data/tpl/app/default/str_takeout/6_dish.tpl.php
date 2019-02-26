@@ -3,8 +3,8 @@
 <script src="../addons/str_takeout/template/resource/js/swipe_min.js"></script>
 <script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
 <script src="../addons/str_takeout/template/resource/js/iscroll-probe.js"></script>
-<script src="../addons/str_takeout/template/resource/js/main.js"></script>
-<script src="../addons/str_takeout/template/resource/js/menu.js"></script>
+<script src="../addons/str_takeout/template/resource/js/main.js?t=<?php echo time();?>"></script>
+<script src="../addons/str_takeout/template/resource/js/menu.js?t=<?php echo time();?>"></script>
 <script src="../addons/str_takeout/template/resource/js/common.js"></script>
 <style type="text/css">
 	<?php  if($store['comment_status'] == 1) { ?>
@@ -312,6 +312,9 @@ $('.choice3 label').click(function(){
 
 //加入到購物車
 	$('#detailBtn').click(function(){
+		if(!$(this).hasClass('detail')){
+			dialogTarget.find('.add ').click();
+		}
 		var choices = $('.choices').text();
 		var price = $('.price').text();
 		var dialog_tt = $('.dialog_tt').text();

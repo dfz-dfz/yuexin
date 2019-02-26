@@ -51,10 +51,10 @@ function showDetail(obj) {
 
 	dialogTarget = _this;
 	// $('#detailBtn').unbind();
-	$('#detailBtn').click(function(){
-		if(!$(this).hasClass('detail')){
-			dialogTarget.find('.add ').click();
-		}
-	});
+//	$('#detailBtn').click(function(){
+//		if(!$(this).hasClass('detail')){
+//			dialogTarget.find('.add ').click();
+//		}
+//	});
 	_wraper.dialog({title: title, closeBtn: true});
 }
