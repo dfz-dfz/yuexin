@@ -3,105 +3,85 @@
 <script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
 <style type="text/css">
 	.but-post{display:block;height:30px;line-height:30px;border:none;width:640px;border-radius:3px;font-size:16px;font-weight:bold;color:#fff;background-color:#ff5f32;}
+	.my_menu_list th{width:0;}
 </style>
-<div class="container">
+
+<div class="container" id="orderdetail">
+	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>越新科技</header>
 	<section>
-		<ul class="my_order">
-			<li>
-				<a href="<?php  echo $this->createMobileUrl('store', array('sid' => $order['sid']))?>">
-					<div>
-						<?php  if($order['status'] == 1) { ?>
-							<div class="ico_status pending"><i></i>待确认</div>
-						<?php  } else if($order['status'] == 2) { ?>
-							<div class="ico_status inhand"><i></i>处理中</div>
-						<?php  } else if($order['status'] == 3) { ?>
-							<div class="ico_status complete"><i></i>已完成</div>
-						<?php  } else if($order['status'] == 4) { ?>
-							<div class="ico_status cancle"><i></i>已取消</div>
-						<?php  } else if($order['status'] == 8) { ?>
-							<div class="ico_status pending"><i></i>退款中</div>
-						<?php  } else if($order['status'] == 9) { ?>
-							<div class="ico_status complete"><i></i>已退款</div>
-						<?php  } ?>
-					</div>
-					<div>
-						<h3 class="highlight"><?php  echo $store['title'];?></h3>
-						<p><?php  echo $order['num'];?>份/￥<?php  echo $order['price'];?></p>
-						<div><?php  echo date('Y-m-d H:i', $order['addtime']);?></div>
-					</div>
-					<div class="w14"><i class="ico_arrow"></i></div>
-				</a>
-			</li>
-		</ul>
-		<?php  if(empty($order['pay_type'])) { ?>
-			<div class="detail_tools">
-				<div><a href="<?php  echo $this->createMobileUrl('pay', array('id' => $order['id']))?>" class="comm_btn">在线支付</a></div>
-				<div><a href="javascript:;" onclick="alert('请到收银台付款')" id="cash" class="comm_btn" style="background:#4fb07c">现金支付</a></div>
+		<div class="my_order">
+			<div class="status_box">
+				<?php  if($order['status'] == 1) { ?>
+					<div class="status">待确认</div>
+				<?php  } else if($order['status'] == 2) { ?>
+					<div class="status">处理中</div>
+				<?php  } else if($order['status'] == 3) { ?>
+					<div class="status">已完成</div>
+				<?php  } else if($order['status'] == 4) { ?>
+					<div class="status">已取消</div>
+				<?php  } else if($order['status'] == 8) { ?>
+					<div class="status">退款中</div>
+				<?php  } else if($order['status'] == 9) { ?>
+					<div class="status">已退款</div>
+				<?php  } ?>
 			</div>
-		<?php  } ?>
-		<?php  if($order['status'] == 3 && $store['comment_status'] == 1) { ?>
-			<div class="detail_tools">
-			<?php  if($order['comment'] == 1) { ?>
-				<div><a href="<?php  echo $this->createMobileUrl('comment', array('id' => $order['id'], 'sid' => $order['sid']))?>" class="comm_btn">查看评价</a></div>
-			<?php  } else { ?>
-				<div><a href="<?php  echo $this->createMobileUrl('comment', array('id' => $order['id'], 'sid' => $order['sid']))?>" class="comm_btn">去评价</a></div>
-			<?php  } ?>
+			<div class="status_type">
+				<span>已下單</span>
+				<div></div>
+				<span class="on">配送中</span>
+				<div></div>
+				<span>確認取餐</span>
 			</div>
-		<?php  } ?>
-		<?php  if($order['order_type'] == 2 && $order['status'] == 2) { ?>
-			<div class="detail_tools">
-				<div><a href="javascript:;" class="comm_btn" id="confirmBtn">确认收货</a></div>
-		<?php  } ?>
-		<?php  if(($order['pay_type'] == 'credit' || $order['pay_type'] == 'wechat') && ($order['status'] == 2 || $order['status'] == 1)) { ?>
-			<div class="detail_tools">
-				<div><a href="javascript:;" class="comm_btn" id="confirmBtn2">申请退款</a></div>
-			</div>
-		<?php  } ?>
 		</div>
-		<style type="text/css">
-			.my_menu_list th{width:0;}
-		</style>
-		<table class="my_menu_list">
-			<thead>
-				<tr>
-					<th style="width:430px">美食列表</th>
-					<th style="width:60px"><?php  echo $order['num'];?>份</th>
-					<th style="width:150px"><strong class="highlight">￥<?php  echo $order['price'];?></strong></th>
-				</tr>
-			</thead>
-			<tbody>
+
+		<div class="detailbox">
+			<div class="addressbox">
+				<h3 class="highlight"><?php  echo $store['title'];?></h3>
+				<div>澳門提督馬路店20號地鋪1樓</div>
+				<span></span>
+			</div>
+
+			<ul class="menu_list order_list" id="orderList">
+				<div class="order_message">訂單信息</div>
 				<?php  if(!empty($order['dish'])) { ?>
 					<?php  if(is_array($order['dish'])) { foreach($order['dish'] as $da) { ?>
-						<tr>
-							<td><?php  echo $da['dish_title'];?></td>
-							<td>X<?php  echo $da['dish_num'];?></td>
-							<td>￥<?php  echo $da['dish_price'];?></td>
-						</tr>
+					<li id="<?php  echo $li['id'];?>" style="margin-bottom: 10px;">
+						<div class="top">
+							<div class="img_box">
+								<img src="../addons/str_takeout/template/resource/images/gouwu.png" alt="">
+							</div>
+							<div class="detalis_message">
+								<h3><?php  echo $da['dish_title'];?></h3>
+								<div class="detalis">牛排，牛奶，正常冰</div>
+							</div>
+							<div class="num_box">×<span class="nums"><?php  echo $da['dish_num'];?></span></div>
+							<div class="price_box">$<span class="unit_price"><?php  echo $da['dish_price'];?></span></div>
+						</div>
+					</li>
 					<?php  } } ?>
 				<?php  } ?>
-			</tbody>
-		</table>
-		<ul class="box pay_box">
-			<li>订单信息</li>
-			<li>订单金额:<?php  echo $order['price'];?> 元</li>
+				<div class="lunch_box">
+					<div>餐盒費</div>
+					<div class="lunch_price">$5</div>
+				</div>
+				<div class="dispatching_box">
+					<div>配送費</div>
+					<?php  if($_GPC['mode'] == 2) { ?>
+						<div class="dispatching_price">$<?php  echo $store['delivery_price'];?></div>
+					<?php  } else { ?>
+						<div class="dispatching_price">$0</div>
+					<?php  } ?>
+				</div>
+			</ul>
+			<div class="pay_total">實付&nbsp;&nbsp;&nbsp;$<?php  echo $order['price'];?></div>
 			<?php  if($order['is_usecard'] == 1) { ?>
-				<li>使用优惠券减免金额:<?php  echo $order['price'] - $order['card_fee']?> 元</li>
-				<li>实际支付金额:<?php  echo $order['card_fee'];?> 元</li>
+				<div class="pay_total">實付&nbsp;&nbsp;&nbsp;$<?php  echo $order['card_fee'];?></div>
 			<?php  } ?>
-			<li>
-				支付方式：
-				<?php  if(empty($order['pay_type'])) { ?>
-					<label class="label label-danger">未支付</label>
-				<?php  } else { ?>
-					<label class="label label-success"><?php  echo $pay_types[$order['pay_type']];?></label>
-				<?php  } ?>
-			</li>
-		</ul>
+		</div>
+
 		<ul class="box pay_box">
-			<li>订单类型：
-				<span class="<?php  echo $types[$order['order_type']]['css'];?>"><?php  echo $types[$order['order_type']]['text'];?></span>
-			</li>
-			<li>送餐时间：<?php  echo date('Y-m-d H:i', $order['addtime']);?></li>
+			<div class="dispatching">配送信息</div>
+			<div class="time">配送時間：<?php  echo date('Y-m-d H:i', $order['addtime']);?></div>
 			<li>预定人：<?php  echo $order['username'];?></li>
 			<li>手机：<?php  echo $order['mobile'];?></li>
 			<?php  if($order['order_type'] == 1) { ?>
@@ -135,6 +115,32 @@
 		</ul>
 		<?php  } ?>
 		<div class="my_order_tips">如需取消订单，请与商家联系，谢谢！</div>
+
+		<?php  if(empty($order['pay_type'])) { ?>
+			<div class="detail_tools">
+				<div><a href="<?php  echo $this->createMobileUrl('pay', array('id' => $order['id']))?>" class="comm_btn">在线支付</a></div>
+				<div><a href="javascript:;" onclick="alert('请到收银台付款')" id="cash" class="comm_btn" style="background:#4fb07c">现金支付</a></div>
+			</div>
+		<?php  } ?>
+		<?php  if($order['status'] == 3 && $store['comment_status'] == 1) { ?>
+			<div class="detail_tools">
+			<?php  if($order['comment'] == 1) { ?>
+				<div><a href="<?php  echo $this->createMobileUrl('comment', array('id' => $order['id'], 'sid' => $order['sid']))?>" class="comm_btn">查看评价</a></div>
+			<?php  } else { ?>
+				<div><a href="<?php  echo $this->createMobileUrl('comment', array('id' => $order['id'], 'sid' => $order['sid']))?>" class="comm_btn">去评价</a></div>
+			<?php  } ?>
+			</div>
+		<?php  } ?>
+		<?php  if($order['order_type'] == 2 && $order['status'] == 2) { ?>
+			<div class="detail_tools">
+				<div><a href="javascript:;" class="comm_btn" id="confirmBtn">确认收货</a></div>
+		<?php  } ?>
+		<?php  if(($order['pay_type'] == 'credit' || $order['pay_type'] == 'wechat') && ($order['status'] == 2 || $order['status'] == 1)) { ?>
+			<div class="detail_tools">
+				<div><a href="javascript:;" class="comm_btn" id="confirmBtn2">申请退款</a></div>
+			</div>
+		<?php  } ?>
+		</div>
 	</section>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 </div>
@@ -215,6 +221,13 @@
 				}
 			},"json");
 		});
+
+		$('.box_nav li:nth-of-type(1) a').removeClass('active');
+		$('.box_nav li:nth-of-type(1) img').attr('src', '../addons/str_takeout/template/resource/images/dianpu1.png');
+		$('.box_nav li:nth-of-type(2) a').addClass('active');
+    	$('.box_nav li:nth-of-type(2) img').attr('src', '../addons/str_takeout/template/resource/images/dingdan.png');
+    	$('.box_nav li:nth-of-type(3) a').removeClass('active');
+		$('.box_nav li:nth-of-type(3) img').attr('src', '../addons/str_takeout/template/resource/images/wode1.png');
 	});
 	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 		WeixinJSBridge.call('hideOptionMenu');

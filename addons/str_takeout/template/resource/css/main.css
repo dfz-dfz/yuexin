@@ -1,4 +1,4 @@
-/*reset*/
+reset*/
 *{padding:0;margin:0;font-size:20px;font-family:PingFangSC-Regular;}
 body,button,input,select,textarea{font:100%/1 STHeitiSC,"Helvetica Neue",Helvetica,STHeiTi,"Microsoft YaHei";-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
 body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,article,aside,footer,header,hgroup,nav,section,menu{margin:0; padding:0;-webkit-text-size-adjust:none;}
@@ -553,7 +553,8 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .nav_common li>a>*{
 	pointer-events:none;
 }
-.nav_common li>a>img{width: 32px;height: 32px;display: inline-block;margin-top: 2px;}
+.nav_common li>a>img{width: 32px;height: 32px;display: inline-block;margin-top: 2px;padding: 4px;}
+.nav_common li>a.active>img{padding: 0;}
 .nav_common li>a>span{
 	display: block;
 	width:20px;
@@ -579,7 +580,7 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .nav_common li>a>span.cacel{
 	background-position:-96px 0px
 }
-.nav_common li.on>a>label{ color:#ef7f2c; }
+/*.nav_common li.on>a>label{ color:#ef7f2c; }*/
 .nav_common li.on>a>span{
 	background-position-y: -24px;
 }
@@ -665,8 +666,8 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 
 /*訂單*/
 #order_page .nav{padding: 0;}
-#order_page .nav .nav_box{display: flex;width: 100%;height: 65px;border-top: 1px solid #f3f3f3;}
-#order_page .nav .nav_box .a_box{text-align: center;height: 100%;}
+#order_page .nav .nav_box{display: flex;width: 100%;height: 65px;border-top: 1px solid #f3f3f3;max-width: 668px;}
+#order_page .nav .nav_box .a_box{text-align: center;height: 100%;width: 25%;}
 #order_page .nav .nav_box .a_box div{width: 100%;height: 30px;background-position: bottom;}
 .nav_box .a_box:nth-of-type(1) div{background: url(../images/order_nav1.png) 0 0 no-repeat;}
 .nav_box .a_box:nth-of-type(2) div{background: url(../images/order_nav2.png) 0 0 no-repeat;}
@@ -683,7 +684,7 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 #order_page .on-info a{height: 43px;width: 207px;background: #2BA3DC;color: #fff;text-align: center;border-radius: 9px;padding: 0;display: block;margin:0 auto;line-height: 43px;font-size: 15px;}
 
 #order_page .my_order .order_list{height: 162px;width: 100%;border-radius: 7px;background: #fff;margin-bottom: 10px;padding: 0 14px;}
-#order_page .order_list a{width: 100%;height: 100%;padding: 0;display: initial;}
+#order_page .order_list a{width: 100%;height: 100%;padding: 0;display: initial;text-decoration: none;}
 #order_page .order_list .title{width: 100%;display: initial;}
 #order_page .order_list .title div{float: left;width: 50%;height: 39px;line-height: 39px;font-size: 14px;border-bottom: 1px solid #f3f3f3;margin-bottom: 18px;}
 #order_page .order_list .title div:nth-of-type(1){color: #333;}
@@ -702,4 +703,34 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 #order_page .btn_box div{width: 93px;height: 33px;border-radius: 17px;float: right;font-size: 14px;text-align: center;line-height: 30px;color: #000;border:1px solid #e1e1e1;}
 #order_page .btn_box .btn1{background-color: #2BA3DC;color: #fff;border: 0;line-height: 33px;}
 #order_page .btn_box .btn3{color: #2BA3DC;border: 1px solid #2BA3DC;background-color: #fff;}
-/*訂單*/
+/*訂單
+
+/*訂單詳情*/
+#orderdetail{background-color: #ededed;}
+#orderdetail .my_order{height: 151px;margin: 12px;padding-top:17px;}
+#orderdetail .my_order .status_box{font-size: 20px;color: #000;height: 28px;line-height: 28px;text-align: center;margin-bottom: 18px;}
+#orderdetail .my_order .status_type{display: flex;justify-items: center;justify-content: center;}
+.my_order .status_type span{width: 52px;height: 26px;font-size: 13px;font-weight: 400;color: #cdcdcd;line-height: 110px;text-align: center;}
+.my_order .status_type span:nth-of-type(1){background: url(../images/order.png) 0 0 no-repeat;background-position: center;background-position-y: top;}
+.my_order .status_type span:nth-of-type(2){background: url(../images/ordering.png) 0 0 no-repeat;background-position: center;background-position-y: top;}
+.my_order .status_type span:nth-of-type(3){background: url(../images/ordered.png) 0 0 no-repeat;background-position: center;background-position-y: top;}
+.my_order .status_type span.on{color: #2BA3DC;}
+.my_order .status_type span:nth-of-type(1).on{background: url(../images/order1.png) 0 0 no-repeat;background-position: center;background-position-y: top;}
+.my_order .status_type span:nth-of-type(2).on{background: url(../images/ordering1.png) 0 0 no-repeat;background-position: center;background-position-y: top;}
+.my_order .status_type span:nth-of-type(3).on{background: url(../images/ordered1.png) 0 0 no-repeat;background-position: center;background-position-y: top;}
+.my_order .status_type div{width: 37px;height: 1px;border: 1px solid #e9e9e9;margin: 12px;}
+
+#orderdetail .detailbox{background-color: #fff;margin: 12px;margin-top: 0;padding: 12px;}
+#orderdetail .addressbox{border-bottom: 1px solid #e9e9e9;position: relative;}
+#orderdetail .addressbox h3{height: 20px;line-height: 20px;font-size: 14px;color: #333;margin-bottom: 5px;}
+#orderdetail .addressbox div{height: 16px;line-height: 16px;font-size: 11px;color: #555;margin-bottom: 10px;}
+#orderdetail .addressbox span{position: absolute;background: url(../images/dianhua.png) 0 0 no-repeat;width: 25px;height: 25px;right: 0;top: 50%;margin-top: -12.5px;}
+
+#orderdetail #orderList{padding: 10px 0;border-bottom: 1px solid #e9e9e9;}
+#orderdetail #orderList .img_box{width: 55px;padding-right: 10px;}
+#orderdetail #orderList .price_box{width: 60px;}
+#orderdetail .pay_total{text-align: right;height: 22px;line-height: 22px;font-size: 14px;color: #333;margin-top: 10px;}
+
+#orderdetail .pay_box{margin: 12px;padding: 12px;}
+#orderdetail .pay_box .dispatching{height: 30px;line-height: 20px;font-size: 14px;color: #333;border-bottom: 1px solid #e9e9e9;padding-bottom: 10px;}
+/*訂單詳情 end*/

@@ -102,6 +102,14 @@
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 </div>
 <script type="text/javascript">
+	$(function(){
+		$('.box_nav li:nth-of-type(1) a').removeClass('active');
+		$('.box_nav li:nth-of-type(1) img').attr('src', '../addons/str_takeout/template/resource/images/dianpu1.png');
+		$('.box_nav li:nth-of-type(2) a').addClass('active');
+    	$('.box_nav li:nth-of-type(2) img').attr('src', '../addons/str_takeout/template/resource/images/dingdan.png');
+    	$('.box_nav li:nth-of-type(3) a').removeClass('active');
+		$('.box_nav li:nth-of-type(3) img').attr('src', '../addons/str_takeout/template/resource/images/wode1.png');
+	});
 	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 		WeixinJSBridge.call('hideOptionMenu');
 	});

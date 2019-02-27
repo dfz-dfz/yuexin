@@ -11,14 +11,14 @@
 			</li>
 			<li class="<?php  if($_GPC['do'] == 'store') { ?>on<?php  } ?>">
 				<a class="tab-item external" href="<?php  echo $this->createMobileUrl('myorder', array('sid' => $_GPC['sid']));?>">
-					<img src="../addons/str_takeout/template/resource/images/dingdan.png" alt="">
+					<img src="../addons/str_takeout/template/resource/images/dingdan1.png" alt="">
 					<label>訂單</label>
 					<!-- <span class="badge">2</span> -->
 				</a>
 			</li>
 			<li class="more <?php  if($_GPC['do'] == 'myorder' || $_GPC['do'] == 'orderdetail') { ?>on<?php  } ?>">
 				<a class="tab-item external" href="<?php  echo murl('mc/home');?>">
-					<img src="../addons/str_takeout/template/resource/images/wode.png" alt="">
+					<img src="../addons/str_takeout/template/resource/images/wode1.png" alt="">
 					<label>我的</label>
 				</a>
 			</li>
@@ -39,5 +39,32 @@
         };
         wx.onMenuShareAppMessage(sharedata);
         wx.onMenuShareTimeline(sharedata);
+    });
+
+    $('.box_nav li:nth-of-type(1)').click(function() {
+    	$('.box_nav li:nth-of-type(1) a').addClass('active');
+		$('.box_nav li:nth-of-type(1) img').attr('src', '../addons/str_takeout/template/resource/images/dianpu.png');
+    	$('.box_nav li:nth-of-type(2) a').removeClass('active');
+    	$('.box_nav li:nth-of-type(2) img').attr('src', '../addons/str_takeout/template/resource/images/dingdan1.png');
+    	$('.box_nav li:nth-of-type(3) a').removeClass('active');
+		$('.box_nav li:nth-of-type(3) img').attr('src', '../addons/str_takeout/template/resource/images/wode1.png');
+    });
+
+    $('.box_nav li:nth-of-type(2)').click(function() {
+    	$('.box_nav li:nth-of-type(1) a').removeClass('active');
+		$('.box_nav li:nth-of-type(1) img').attr('src', '../addons/str_takeout/template/resource/images/dianpu1.png');
+    	$('.box_nav li:nth-of-type(2) a').addClass('active');
+    	$('.box_nav li:nth-of-type(2) img').attr('src', '../addons/str_takeout/template/resource/images/dingdan.png');
+    	$('.box_nav li:nth-of-type(3) a').removeClass('active');
+		$('.box_nav li:nth-of-type(3) img').attr('src', '../addons/str_takeout/template/resource/images/wode1.png');
+    });
+
+    $('.box_nav li:nth-of-type(3)').click(function() {
+    	$('.box_nav li:nth-of-type(1) a').removeClass('active');
+		$('.box_nav li:nth-of-type(1) img').attr('src', '../addons/str_takeout/template/resource/images/dianpu1.png');
+    	$('.box_nav li:nth-of-type(2) a').removeClass('active');
+    	$('.box_nav li:nth-of-type(2) img').attr('src', '../addons/str_takeout/template/resource/images/dingdan1.png');
+    	$('.box_nav li:nth-of-type(3) a').addClass('active');
+		$('.box_nav li:nth-of-type(3) img').attr('src', '../addons/str_takeout/template/resource/images/wode.png');
     });
 </script>
