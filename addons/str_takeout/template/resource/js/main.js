@@ -9,7 +9,7 @@ $.fn.amount = function(num, callback){
 		var obj = $(this).prev(),
 			_num = obj.find('.num'),
 			curNum = parseInt(_num.text(), 10);
-
+		
 		var data_obj = obj.parent();
 		var max = data_obj.attr("max");
 		var is_first_order = data_obj.data("first-order");

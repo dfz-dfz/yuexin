@@ -83,7 +83,7 @@ html, body{height: 100%;}
 .nav .title_message div span{font-size: 11px;color:#555;}
 .nav div{display: table; width: 62%;}
 .nav a{-webkit-box-sizing: border-box; width: 50%; font-size: 14px; height: 28px; line-height: 26px; text-align: center; color: #666; border: 1px solid #fff;margin: 0 12px;padding-bottom: 2px;}
-.nav a:first-child{border-right: none;}
+.nav a:first-child{border: none;}
 .nav a:last-child{border-left: none;}
 .nav a.on{background-color: #fff; color: #2BA3DC;border-bottom:4px solid #2BA3DC;}
 .menus{height: 44px;width: 100%;line-height:44px;background-color: #fff;text-align: center;font-size:18px;color: #0F0F0F;font-weight: 500;position: relative;margin-bottom: 10px;}
@@ -92,11 +92,11 @@ html, body{height: 100%;}
 .img_swipe{position: relative; overflow: hidden;}
 .img_swipe ul{overflow: hidden;}
 .img_swipe li{position: relative; float: left;}
-.img_swipe img{width: 100%; max-height: 200px;}
+.img_swipe img{width: 100%; max-height: 200px;padding-right: 8px;}
 .img_swipe li a{position: relative; display: block; color: #fff;}
 
 .img_swipe ol{position: absolute; left: 0; width: 100%; bottom: 5px; text-align: center;}
-.img_swipe ol li{display: inline-block; float: none; width: 9px; height: 9px; border-radius: 8px; margin: 0 2px; background-color: #fff;}
+.img_swipe ol li{display: inline-block; float: right; width: 9px; height: 9px; border-radius: 8px; margin: 0 2px; background-color: #fff;right: 10px;}
 .img_swipe ol li.on{background-color: #ea4b2e;}
 
 .store_info{margin-top:15px; display: table; width: 100%; padding: 12px 0 14px; background-color: #fff; border-width: 1px 0;}
@@ -105,7 +105,7 @@ html, body{height: 100%;}
 
 .mode_info{display: table; width: 100%; padding: 8px 0 8px; background-color: #fff; border-width: 1px 0;}
 .mode_info span{display: inline-block; width: 25%; font-size: 12px; text-align: center;}
-.mode_info span a{display: inline-block; color:#ff5f32; font-size:13px;}
+.mode_info span a{display: inline-block; color:#ff5f32; font-size:13px;text-decoration: none;}
 .mode_info span a.not-support{opacity: 0.4;}
 .mode_info span a strong{display: block; width:50px; height:50px; line-height:45px; font-size: 25px; margin:0 auto; margin-bottom: 6px; border:3px solid #fcfcfc; box-shadow: 0px 1px 2px rgba(0,0,0,0.1); -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.1); border-radius:100%; background:white}
 
@@ -295,7 +295,8 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .menu_detail .choice_box .title{height:20px;font-size:14px;font-weight:400;color:rgba(51,51,51,1);line-height:20px;margin-bottom: 10px;}
 .choice_box .types input{display: none;}
 .choice_box .types label{padding: 3px 13px;background-color: #fff;color: #333;border-radius: 15px;border:1px solid #D2D2D2;font-size: 14px;margin-right: 10px;}
-.choice_box .types .isChecked{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;}
+.choice_box .types .isChecked{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;border:none;}
+.choice_box .types label span{color: #2BA3DC;margin-left: 2px;}
 
 /* skin1 */
 .menu_wrap.skin1 .menu_nav{right: auto; left: 0; width: 80px; background-color: #f7f7f7; background-size: 100% 100%; border-width: 0 1px 0 0;}

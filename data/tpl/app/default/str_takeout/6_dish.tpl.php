@@ -26,9 +26,9 @@
 			</div>
 		</div>
 		<div>
-			<a href="<?php  echo $this->createMobileUrl('dish', array('sid' => $_GPC['sid']))?>" class="on">點菜</a>
+			<a href="javascript:void(0);" id="nav_btn1" class="on">點菜</a>
 			<?php  if($store['comment_status'] == 1) { ?>
-			<a href="<?php  echo $this->createMobileUrl('comment_list', array('sid' => $_GPC['sid']));?>">評價</a>
+			<a href="javascript:void(0);" id="nav_btn2">評價</a>
 			<?php  } ?>
 			<!-- <a href="<?php  echo murl('mc/home');?>">会员中心</a> -->
 		</div>
@@ -97,6 +97,17 @@
 							</ol>
 						</div>
 					<?php  } ?>
+
+					<div id="imgSwipe" class="img_swipe" style="visibility: visible;">
+						<ul style="width: 0px;">
+							<li><a href="<?php  echo $li['url'];?>"><img src="http://118.89.40.174/yue/attachment/images/6/2018/12/oUM51kcDmF1cskmpd1Cm51vf55545F.png" /></a></li>
+						</ul>
+						<ol id="swipeNum">
+							<?php  if(is_array($store['thumbs'])) { foreach($store['thumbs'] as $li) { ?>
+								<li class=""></li>
+							<?php  } } ?>
+						</ol>
+					</div>
 				</section>
 				<?php  if(is_array($category)) { foreach($category as $cate_row) { ?>
 					<div class="menu_tt" id="cate-<?php  echo $cate_row['id'];?>"><h2><?php  echo $cate_row['title'];?></h2></div>
@@ -248,7 +259,7 @@
 					<label class="isChecked">正常冰</label>
 					<label>少冰</label>
 					<label>常溫</label>
-					<label>熱</label>
+					<label>熱<span>$5</span></label>
 				</div>
 			</div>
 		</div>
@@ -279,6 +290,19 @@ $(function(){
 	});
 
 
+});
+
+//點菜、評價
+$('#nav_btn1').click(function() {
+	$('#cart_form').show();
+	$(this).addClass('on');
+	$('#nav_btn2').removeClass('on');
+});
+
+$('#nav_btn2').click(function() {
+	$('#cart_form').hide();
+	$(this).addClass('on');
+	$('#nav_btn1').removeClass('on');
 });
 
 //選擇套餐
@@ -340,11 +364,11 @@ $('.choice3 label').click(function(){
 //加入到購物車end
 
 $('#reduce').click(function(){
-	alert(1);
+	// alert(1);
 });
 
 $('#add').click(function(){
-	alert(2);
+	// alert(2);
 });
 
 //清空購物車
