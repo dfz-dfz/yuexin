@@ -1,7 +1,8 @@
 <?php defined('IN_IA') or exit('Access Denied');?><!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cmn-Hant">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewports" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
 	<?php  if(!empty($title)) { ?> 
 		<?php  echo $title;?> -
@@ -91,4 +92,4 @@
 	</script>
 </head>
 <body>
-<div class="container container-fill">
+<!-- <div class="container container-fill"> -->

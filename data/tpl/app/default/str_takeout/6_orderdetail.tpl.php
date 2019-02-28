@@ -42,7 +42,6 @@
 			</div>
 
 			<ul class="menu_list order_list" id="orderList">
-				<div class="order_message">訂單信息</div>
 				<?php  if(!empty($order['dish'])) { ?>
 					<?php  if(is_array($order['dish'])) { foreach($order['dish'] as $da) { ?>
 					<li id="<?php  echo $li['id'];?>" style="margin-bottom: 10px;">
@@ -81,42 +80,29 @@
 
 		<ul class="box pay_box">
 			<div class="dispatching">配送信息</div>
-			<div class="time">配送時間：<?php  echo date('Y-m-d H:i', $order['addtime']);?></div>
-			<li>预定人：<?php  echo $order['username'];?></li>
-			<li>手机：<?php  echo $order['mobile'];?></li>
-			<?php  if($order['order_type'] == 1) { ?>
-				<li>桌号：<?php  echo $order['table_info'];?> </li>
-				<li>就餐人数：<?php  echo $order['person_num'];?> 人</li>
-			<?php  } else { ?>
-				<li>送餐地址：<?php  echo $order['address'];?></li>
-				<li>送餐时间：<?php  if($order['delivery_time']) { ?><?php  echo $order['delivery_time'];?><?php  } else { ?>尽快送出<?php  } ?></li>
-				<li>配送费：<span class="text-strong"><?php  echo $order['delivery_fee'];?>元</span></li>
-			<?php  } ?>
-			<li>总计：<span class="text-strong"><?php  echo $order['delivery_fee'] + $order['price']?>元</span></li>
-			<li>
-				赠送积分：<span class="text-strong"><?php  echo $order['grant_credit'];?>积分</span>
-				<?php  if(empty($order['is_grant'])) { ?>
-					<label class="label label-danger">未赠送</label>
-				<?php  } else { ?>
-					<label class="label label-success">已赠送</label>
-				<?php  } ?>
-			</li>
+			<div class="time time_box">配送時間<span><?php  if($order['delivery_time']) { ?><?php  echo $order['delivery_time'];?><?php  } else { ?>尽快送出<?php  } ?></span></div>
+			<div class="time">配送地址<span><?php  echo $order['address'];?></span></div>
+			<div class="time tel_name"><span><?php  echo $order['mobile'];?>&nbsp;&nbsp;<?php  echo $order['username'];?></span></div>
+			<div class="time">配送服務<span>澳覓轉送</span></div>
 		</ul>
-		<ul class="box pay_box">
-			<li>备注</li>
-			<li><?php  if($order['note']) { ?><?php  echo $order['note'];?><?php  } else { ?>无<?php  } ?></li>
-		</ul>
+
 		<?php  if(!empty($logs)) { ?>
 		<ul class="box pay_box">
-			<li>订单日志</li>
+			<div class="dispatching">訂單信息</div>
+			<div class="time time_box">訂單號碼<span class="copy">複製</span><div></div><span>79824114v</span></div>
 			<?php  if(is_array($logs)) { foreach($logs as $log) { ?>
-				<li><i class="fa fa-info-circle"></i> <?php  echo date('Y-m-d H:i', $log['addtime']);?> <?php  echo $log['note'];?></li>
+				<div class="time">下單時間<span><?php  echo date('Y-m-d H:i', $log['addtime']);?></span></div>
 			<?php  } } ?>
+			<div class="time">支付方式<span>現金支付</span></div>
 		</ul>
 		<?php  } ?>
-		<div class="my_order_tips">如需取消订单，请与商家联系，谢谢！</div>
 
-		<?php  if(empty($order['pay_type'])) { ?>
+		<ul class="box pay_box">
+			<div class="dispatching">備註信息</div>
+			<div class="time time_box"><?php  if($order['note']) { ?><?php  echo $order['note'];?><?php  } else { ?>无<?php  } ?></div>
+		</ul>
+		
+		<!-- <?php  if(empty($order['pay_type'])) { ?>
 			<div class="detail_tools">
 				<div><a href="<?php  echo $this->createMobileUrl('pay', array('id' => $order['id']))?>" class="comm_btn">在线支付</a></div>
 				<div><a href="javascript:;" onclick="alert('请到收银台付款')" id="cash" class="comm_btn" style="background:#4fb07c">现金支付</a></div>
@@ -139,7 +125,7 @@
 			<div class="detail_tools">
 				<div><a href="javascript:;" class="comm_btn" id="confirmBtn2">申请退款</a></div>
 			</div>
-		<?php  } ?>
+		<?php  } ?> -->
 		</div>
 	</section>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
