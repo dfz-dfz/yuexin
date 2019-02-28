@@ -16,7 +16,9 @@
 	#homePage .mui-table{margin-top: 45px!important;}
 
 	#homePage .type_box{background-color: #fff;height: 186px;border-radius: 11px;margin: 0 12px;margin-top: 45px;padding: 0 10px;}
-	#homePage .type_box div{height: 60px;border-bottom: 1px solid #f3f3f3;display: flex;justify-items: center;align-items: center;}
+	#homePage .type_box div{height: 60px;border-bottom: 1px solid #f3f3f3;display: flex;justify-items: center;align-items: center;font-size: 14px;color: #333;position: relative;}
+	#homePage .type_box div:last-child{border-bottom: none;}
+	#homePage .type_box div span{position: absolute;background: url(../addons/str_takeout/template/resource/images/jiantou.png) 0 0 no-repeat;background-position-y: 20px;background-size: 20px;transform: rotate(180deg);background-position-x: -3px;width: 30px;height: 100%;right: 0;}
 </style>
 
 <?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('common/header', TEMPLATE_INCLUDEPATH)) : (include template('common/header', TEMPLATE_INCLUDEPATH));?>
@@ -24,10 +26,10 @@
 	<div class="mui-content mc-we7-home" id="homePage">
 		<header class="top_nav">越新科技</header>
 
-		<div class="mui-banner" style="background-image:url(<?php  if(!empty($ucpage['params'][0]['params']['bgImage'])) { ?>'<?php  echo $ucpage['params'][0]['params']['bgImage'];?>'<?php  } else { ?>'resource/images/head-bg.png'<?php  } ?>); background-repeat:no-repeat;background-size:cover;">
+		<div class="mui-banner" style="background: linear-gradient(90deg,rgba(102,211,242,1) 0%,rgba(62,173,225,1) 100%);">
 			<div class="setting"><a href="<?php  echo url('mc/bond/settings') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>">设 置</a></div>
 			<img src="<?php  if(!empty($profile['avatar'])) { ?><?php  echo tomedia($profile['avatar']);?><?php  } else { ?>./resource/images/member-header.png<?php  } ?>" alt="" class="mui-logo mui-img-circle" />
-			<div class="mui-banner-info">
+			<div class="mui-banner-info" style="top: 32px;">
 				<div class="mui-big"><?php  if(!empty($profile['nickname'])) { ?><span style="color:white"><?php  echo $profile['nickname'];?></span><?php  } else { ?><a href="<?php  echo url('mc/profile') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>">设置昵称</a><?php  } ?></div>
 				<div class="mui-mt5">
 					<?php  if(!empty($profile['mobile'])) { ?>
@@ -52,9 +54,9 @@
 		</div>
 		
 		<div class="type_box">
-			<div>收貨地址</div>
-			<div>我的評價</div>
-			<div>個人信息</div>
+			<div>收貨地址<span></span></div>
+			<div>我的評價<span></span></div>
+			<div>個人信息<span></span></div>
 		</div>
 		<!-- <div class="mui-table mui-table-inline mui-mt15 nav-action">
 			<div class="mui-table-cell">

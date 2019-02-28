@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hant">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewports" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
 	<?php  if(!empty($title)) { ?> 
 		<?php  echo $title;?> -
@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="<?php  echo $_W['siteroot'];?>app/resource/js/app/common.js?v=20170802"></script>
 	<link href="<?php  echo $_W['siteroot'];?>app/resource/css/bootstrap.min.css?v=20170802" rel="stylesheet">
 	<link href="<?php  echo $_W['siteroot'];?>app/resource/css/common.min.css?v=20170802" rel="stylesheet">
+    <script src="<?php  echo $_W['siteroot'];?>/addons/str_takeout/template/resource/js/langguage.js"></script>
 	<script type="text/javascript">
 	if(navigator.appName == 'Microsoft Internet Explorer'){
 		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
@@ -92,4 +93,4 @@
 	</script>
 </head>
 <body>
-<!-- <div class="container container-fill"> -->
+<div class="container container-fill">
