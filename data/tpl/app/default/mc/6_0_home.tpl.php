@@ -54,9 +54,9 @@
 		</div>
 		
 		<div class="type_box">
-			<div>收貨地址<span></span></div>
+			<a href="<?php  echo url('mc/profile/address') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>"><div>收貨地址<span></span></div></a>
 			<div>我的評價<span></span></div>
-			<div>個人信息<span></span></div>
+			<a href="<?php  echo url('mc/profile') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>"><div>個人信息<span></span></div></a>
 		</div>
 		<!-- <div class="mui-table mui-table-inline mui-mt15 nav-action">
 			<div class="mui-table-cell">

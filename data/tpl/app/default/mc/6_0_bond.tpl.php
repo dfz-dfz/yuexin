@@ -282,26 +282,27 @@
 	</div>
 </form>
 <?php  } ?>
+
+<!-- 積分明細 -->
 <?php  if($do == 'credits') { ?>
 	<?php  if($_GPC['type'] == 'record') { ?>
-	<header class="mui-bar mui-bar-nav">
+	<header class="mui-bar mui-bar-nav" style="box-shadow: none;margin-bottom: 1px;background-color: #fff;">
 		<?php  if($_W['container'] !== 'wechat') { ?>
 		<div class="mui-row fixed-bar">
 			<div class="mui-col-xs-4">
 				<button class="mui-btn mui-btn-link mui-btn-nav mui-pull-left mui-action-back">
 					<span class="mui-icon mui-icon-left-nav"></span>
-					返回
 				</button>
 			</div>
-			<div class="mui-col-xs-4 mui-text-center"><?php  if(!empty($title)) { ?><?php  echo $title;?><?php  } else if(!empty($_W['page']['title'])) { ?><?php  echo $_W['page']['title'];?><?php  } ?></div>
-			<div class="mui-col-xs-4 mui-text-right">
+			<div class="mui-col-xs-4 mui-text-center" style="font-size: 18px;font-weight: 500;color: #0f0f0f;">積分明細</div>
+			<!-- <div class="mui-col-xs-4 mui-text-right">
 				<a href="#consume-date">
 					<span><?php  if($_GPC['period'] <= 0) { ?><?php  echo date('Y.m', strtotime($_GPC['period'] . 'month'))?><?php  } else { ?>查看全部<?php  } ?></span>
 					<span class="fa fa-angle-down mui-text-muted"></span>
 				</a>
-			</div>
+			</div> -->
 		</div>
-		<?php  } else { ?>
+		<!-- <?php  } else { ?>
 		<div class="mui-row fixed-bar">
 			<div class="mui-col-xs-6"></div>
 			<div class="mui-col-xs-6 mui-text-right">
@@ -311,9 +312,9 @@
 				</a>
 			</div>
 		</div>
-		<?php  } ?>
+		<?php  } ?> -->
 	</header>
-	<div id="consume-date" class="mui-popover mui-popover-top">
+	<!-- <div id="consume-date" class="mui-popover mui-popover-top">
 		<ul class="mui-table-view">
 			<li class="mui-table-view-cell">
 				<a href="<?php  echo url('mc/bond/credits', array('credittype' => $_GPC['credittype'], 'type' => 'record', 'period' => '1'))?>">查看全部</a>
@@ -328,16 +329,39 @@
 				<a href="<?php  echo url('mc/bond/credits', array('credittype' => $_GPC['credittype'], 'type' => 'record', 'period' => '-2'))?>"><?php  echo date('Y.m', strtotime('-2month'))?></a>
 			</li>
 		</ul>
-	</div>
-	<div class="mui-content">
-		<div class="mui-table mui-table-inline mui-pa10">
+	</div> -->
+	<div class="mui-content" style="padding-top: 45px;">
+		<div style="height: 110px;background-color: #fff;margin-bottom: 10px;text-align: center;padding-top: 19px;">
+			<div style="height: 22px;line-height: 22px;font-size: 16px;color: #333;">當前積分</div>
+			<div style="margin-top: 8px;height: 36px;line-height: 36px;font-size: 25px;color: #2BA3DC;"><?php  echo $income;?></div>
+		</div>
+
+		<!-- <div class="mui-table mui-table-inline mui-pa10">
 			<div class="mui-table-cell">
 				<div class="mui-text-muted ">充值</div><?php  echo $income;?><?php  if($_GPC['credittype'] == 'credit2') { ?>元<?php  } else { ?>积分<?php  } ?>
 			</div>
 			<div class="mui-table-cell">
 				<div class="mui-text-muted">消费</div><?php  echo $pay;?><?php  if($_GPC['credittype'] == 'credit2') { ?>元<?php  } else { ?>积分<?php  } ?>
 			</div>
+		</div> -->
+		<div style="background-color: #fff;padding: 0 12px;">
+			<div style="height: 40px;line-height: 40px;font-size: 12px;color: #666;">積分記錄</div>
+			<ul style="margin: 0;padding: 0;">
+				<li style="border-bottom: 1px solid #f3f3f3;padding-top: 10px;">
+					<div style="font-size: 14px;color: #0f0f0f;height: 20px;line-height: 20px;margin-bottom: 4px;">消費40元</div>
+					<div style="font-size: 13px;height: 18px;line-height: 18px;color: #929292;margin-bottom: 4px;">提督馬路店<span style="float: right;color: #2BA3DC;font-size: 14px;">+20</span></div>
+					<div style="font-size: 13px;color: #929292;height: 18px;line-height: 18px;margin-bottom: 10px;">2019-01-12  12:00:00</div>
+				</li>
+
+				<li style="border-bottom: 1px solid #f3f3f3;padding-top: 10px;">
+					<div style="font-size: 14px;color: #0f0f0f;height: 20px;line-height: 20px;margin-bottom: 4px;">消費40元</div>
+					<div style="font-size: 13px;height: 18px;line-height: 18px;color: #929292;margin-bottom: 4px;">提督馬路店<span style="float: right;color: #2BA3DC;font-size: 14px;">+20</span></div>
+					<div style="font-size: 13px;color: #929292;height: 18px;line-height: 18px;margin-bottom: 10px;">2019-01-12  12:00:00</div>
+				</li>
+				<div style="text-align: center;color: #929292;font-size: 13px;height: 24px;line-height: 24px;">沒有更多的記錄了~</div>
+			</ul>
 		</div>
+
 		<div class="credits-display">
 		<ul class="mui-table-view mui-credits">
 			<?php  if(is_array($data)) { foreach($data as $row) { ?>
@@ -361,6 +385,8 @@
 		</div>
 	</div>
 	<?php  } ?>
+<!-- 積分明細 -->
+
 	<?php  if($_GPC['type'] == 'recorddetail') { ?>
 	<div class="mui-bg-white mc-record-detail">
 		<div class="mui-bb1 mui-row sum">

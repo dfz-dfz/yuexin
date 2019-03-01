@@ -1,64 +1,92 @@
+<style>
+	#avatar_box .mui-table-view{height: 143px;margin-top: 1px;}
+	#avatar_box .mui-table-view .mui-table-view-cell{height: 143px;}
+	#avatar_box .mui-table-view .mui-table-view-cell .webuploader-pick{height: 143px;text-indent: -999px;display: flex;justify-content: center;align-items: center;justify-items: center;}
+	#avatar_box .mui-table-view .mui-table-view-cell .webuploader-pick a{height: 65px;display: flex;}
+	#avatar_box .mui-table-view .mui-table-view-cell .webuploader-pick a img{width: 65px;height: 65px;margin: 0 auto;}
+</style>
+
 <?php defined('IN_IA') or exit('Access Denied');?><?php  define('MUI', true);?>
 <?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('common/header', TEMPLATE_INCLUDEPATH)) : (include template('common/header', TEMPLATE_INCLUDEPATH));?>
+<header class="mui-bar mui-bar-nav" style="box-shadow: none;margin-bottom: 1px;background-color: #fff;">
+	<div class="mui-row fixed-bar">
+		<div class="mui-col-xs-4">
+			<button class="mui-btn mui-btn-link mui-btn-nav mui-pull-left mui-action-back" style="margin-top: 8px;">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+		</div>
+		<div class="mui-col-xs-4 mui-text-center" style="font-size: 18px;font-weight: 500;color: #0f0f0f;">我的信息</div>
+	</div>
+</header>
+
 <form class="tab-content clearfix js-ajax-form <?php  if($_W['container'] !== 'wechat') { ?>profile-form<?php  } ?>" action="<?php  echo url('mc/profile/editprofile');?>" method="post" enctype="multipart/form-data">
 <div class="mui-content <?php  if($do == 'index') { ?>mc-profile<?php  } ?>">
 <?php  if($do == 'index') { ?>
-	<?php  if(!empty($mcFields['avatar'])) { ?>
-	<?php  echo tpl_app_form_field_avatar('avatar', $profile['avatar']);?>
-	<?php  } ?>
-	<div class="mui-input-group mui-mt15">
+	<div id="avatar_box">
+		<?php  if(!empty($mcFields['avatar'])) { ?>
+		<?php  echo tpl_app_form_field_avatar('avatar', $profile['avatar']);?>
+		<?php  } ?>
+	</div>
+
+	<div class="mui-input-group mui-mt15" style="margin-top: 20px!important;">
 		<?php  if(!empty($mcFields['nickname'])) { ?>
 		<div class="mui-input-row">
-			<label><?php  echo $mcFields['nickname']['title'];?></label>
+			<label>昵稱</label>
 			<?php  echo tpl_app_fans_form('nickname', $profile['nickname'], $mcFields['nickname']['title']);?>
 		</div>
 		<?php  } ?>
-		<?php  if(!empty($mcFields['realname'])) { ?>
+		<?php  if(!empty($mcFields['telephone'])) { ?>
+		<div class="mui-input-row">
+			<label>電話</label>
+			<?php  echo tpl_app_fans_form('telephone', $profile['telephone'], $mcFields['telephone']['title']);?>
+		</div>
+		<?php  } ?>
+		<!-- <?php  if(!empty($mcFields['realname'])) { ?>
 		<div class="mui-input-row">
 			<label><?php  echo $mcFields['realname']['title'];?></label>
 			<?php  echo tpl_app_fans_form('realname', $profile['realname'], $mcFields['realname']['title']);?>
 		</div>
-		<?php  } ?>
+		<?php  } ?> -->
 		<?php  if(!empty($mcFields['gender'])) { ?>
 		<div class="mui-input-row">
-			<label><?php  echo $mcFields['gender']['title'];?></label>
+			<label>性別</label>
 			<?php  echo tpl_app_fans_form('gender', $profile['gender'], $mcFields['gender']['title']);?>	
 		</div>
 		<?php  } ?>
 		<?php  if(!empty($mcFields['birthyear'])) { ?>
 		<div class="mui-input-row">
-			<label><?php  echo $mcFields['birthyear']['title'];?></label>
+			<label>生日</label>
 			<?php  echo tpl_app_fans_form('birth', array('year' => $profile['birthyear'], 'month' => $profile['birthmonth'], 'day' => $profile['birthday']), $mcFields['birthyear']['title']);?>
 		</div>
 		<?php  } ?>
-		<?php  if(!empty($mcFields['resideprovince'])) { ?>
+		<!-- <?php  if(!empty($mcFields['resideprovince'])) { ?>
 		<div class="mui-input-row">
 			<label><?php  echo $mcFields['resideprovince']['title'];?></label>
 			<?php  echo tpl_app_fans_form('reside', array('province' => $profile['resideprovince'], 'city' => $profile['residecity'], 'district' => $profile['residedist']), $mcFields['resideprovince']['title']);?>
 		</div>
-		<?php  } ?>
+		<?php  } ?> -->
 	</div>
 	<ul class="mui-table-view mui-table-view-chevron">
-		<?php  if(empty($personal_info_hide)) { ?>
+		<!-- <?php  if(empty($personal_info_hide)) { ?>
 		<li class="mui-table-view-cell">
 			<a href="<?php  echo url('mc/profile/personal_info') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>" class="mui-navigate-right">个人信息</a>
 		</li>
-		<?php  } ?>
-		<?php  if(empty($contact_method_hide)) { ?>
+		<?php  } ?> -->
+		<!-- <?php  if(empty($contact_method_hide)) { ?>
 		<li class="mui-table-view-cell">
 			<a href="<?php  echo url('mc/profile/contact_method') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>" class="mui-navigate-right">联系方式</a>
 		</li>
-		<?php  } ?>
-		<?php  if(empty($education_info_hide)) { ?>
+		<?php  } ?> -->
+		<!-- <?php  if(empty($education_info_hide)) { ?>
 		<li class="mui-table-view-cell">
 			<a href="<?php  echo url('mc/profile/education_info') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>" class="mui-navigate-right">教育信息</a>
 		</li>
-		<?php  } ?>
-		<?php  if(empty($jobedit_hide)) { ?>
+		<?php  } ?> -->
+		<!-- <?php  if(empty($jobedit_hide)) { ?>
 		<li class="mui-table-view-cell">
 			<a href="<?php  echo url('mc/profile/jobedit') . 'wxref=mp.weixin.qq.com#wechat_redirect'?>" class="mui-navigate-right">工作信息</a>
 		</li>
-		<?php  } ?>
+		<?php  } ?> -->
 	</ul>
 <?php  } ?>
 
@@ -304,17 +332,17 @@ wx.ready(function () {
 	<div class="mui-content-padded mui-text-muted">请您填写收货地址</div>
 	<div class="mui-input-group mui-mt15">
 		<div class="mui-input-row">
-			<label>姓名</label>
-			<input type="text" value="<?php  echo $address['username'];?>" name="address[username]" placeholder="收货人姓名"/>
+			<label>聯繫人</label>
+			<input type="text" value="<?php  echo $address['username'];?>" name="address[username]" placeholder="姓名"/>
 		</div>
 		<div class="mui-input-row">
-			<label>手机号码</label>
-			<input type="text" value="<?php  echo $address['mobile'];?>" name="address[mobile]" placeholder="手机号"/>
+			<label>電話</label>
+			<input type="text" value="<?php  echo $address['mobile'];?>" name="address[mobile]" placeholder="手機號碼"/>
 		</div>
-		<div class="mui-input-row">
+		<!-- <div class="mui-input-row">
 			<label>邮政编码</label>
 			<input type="text" name="address[zipcode]" value="<?php  echo $address['zipcode'];?>" placeholder="邮政编码"/>
-		</div>
+		</div> -->
 		<div class="mui-input-row">
 			<label>选择地区</label>
 			<?php  echo tpl_app_form_field_district('address',array('province' => $address['province'],'city' => $address['city'],'district' => $address['district']));?>
@@ -325,7 +353,7 @@ wx.ready(function () {
 		</div>
 	</div>
 	<div class="mui-content-padded">
-		<button class="mui-btn mui-btn-success mui-btn-block" type="submit" value="提交" name="submit">保存</button>
+		<button class="mui-btn mui-btn-success mui-btn-block" type="submit" value="提交" name="submit" style="background: #2BA3DC;border: 1px solid #2BA3DC;">保存</button>
 		<input type="hidden" name="addid" value="<?php  echo $address['id'];?>">
 		<input type="hidden" name="token" value="<?php  echo $_W['token'];?>" />
 	</div>
