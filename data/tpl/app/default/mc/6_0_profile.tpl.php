@@ -4,6 +4,13 @@
 	#avatar_box .mui-table-view .mui-table-view-cell .webuploader-pick{height: 143px;text-indent: -999px;display: flex;justify-content: center;align-items: center;justify-items: center;}
 	#avatar_box .mui-table-view .mui-table-view-cell .webuploader-pick a{height: 65px;display: flex;}
 	#avatar_box .mui-table-view .mui-table-view-cell .webuploader-pick a img{width: 65px;height: 65px;margin: 0 auto;}
+
+	.mui-table-view:before{display: none;}
+	.mui-table-view:after{display: none;}
+	.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after{display: none!important;}
+
+	.address_box{font-size: 14px;color: #666;position: relative;}
+	.address_box .edit{position: absolute;right: 0;top: 10px;padding-left: 16px;border-left: 1px solid #f3f3f3;}
 </style>
 
 <?php defined('IN_IA') or exit('Access Denied');?><?php  define('MUI', true);?>
@@ -256,15 +263,15 @@
 </div>
 </form>
 <?php  if($do == 'address' && empty($_GPC['addid'])) { ?>
-<div class="mui-content mc-address-list">
-	<ul class="mui-table-view">
+<div class="mui-content mc-address-list" style="padding-left: 12px;padding-right: 12px;">
+	<ul class="mui-table-view"  style="border-radius: 11px;">
 		<?php  if(empty($addresses)) { ?>
 		<li class="mui-table-view-cell mui-text-center">
 			暂无收货地址,请点击新增收货地址.
 		</li>
 		<?php  } ?>
 		<?php  if(is_array($addresses)) { foreach($addresses as $address) { ?>
-		<li class="mui-table-view-cell mui-table-view-chevron">
+		<li class="mui-table-view-cell mui-table-view-chevron"  style="border-radius: 11px;">
 			<div class="mui-slider-right mui-disabled">
 				<?php  if(!$address['isdefault']) { ?>
 				<a class="mui-btn mui-btn-yellow" href="<?php  echo url('mc/profile/address', array('op' => 'default', 'id' => $address['id'], address => $address['province'].$address['city'].$address['district'].$address['address']))?>">设为默认</a>
@@ -272,22 +279,24 @@
 				<a class="mui-btn mui-btn-red" href="<?php  echo url('mc/profile/address', array('op' => 'delete', 'id' => $address['id']))?>">删除</a>
 			</div>
 			<a data-href="<?php  echo url('mc/profile/addressadd', array('addid' => $address['id']));?>" class="mui-slider-handle mui-navigate-right js-slider-handle">
-				<div>
-					<?php  echo $address['username'];?><span class="tel mui-ml15"><?php  echo $address['mobile'];?></span>
-					<div class="mui-ellipsis mui-text-muted mui-mt5"><?php  echo $address['province'];?> <?php  echo $address['city'];?> <?php  echo $address['district'];?> <?php  echo $address['address'];?></div>
+				<div class="address_box">
+					<div class="mui-ellipsis mui-mt10 mui-mb5" style="color: #333;"><?php  echo $address['province'];?> <?php  echo $address['city'];?> <?php  echo $address['district'];?> <?php  echo $address['address'];?></div>
+					<?php  echo $address['mobile'];?><span class="tel mui-ml15"><?php  echo $address['username'];?></span>
 					<?php  if($address['isdefault'] > 0) { ?>
 					<span class="default-marker">默认</span>
 					<?php  } ?>
+					<span class="edit">編輯</span>
 				</div>
 			</a>
 		</li>
 		<?php  } } ?>
-		<li class="mui-table-view-cell">
-			<a href="<?php  echo url('mc/profile/addressadd', array('uid' => $address['openid']));?>" class="mui-text-success mui-text-center mui-bg-white">
-				<span class="fa fa-plus-circle mui-mr10"></span>新增收货地址
-			</a>
-		</li>
 	</ul>
+
+	<div style="margin-top: 100px;width: 100%;">
+		<a href="<?php  echo url('mc/profile/addressadd', array('uid' => $address['openid']));?>" class="mui-text-center" style="background: #2BA3DC;border-radius: 8px;color: #fff;width: 100%;display: block;height: 44px;line-height: 44px;">
+			<span class="fa fa-plus-circle mui-mr10"></span>添加地址
+		</a>
+	</div>
 </div>
 <script type="text/javascript">
 <?php  if(($_W['account']['level'] == ACCOUNT_SUBSCRIPTION_VERIFY || $_W['account']['level'] == ACCOUNT_SERVICE_VERIFY) && empty($address)) { ?>

@@ -89,7 +89,7 @@
 		<?php  if(!empty($logs)) { ?>
 		<ul class="box pay_box">
 			<div class="dispatching">訂單信息</div>
-			<div class="time time_box">訂單號碼<span class="copy">複製</span><div></div><span>79824114v</span></div>
+			<div class="time time_box">訂單號碼<span class="copy" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">複製</span><div></div><span id="target">79824114v</span></div>
 			<?php  if(is_array($logs)) { foreach($logs as $log) { ?>
 				<div class="time">下單時間<span><?php  echo date('Y-m-d H:i', $log['addtime']);?></span></div>
 			<?php  } } ?>
