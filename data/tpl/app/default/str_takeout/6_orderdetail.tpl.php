@@ -102,7 +102,7 @@
 			<div class="time time_box"><?php  if($order['note']) { ?><?php  echo $order['note'];?><?php  } else { ?>无<?php  } ?></div>
 		</ul>
 		
-		<!-- <?php  if(empty($order['pay_type'])) { ?>
+		 <?php  if(empty($order['pay_type'])) { ?>
 			<div class="detail_tools">
 				<div><a href="<?php  echo $this->createMobileUrl('pay', array('id' => $order['id']))?>" class="comm_btn">在线支付</a></div>
 				<div><a href="javascript:;" onclick="alert('请到收银台付款')" id="cash" class="comm_btn" style="background:#4fb07c">现金支付</a></div>
@@ -125,7 +125,7 @@
 			<div class="detail_tools">
 				<div><a href="javascript:;" class="comm_btn" id="confirmBtn2">申请退款</a></div>
 			</div>
-		<?php  } ?> -->
+		<?php  } ?>
 		</div>
 	</section>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>

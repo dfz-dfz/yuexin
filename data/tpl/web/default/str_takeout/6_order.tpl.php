@@ -39,17 +39,14 @@
 					</div>
 					<div class="form-group clearfix">
 						<label class="col-xs-12 col-sm-2 col-md-2 control-label">下单时间</label>
-						<div class="col-sm-6 col-lg-6 col-md-5 col-xs-12">
+						<div class="col-sm-7 col-lg-8 col-md-8 col-xs-12">
 							<?php  echo tpl_form_field_daterange('addtime', array('start' => date('Y-m-d', $starttime), 'end' => date('Y-m-d', $endtime)));?>
 						</div>
 						<div class="col-xs-12 col-sm-3 col-md-2 col-lg-1">
 							<button class="btn btn-default"> 搜索</button>
 						</div>
-						<div class="col-xs-12 col-sm-2 col-md-2 col-lg-1">
+						<div class="col-xs-12 col-sm-3 col-md-2 col-lg-1">
 							<button class="btn btn-default" name="out_put" value="output"> 导出</button>
-						</div>
-						<div class="col-xs-12 col-sm-2 col-md-3	 col-lg-2">
-							<button class="btn btn-default" name="out_put" value="total_output">汇总导出</button>
 						</div>
 					</div>
 				</form>

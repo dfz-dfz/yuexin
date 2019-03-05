@@ -3,7 +3,7 @@
 <script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
 <script src="../addons/str_takeout/template/resource/js/main.js"></script>
 <script src="../addons/str_takeout/template/resource/js/menu.js"></script>
-<div class="container" onselectstart="return true;" ondragstart="return false;">
+<div class="container comment-container" onselectstart="return true;" ondragstart="return false;">
 	<header class="comment-stat clearfix">
 		<div class="left">
 			<span>综合评分</span>

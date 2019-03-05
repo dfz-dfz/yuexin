@@ -232,6 +232,8 @@
 			<?php  } ?>
 		<?php  } ?>
 	</form>
+	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('comment_list', TEMPLATE_INCLUDEPATH)) : (include template('comment_list', TEMPLATE_INCLUDEPATH));?>
+
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 	<div class="menu_detail" id="menuDetail">
 		<div class="checkBox">
@@ -277,6 +279,7 @@
 
 <script type="text/javascript">
 $(function(){
+	$(".comment-container").hide();
 	$('#assignSubmit').click(function(){
 		var action = "<?php  echo $this->createMobileUrl('assign', array('sid' => $sid, 'op' =>'index', 'mode' => $mode, 'f' => 'dish'), true);?>";
 		$('#cart_form').attr('action', action);
@@ -295,12 +298,14 @@ $(function(){
 //點菜、評價
 $('#nav_btn1').click(function() {
 	$('#cart_form').show();
+	$(".comment-container").hide();
 	$(this).addClass('on');
 	$('#nav_btn2').removeClass('on');
 });
 
 $('#nav_btn2').click(function() {
 	$('#cart_form').hide();
+	$(".comment-container").show();
 	$(this).addClass('on');
 	$('#nav_btn1').removeClass('on');
 });
@@ -351,7 +356,7 @@ $('.choice3 label').click(function(){
 						hmtls += '<div class="fr">';
 							hmtls += '<a href="javascript:void(0);" class="btn_n reduce" id="reduce"><div></div></a>';
 							hmtls += '<input autocomplete="off" class="h_num" name="" value="1">';
-							hmtls += '<a href="javascript:void(0);" class="btn_n add" id="add"><div></div><div></div></a>';
+							hmtls += '<a href="javascript:void(0);" onclick="alert(123);" class="btn_n add" id="add"><div></div><div></div></a>';
 						hmtls += '</div>';
 					hmtls += '</span>';
 					hmtls += '<span>$'+price+'</span>';
@@ -363,12 +368,12 @@ $('.choice3 label').click(function(){
 	});
 //加入到購物車end
 
-$('#reduce').click(function(){
-	// alert(1);
+$('.reduce').click(function(){
+//	 alert(1);
 });
 
-$('#add').click(function(){
-	// alert(2);
+$('.add').click(function(){
+//	 alert(2);
 });
 
 //清空購物車

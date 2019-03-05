@@ -1737,6 +1737,31 @@ class Str_takeoutModuleSite extends WeModuleSite
         } else {
             $is_first_order = 0;
         }
+        
+        checkauth();
+        $sid = intval($_GPC['sid']);
+        check_trash($sid);
+//        $store  = get_store($sid);
+        $_share = get_share($store);
+//        if (empty($store)) {
+//            message('商家不存在', '', 'error');
+//        }
+        $title        = $store['title'];
+        $comment_stat = comment_stat($sid);
+        $avg          = ($comment_stat['avg_taste'] + $comment_stat['avg_serve'] + $comment_stat['avg_speed']) / 3;
+        $pindex       = max(1, intval($_GPC['page']));
+        $psize        = 15;
+        $condition    = ' WHERE a.uniacid = :uniacid AND a.sid = :sid AND a.status = 1';
+        $params       = array(
+            ':uniacid' => $_W['uniacid'],
+            ':sid' => $sid
+        );
+        $total        = pdo_fetchcolumn('SELECT COUNT(*) FROM ' . tablename('str_order_comment') . ' AS a ' . $condition, $params);
+        $data         = pdo_fetchall('SELECT a.*, b.nickname,b.avatar,b.realname FROM ' . tablename('str_order_comment') . ' AS a LEFT JOIN ' . tablename('mc_members') . ' AS b ON a.uid = b.uid ' . $condition . ' ORDER BY a.addtime DESC LIMIT ' . ($pindex - 1) * $psize . ',' . $psize, $params);
+        $pager        = pagination($total, $pindex, $psize, '', array(
+            'before' => 0,
+            'after' => 0
+        ));
         include $this->template('dish');
     }
     public function doMobileAjax()
@@ -1854,6 +1879,11 @@ class Str_takeoutModuleSite extends WeModuleSite
                 $dis['member_price'] = dish_group_price($dis['price']);
             }
         }
+//        echo '$dis--->'.json_encode($dis);
+//        echo "<hr>";
+//        echo '$di_add--->'.json_encode($di_add);
+//        echo "<hr>";
+//        exit;
         include $this->template('order');
     }
     public function doMobileOrderConfirm()
