@@ -1818,10 +1818,16 @@ class Str_takeoutModuleSite extends WeModuleSite
     {
         global $_W, $_GPC;
         checkauth();
+        if(!empty($_GPC['dish'])){
+        	$_SESSION['dish'] = $_GPC['dish'];
+        }else{
+	    	$_GPC['dish'] = $_SESSION['dish'];
+	    };
         $sid  = intval($_GPC['sid']);
         $mode = intval($_GPC['mode']);
         checkclerk($sid);
         check_trash($sid);
+        
         $store              = pdo_fetch('SELECT * FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
             ':aid' => $_W['uniacid'],
             ':id' => $sid
@@ -1842,9 +1848,10 @@ class Str_takeoutModuleSite extends WeModuleSite
         } else {
             $is_first_order = 0;
         }
-        $cart = set_order_cart($sid);
+        $cart = set_order_cart($sid); 
+//        echo json_encode($cart);exit;
         if (is_error($cart)) {
-            message($cart . message, '', 'error');
+            message($cart['message'], '', 'error');
         }
         $dishes    = $cart['data'];
         $is_add    = 0;
@@ -1879,6 +1886,13 @@ class Str_takeoutModuleSite extends WeModuleSite
                 $dis['member_price'] = dish_group_price($dis['price']);
             }
         }
+        
+        $address_id = intval($_GPC['address_id']);
+        $address    = get_address($address_id);
+        if (empty($address)) {
+        	$address = get_default_address();
+        }
+
 //        echo '$dis--->'.json_encode($dis);
 //        echo "<hr>";
 //        echo '$di_add--->'.json_encode($di_add);
@@ -1890,6 +1904,7 @@ class Str_takeoutModuleSite extends WeModuleSite
     {
         global $_W, $_GPC;
         checkauth();
+        
         $sid  = intval($_GPC['sid']);
         $mode = intval($_GPC['mode']);
         if (!$_W['isajax']) {

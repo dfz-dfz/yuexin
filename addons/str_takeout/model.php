@@ -413,6 +413,9 @@ function get_mine_order()
 function set_order_cart($sid)
 {
     global $_W, $_GPC;
+    if(empty($_GPC['dish'])){
+    	$_GPC['dish'] = $_SESSION['dish'];
+    }
     if (!empty($_GPC['dish'])) {
         $num          = 0;
         $price        = 0;

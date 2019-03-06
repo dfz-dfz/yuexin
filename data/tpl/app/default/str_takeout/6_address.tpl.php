@@ -68,7 +68,7 @@
 <script type="text/javascript">
 	$(function(){
 		var r = "<?php  echo $_GPC['r'];?>";
-		var return_url = "<?php  echo $this->createMobileUrl('orderconfirm', array('sid' => $sid, 'r' => 1, 'mode' => $_GPC['mode']));?>";
+		var return_url = "<?php  echo $this->createMobileUrl('order', array('sid' => $sid, 'r' => 1, 'mode' => $_GPC['mode']));?>";
 		$('.addressChecked').click(function(){
 			var address_id = $(this).attr('data-id');
 			if(address_id) {
