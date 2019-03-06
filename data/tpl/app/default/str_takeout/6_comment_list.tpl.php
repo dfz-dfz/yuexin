@@ -6,29 +6,31 @@
 <div class="container comment-container" onselectstart="return true;" ondragstart="return false;">
 	<header class="comment-stat clearfix">
 		<div class="left">
-			<span>综合评分</span>
-			<h2><span><?php  echo sprintf('%.2f', $avg);?></span>分</h2>
+			<span><?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%</span>
+			<div>好評率</div>
 		</div>
 		<div class="right">
-			<ul>
+			<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%"></strong></span>
+			<div>共有123人評價</div>
+			<!-- <ul>
 				<li>口味：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_taste'];?>分</li>
 				<li>服务：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_serve']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_serve'];?>分</li>
 				<li>速度：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_speed']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_speed'];?>分</li>
-			</ul>
+			</ul> -->
 		</div>
 	</header>
 	<section>
 		<ul class="comment_list">
 			<?php  if(is_array($data)) { foreach($data as $ds) { ?>
-				<li>
-					<div>
+				<li class="comment_box">
+					<div class="left">
 						<?php  if($ds['avatar']) { ?>
 							<div><img src="<?php  echo tomedia($ds['avatar']);?>" alt=""></div>
 						<?php  } else { ?>
 							<div><img src="../addons/str_takeout/template/resource/images/noavatar_middle.gif" alt=""></div>
 						<?php  } ?>								
 					</div>
-					<div>
+					<div class="right">
 						<h3 class="clearfix">
 							<?php  if($ds['nickname']) { ?>
 								<?php  echo $ds['nickname'];?>
@@ -37,14 +39,16 @@
 							<?php  } else { ?>
 								<?php  echo str_pad($ds['uid'], 6, '0', STR_PAD_LEFT);?>
 							<?php  } ?>
+							<span class="sales"><strong class="sale_9" style="width:<?php  echo sprintf('%.2f', $ds['taste']/5)*100;?>%"></strong></span>
 							<span class="pull-right"><?php  echo date('Y-m-d H:i', $ds['addtime']);?></span>
 						</h3>
-						<div class="center">
+						<!-- <div class="center">
 							<span>口味：<?php  echo sprintf('%.2f', $ds['taste']);?></span>
 							<span>态度：<?php  echo sprintf('%.2f', $ds['serve']);?></span>
 							<span>速度：<?php  echo sprintf('%.2f', $ds['speed']);?></span>
-						</div>
-						<div><?php  echo $ds['note'];?></div>
+						</div> -->
+						<div class="dish_name">套餐一</div>
+						<div class="comment_content"><?php  echo $ds['note'];?></div>
 					</div>
 				</li>
 			<?php  } } ?>

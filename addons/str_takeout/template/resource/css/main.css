@@ -640,15 +640,17 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .comment-area div a{display: block;font-size:14px;font-weight: 600;padding-bottom: 5px;color:#333;}
 .comment-area div span{color:#ccc;}
 
-.comment-stat{background: #FFF;border-bottom: 1px solid #d9d9d9;}
+.comment-stat{background: #FFF;padding-bottom: 14px;}
 .comment-stat .left{float:left;width:18%;text-align: center;font-size: 14px;color:#333;border-right: 1px solid #D8D8D8;}
 .comment-stat .left span{width:40px;height:25px;font-size:18px;font-weight:600;color:#EE455A;line-height:25px;}
 .comment-stat .left div{width:100%;height:17px;font-size:12px;font-weight:400;color:#0F0F0F;line-height:17px;}
 .comment-stat .left h2{font-weight: 600;margin-top: 10px;}
 .comment-stat .left h2 span{font-size:18px;color:#ff510c;}
 .comment-stat .right{float:left;width:82%;padding:0 10px;}
-.comment-stat .right div{height:17px;font-size:12px;font-weight:400;color:#898989;line-height:17px;}
+.comment-stat .right div{height:17px;font-size:12px;font-weight:400;color:#898989;line-height:17px;margin-top: 5px;}
 .comment-stat .right ul li{height:23px;line-height: 29px;font-size: 14px;}
+
+/*評論列表*/
 
 .comment_list{background-color: #fff;}
 .comment_list li{display: table; width: 100%; padding: 0 6px; border-width: 0 0 1px; -webkit-box-sizing: border-box;}
@@ -657,7 +659,14 @@ background-size: 149px auto;background-position: -58px -27px; border:none;}
 .comment_list li > div:first-child img{width: 100%; border-radius: 58px;}
 .comment_list li > div h3{margin-bottom: 5px}
 .comment_list li div.center{margin-bottom: 5px}
-.comment_list li div.center span{display: inline-block;width:32%;} 
+.comment_list li div.center span{display: inline-block;width:32%;}
+
+.comment_list .comment_box{border-bottom: 1px solid #E4E4E4;}
+.comment_list .comment_box .right .clearfix{font-size: 14px;color: #636363;margin-top: 15px;height: 20px;line-height: 20px;}
+.comment_list .comment_box .dish_name{font-size: 14px;color: #0f0f0f;height: 20px;line-height: 20px;margin-top: 18px;margin-bottom: 8px;}
+.comment_list .comment_box .comment_content{font-size: 14px;color: #333;height: 20px;line-height: 20px;}
+
+/*評論列表 end*/
 
 .notice{font-size:12px; overflow: hidden; color:#f90; background:#ffc; border-top:1px solid #f2f2f2; border-bottom:1px solid #f2f2f2; padding:0 10px;}
 .notice .notice-box{height:37px; line-height:37px; word-break:break-all; font-size:12px; overflow:hidden;}
