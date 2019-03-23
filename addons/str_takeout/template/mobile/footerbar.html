@@ -11,15 +11,15 @@
 			</li>
 			{/if}
 			<li class="{if $_GPC['do'] == 'store'}on{/if}">
-				<a href="{php echo $this->createMobileUrl('store', array('sid' => $_GPC['sid']));}">
-					<span class="introx">&nbsp;</span>
-				<label> 门店详情</label>
+				<a href="{php echo $this->createMobileUrl('myorder', array('sid' => $_GPC['sid']));}">
+					<span class="my">&nbsp;</span>
+					<label> 我的订单</label>
 				</a>
 			</li>
 			<li class="more {if $_GPC['do'] == 'myorder' || $_GPC['do'] == 'orderdetail'}on{/if}">
-				<a href="{php echo $this->createMobileUrl('myorder', array('sid' => $_GPC['sid']));}">
+				<a href="{url 'mc'}">
 					<span class="my">&nbsp;</span>
-				<label> 我的订单</label>
+				<label> 会员中心</label>
 			</a>
 		</ul>
 	</nav>

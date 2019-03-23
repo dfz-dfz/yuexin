@@ -222,13 +222,13 @@ var menu = {
 	_is_left_menu_addclass:true,
 	init: function(id){
 		var winH = $(window).height(),
-			_this = this,			
+			_this = this,
 			_icoMenu = $('#icoMenu'),
 			_sideNav = $('#sideNav'),
 			maxH = winH - (_icoMenu.parent().is(':visible') ? _icoMenu.outerHeight(true) : 0) - 45;
 
 		this.el =  $(id);
-		
+
 		_sideNav.height(maxH);
 
 		if(_sideNav.find('ul').height() > maxH)  new IScroll('#sideNav', { probeType: 3, mouseWheel: true ,click:true});
@@ -260,7 +260,7 @@ var menu = {
 			$('html,body').animate({scrollTop: t1}, _time,"linear",function(){_this._is_left_menu_addclass=true;});
 		});
 
-		_this.offsetT = this.el.offset().top;	
+		_this.offsetT = this.el.offset().top;
 	},
 	getIndex: function(ary, value){
 		var i = 0;
@@ -277,7 +277,7 @@ var menu = {
 			i = index - 1;
 
 		if(this.curIndex !== index){ // 判断分类是否切换
-			
+
 			$('.menu_tt h2').removeClass('menu_fixed');
 			if(this._is_left_menu_addclass==true)
 				this.el.find('a').removeClass('on');
@@ -285,7 +285,7 @@ var menu = {
 				this.el.addClass('menu_fixed');
 				$('.menu_tt').eq(i).find('h2').addClass('menu_fixed');
 				if(this._is_left_menu_addclass==true)
-					this.el.find('a').eq(i).addClass('on');	
+					this.el.find('a').eq(i).addClass('on');
 			}else{
 				this.el.removeClass('menu_fixed');
 			}

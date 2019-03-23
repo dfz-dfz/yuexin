@@ -76,6 +76,53 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">添加套餐</label>
+						<div class="col-sm-9 col-xs-9 col-md-9">
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+								选择规格
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog modal-sm" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="myModalLabel">選擇規格</h4>
+										</div>
+										<style>
+											.label-text{
+												text-align: left !important;
+											}
+											#lby-checkbox-demo li{
+												float: left;
+												margin-right: 5px;
+											}
+										</style>
+										<div class="modal-body" style="padding:10px;">
+                                            <?php  if(is_array($specInfo)) { foreach($specInfo as $list) { ?>
+											<label class="control-label label-text col-md-12"><span class="require">* </span><?php  echo $list['cateName'];?></label>
+                                            <div style="margin-top: 10px;">
+											<ul id="lby-checkbox-demo">
+                                                <?php  if(is_array($list['list'])) { foreach($list['list'] as $item) { ?>
+												<li>
+													<input class="to-labelauty" type="checkbox" value="<?php  echo $item['id'];?>" name="listItem[]" data-labelauty="<?php  echo $item['specName'];?>"/>
+												</li>
+                                                <?php  } } ?>
+											</ul>
+                                            </div>
+                                            <?php  } } ?>
+											<!--<input type="text" name="cateName" id="cateName" placeholder="請輸入分類名稱" class="form-control">-->
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>新用户专享</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<label class="radio-inline"><input type="radio" name="first_order_limit" value="1" <?php  if($item['first_order_limit'] == 1) { ?>checked<?php  } ?>> 是</label>
@@ -157,6 +204,13 @@
 		</div>
 	</form>
 	<script type="text/javascript">
+        $(document).ready(function(){
+            $(".to-labelauty").labelauty({ minimum_width: "50px" });
+            $(".to-labelauty-icon").labelauty({ label: false });
+        });
+        function savechk(){
+
+        }
 		require(['util'], function(u){
 			$('#post-add').click(function(){
 				$('#tpl-container').append($('#tpl').html());

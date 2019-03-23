@@ -3,9 +3,9 @@ defined('IN_IA') or exit('Access Denied');
 
 $config = array();
 
-$config['db']['host'] = '118.89.40.174';
-$config['db']['username'] = 'yue';
-$config['db']['password'] = 'admin!23';
+$config['db']['host'] = 'localhost';
+$config['db']['username'] = 'root';
+$config['db']['password'] = '123456';
 $config['db']['port'] = '3306';
 $config['db']['database'] = 'yue';
 $config['db']['charset'] = 'utf8';

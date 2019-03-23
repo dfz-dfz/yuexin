@@ -143,7 +143,7 @@ html, body{height: 100%;}
 	.side_nav a.on{color: #fff;}
 
 .menu_tt{height: 27px;}
-.menu_tt h2{width: 100%; -webkit-box-sizing: border-box; height: 27px; line-height: 27px; padding-left: 11px; font-size: 13px; color: #0F0F0F; background-color: #fff; border-width: 0 0 1px;}
+.menu_tt h2{width: 100%; -webkit-box-sizing: border-box; height: 27px; line-height: 27px; padding-left: 11px; font-size: 13px; color: #0F0F0F; background-color: #fff; border-width: 0 0 1px;z-index: 999;}
 
 .menu_fixed{position: fixed; top: 0;/* border-top-color: #f8f8f8;*/}
 
@@ -305,9 +305,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .menu_wrap.skin1 .menu_container{padding-left: 84px;background-color: #fff;}
 .menu_wrap.skin1 .side_nav ul{padding: 10px 0 3px;}
 .menu_wrap.skin1 .side_nav li{border-width: 0; height: 65px; margin-bottom: 7px;}
-.menu_wrap.skin1 .side_nav li a{width: 80px; height: 65px; line-height: 65px;font-size: 14px;color:#0F0F0F;padding: 0;}
+.menu_wrap.skin1 .side_nav li a{width: 80px; height: auto;font-size: 14px;color:#0F0F0F;padding: 1rem 0;}
 .menu_wrap.skin1 .side_nav a.on{background-color: #fff;border-left: 4px solid #2BA3DC;border-image: none;text-decoration: none;}
-.menu_wrap.skin1 h2.menu_fixed{left: 0; padding-left: 99px;}
+/*.menu_wrap.skin1 h2.menu_fixed{left: 0; padding-left: 99px;}*/
 
 /* order */
 .order_list .fr{margin-top: -3px;}

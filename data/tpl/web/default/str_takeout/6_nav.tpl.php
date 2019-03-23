@@ -15,4 +15,5 @@
 	<li <?php  if($do == 'assign') { ?>class="active"<?php  } ?>><a href="<?php  echo $this->createWebUrl('assign');?>">排号管理</a></li>
 	<li <?php  if($do == 'table') { ?>class="active"<?php  } ?>><a href="<?php  echo $this->createWebUrl('table');?>">桌台管理</a></li>
 	<li <?php  if($do == 'reserve') { ?>class="active"<?php  } ?>><a href="<?php  echo $this->createWebUrl('reserve');?>">预定管理</a></li>
+	<li <?php  if($do == 'spec') { ?>class="active"<?php  } ?>><a href="<?php  echo $this->createWebUrl('spec');?>">套餐規格管理</a></li>
 </ul>

@@ -9,7 +9,6 @@ load()->model('app');
 load()->model('account');
 load()->model('attachment');
 load()->model('module');
-
 $_W['uniacid'] = intval($_GPC['i']);
 if(empty($_W['uniacid'])) {
 	$_W['uniacid'] = intval($_GPC['weid']);

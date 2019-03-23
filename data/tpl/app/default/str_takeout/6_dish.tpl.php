@@ -82,33 +82,7 @@
 				</div>
 			</div>
 			<div class="menu_container">
-				<section>
-					<?php  if(!empty($store['thumbs']) && $store['slide_status'] == 1) { ?>
-						<div id="imgSwipe" class="img_swipe" style="visibility: visible;">
-							<ul style="width: 0px;">
-								<?php  if(is_array($store['thumbs'])) { foreach($store['thumbs'] as $li) { ?>
-									<li><a href="<?php  echo $li['url'];?>"><img src="<?php  echo tomedia($li['image']);?>" /></a></li>
-								<?php  } } ?>
-							</ul>
-							<ol id="swipeNum">
-								<?php  if(is_array($store['thumbs'])) { foreach($store['thumbs'] as $li) { ?>
-									<li class=""></li>
-								<?php  } } ?>
-							</ol>
-						</div>
-					<?php  } ?>
-
-					<div id="imgSwipe" class="img_swipe" style="visibility: visible;">
-						<ul style="width: 0px;">
-							<li><a href="<?php  echo $li['url'];?>"><img src="http://118.89.40.174/yue/attachment/images/6/2018/12/oUM51kcDmF1cskmpd1Cm51vf55545F.png" /></a></li>
-						</ul>
-						<ol id="swipeNum">
-							<?php  if(is_array($store['thumbs'])) { foreach($store['thumbs'] as $li) { ?>
-								<li class=""></li>
-							<?php  } } ?>
-						</ol>
-					</div>
-				</section>
+				
 				<?php  if(is_array($category)) { foreach($category as $cate_row) { ?>
 					<div class="menu_tt" id="cate-<?php  echo $cate_row['id'];?>"><h2><?php  echo $cate_row['title'];?></h2></div>
 					<ul class="menu_list">
@@ -152,7 +126,7 @@
 										<?php  } ?>
 									</div>
 									<div class="price_wrap">
-										<strong style="display: none;">$<span class="unit_price"><?php  echo $ds['member_price'];?></span></strong>
+										<!-- <strong style="display: none;">$<span class="unit_price"><?php  echo $ds['member_price'];?></span></strong>
 										<?php  if($store['business_hours_flag']) { ?>
 											<?php  if($ds['total'] == -1 || $ds['total'] > 0) { ?>
 											<div class="fr" max="<?php  echo $ds['total'];?>" data-first-order-limit="<?php  echo $ds['first_order_limit'];?>" data-buy-limit="<?php  echo $ds['buy_limit'];?>" data-first-order="<?php  echo $is_first_order;?>">
@@ -161,7 +135,8 @@
 												選規格
 											</div>
 											<?php  } ?>
-										<?php  } ?>
+										<?php  } ?> -->
+										選規格
 									</div>
 								</div>
 							</li>
@@ -235,35 +210,9 @@
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('comment_list', TEMPLATE_INCLUDEPATH)) : (include template('comment_list', TEMPLATE_INCLUDEPATH));?>
 
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
-	<div class="menu_detail" id="menuDetail">
+	<div class="menu_detail" id="menuDetail" data-href="<?php echo $this->createMobileUrl('getspec', array('sid' => $sid, 'mode' => 2));?>">
 		<div class="checkBox">
-			<div class="choice_box choice1">
-				<div class="title">主食</div>
-				<div class="types types1">
-					<label for="1" class="isChecked">羊排</label>
-					<label for="2">牛排</label>
-				</div>
-			</div>
-
-			<div class="choice_box choice2">
-				<div class="title">飲料</div>
-				<div class="types types2">
-					<label class="isChecked">牛奶</label>
-					<label>咖啡</label>
-					<label>奶茶</label>
-					<label>湯</label>
-				</div>
-			</div>
-					
-			<div class="choice_box choice3">
-				<div class="title">溫度</div>
-				<div class="types types3">
-					<label class="isChecked">正常冰</label>
-					<label>少冰</label>
-					<label>常溫</label>
-					<label>熱<span>$5</span></label>
-				</div>
-			</div>
+			
 		</div>
 		<div class="dialogBox">
 			<div class="highlight">$<span class="price"></span></div>
@@ -291,8 +240,6 @@ $(function(){
 		$('#cart_form').attr('action', action);
 		$('#cart_form').submit();
 	});
-
-
 });
 
 //點菜、評價
@@ -378,7 +325,7 @@ $('.add').click(function(){
 
 //清空購物車
 $('#comfir_empty').click(function() {
-	location.href="./index.php?i=6&c=entry&sid=10&f=1&mode=2&do=dish&m=str_takeout";
+	location.href="./index.php?i=6&c=entry&sid=13&f=1&mode=2&do=dish&m=str_takeout";
 	return false;
 });
 

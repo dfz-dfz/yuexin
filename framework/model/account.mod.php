@@ -100,7 +100,6 @@ function uni_fetch($uniacid = 0) {
 	if (!empty($cache)) {
 		return $cache;
 	}
-
 	$acid = table('account')->getAccountByUniacid($uniacid);
 	if (empty($acid)) {
 		return false;
@@ -130,13 +129,13 @@ function uni_fetch($uniacid = 0) {
 	$account['logo'] = tomedia('headimg_'.$account['acid']. '.jpg').'?time='.time();
 	$account['qrcode'] = tomedia('qrcode_'.$account['acid']. '.jpg').'?time='.time();
 
-		$account['switchurl'] = wurl('account/display/switch', array('uniacid' => $account['uniacid']));
-		if (!empty($account['settings']['notify'])) {
+	$account['switchurl'] = wurl('account/display/switch', array('uniacid' => $account['uniacid']));
+	if (!empty($account['settings']['notify'])) {
 		$account['sms'] = $account['setting']['notify']['sms']['balance'];
 	} else {
 		$account['sms'] = 0;
 	}
-		$account['setmeal'] = uni_setmeal($account['uniacid']);
+	$account['setmeal'] = uni_setmeal($account['uniacid']);
 
 	cache_write($cachekey, $account);
 	return $account;
