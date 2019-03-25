@@ -3,6 +3,7 @@
 <script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
 <style type="text/css">
 	label{margin-bottom: 0;font-weight: normal;}
+	.menu_list li .top > div:nth-of-type(3){background: none;}
 </style>
 <div class="container">
 	<section class="pay_wrap">

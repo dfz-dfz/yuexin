@@ -19,6 +19,7 @@
 	.confirm_box li input+label{background: url('../addons/str_takeout/template/resource/images/checked.png') 0 0 no-repeat;width: 25px;height: 25px;margin: 0;}
 	.confirm_box li .cash_pay{background:url('../addons/str_takeout/template/resource/images/cash_pay.png') 0 0 no-repeat;background-position-y: 15px;background-position-x: 2px;}
 	.confirm_box li .weixin_pay{background:url('../addons/str_takeout/template/resource/images/weixin_pay.png') 0 0 no-repeat;background-position-y: 15px;background-position-x: 1px;}
+	.menu_list li .top > div:nth-of-type(3){background: none;}
 </style>
 <header class="menus">
 	<span></span>

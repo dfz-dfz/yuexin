@@ -3,9 +3,21 @@
 <script src="../addons/str_takeout/template/resource/js/dialog.js"></script>
 <style type="text/css">
 	.line a:hover, .line a:focus{color:#FFF; text-decoration:none}
+	.nav_common li>a>span{float: none;}
 </style>
+<header class="mui-bar mui-bar-nav" style="box-shadow: none;margin-bottom: 1px;background-color: #fff;">
+	<div class="mui-row fixed-bar">
+		<div class="mui-col-xs-4">
+			<button class="mui-btn mui-btn-link mui-btn-nav mui-pull-left mui-action-back">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+		</div>
+		<div class="mui-col-xs-4 mui-text-center" style="font-size: 18px;font-weight: 500;color: #0f0f0f;">我的地址</div>
+	</div>
+</header>
+
 <?php  if($op == 'list') { ?>
-<div data-role="container" class="container addresslist">
+<div data-role="container" class="container addresslist" style="margin-top: 44px;">
 	<section data-role="body">
 		<ul class="list">
 			<?php  if(is_array($addresses)) { foreach($addresses as $address) { ?>
@@ -29,7 +41,7 @@
 	</section>
 </div>
 <?php  } else if($op == 'post') { ?>
-<div data-role="container" class="container addressedit">
+<div data-role="container" class="container addressedit" style="margin-top: 44px;">
 	<section data-role="body">
 		<div class="info">
 			<div class="line"><input type="text" name="realname" value="<?php  echo $address['realname'];?>" placeholder="姓名"></div>

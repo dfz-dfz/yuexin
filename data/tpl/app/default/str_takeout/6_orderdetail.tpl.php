@@ -4,6 +4,7 @@
 <style type="text/css">
 	.but-post{display:block;height:30px;line-height:30px;border:none;width:640px;border-radius:3px;font-size:16px;font-weight:bold;color:#fff;background-color:#ff5f32;}
 	.my_menu_list th{width:0;}
+	.menu_list li .top > div:nth-of-type(3){background: none;}
 </style>
 
 <div class="container" id="orderdetail">
@@ -51,7 +52,7 @@
 							</div>
 							<div class="detalis_message">
 								<h3><?php  echo $da['dish_title'];?></h3>
-								<div class="detalis">牛排，牛奶，正常冰</div>
+								<!-- <div class="detalis">牛排，牛奶，正常冰</div> -->
 							</div>
 							<div class="num_box">×<span class="nums"><?php  echo $da['dish_num'];?></span></div>
 							<div class="price_box">$<span class="unit_price"><?php  echo $da['dish_price'];?></span></div>
