@@ -17,24 +17,34 @@ $(function(){
 	});
 });
 
+var dishPrice = 0;
+var _postUrl = '';
+var did = 0;
 function showDetail(obj) {
 	var id = obj.id;
+	did = id;
 	var _wraper = $('#menuDetail');
-
-	$.get('http://122.152.226.249/app/index.php?i=6&c=entry&sid=13&do=GetSpec&m=str_takeout&did='+id+'', function(ret) {
+	var _url = _wraper.attr('data-href');
+	_postUrl = _wraper.attr('data-url');
+	$.get(_url+'&did='+id+'', function(ret) {
 		var ret = JSON.parse(ret);
 		if(ret.status == 1){
 			if(ret.data == ''){
 				
 			}else{
-				var datas = ret.data,
+				var datas = ret.data['datalist'];
+				dishPrice = parseFloat(ret.data['dishInfo']['price']);
 					html = '';
 				for(var i in datas){
 					html += '<div class="choice_box choice1">';
 						html += '<div class="title">'+datas[i].cateName+'</div>';
-						html += '<div class="types types1">';
+						html += '<div class="types types1" id="menu'+datas[i].id+'">';
 							for(var list in datas[i].list){
-								html += '<label for="1" class="">'+datas[i].list[list].specName+'</label>';
+                				var price = '';
+                                if(Number(datas[i].list[list].price)){
+                                    price = '￥'+datas[i].list[list].price;
+                                }
+								html += '<label for="" data-price="'+Number(datas[i].list[list].price)+'" id="item'+datas[i].list[list].id+'" onclick="chose('+datas[i].id+','+datas[i].list[list].id+')" data-id="'+datas[i].list[list].id+'" class="">'+datas[i].list[list].specName+' '+price+'</label>';
 							}
 						html += '</div>';
 					html += '</div>';
@@ -88,12 +98,6 @@ function showDetail(obj) {
 
 				_wraper.parents('.dialog').find('.dialog_tt').text(title);
 
-				if(F('.add').length){
-					$('#detailBtn').removeClass('disabled').text('加入購物車');
-				}else{
-					$('#detailBtn').addClass('disabled').text('已售完');
-				}
-
 				if(imgUrl){
 					_detailImg.attr('src', imgUrl).show().next().hide();
 				}else{
@@ -109,9 +113,62 @@ function showDetail(obj) {
 			//	});
 				_wraper.dialog({title: title, closeBtn: true});
 			}
+			total();
 		}else{
 			alert('網絡請求失敗!')
 			return false;
 		}
 	});
+
+}
+
+function chose(menuid,itemid){
+	$('#menu'+menuid+' label').removeClass('isChecked');
+	$('#item'+itemid).addClass('isChecked');
+	total();
+}
+
+function total(){
+	var amount = 0;
+	var item = $('.isChecked');
+	var dataPrice = 0;
+    for (var i = 0; i < item.length; i++) {
+        var data = item[i].attributes['data-price'].value;
+        dataPrice += parseFloat(data);
+    }
+    amount = dishPrice + dataPrice;
+    $("#total").text(amount);
+}
+
+function addCart(d = '',u = ''){
+	if(u){
+		_postUrl = u;
+	}
+	if(d){
+		did = d;
+	}
+	if(!_postUrl){
+	    alert('參數錯誤');
+    }
+	var arr = new Array();
+    var item = $('.isChecked');
+    if(!d){
+    	for (var i = 0; i < item.length; i++) {
+	        var data = item[i].attributes['data-id'].value;
+	        arr.push(data);
+	    }
+    }
+   
+    var data = {};
+    data.did = did;
+    data.spec = arr;
+    $.ajax({
+        type: "POST",
+        url: _postUrl,
+        data: data,
+        success: function(msg){
+            showCart();
+        }
+
+    })
 }

@@ -902,7 +902,7 @@ class Str_takeoutModuleSite extends WeModuleSite
                 $data  = pdo_fetchall('SELECT * FROM ' . tablename('str_order') . $condition . ' ORDER BY addtime DESC ', $params);
                 $store  = pdo_fetch('SELECT title FROM ' . tablename('str_store')  . ' WHERE id=:sid  ', array(':sid' => $params[':sid']));
                 $s_title = $store['title'];
-                
+
                 $paytypes=array(
                     'alipay'=>'支付寶',
                     'wechat'=>'微信支付',
@@ -985,12 +985,12 @@ class Str_takeoutModuleSite extends WeModuleSite
                 echo 'ok';
                 exit;
             }
-        
+
             if ($_GPC['out_put'] == 'total_output') {
                 $sql = "select t2.title as store_name, sum(t1.card_fee) as total_fee,count(*) as total, sum(case t1.order_type when 2 then t1.card_fee else 0 end ) as out_fee, sum(case t1.order_type when 2 then 1 else 0 end ) as out_num, sum(case t1.order_type when 1 then t1.card_fee else 0 end ) as in_fee, sum(case t1.order_type when 1 then 1 else 0 end ) as in_num from ims_str_order t1 left join ims_str_store t2 on t1.sid=t2.id group by t2.id";
-                
+
                 $data = pdo_fetchall($sql);
-                
+
                 //表头信息
                 $header=array(
                     'store_name'=>'門店名稱',
@@ -1057,7 +1057,7 @@ class Str_takeoutModuleSite extends WeModuleSite
                         'uniacid' => $_W['uniacid'],
                         'id' => $id
                     ));
-                   
+
                     if ($order['order_type'] == 1 && $order['table_id'] > 0) {
                         pdo_update('str_tables', array(
                             'status' => '4'
@@ -1597,13 +1597,13 @@ class Str_takeoutModuleSite extends WeModuleSite
             } else {
                 if (!$store['forward_mode']) {
                     header('location: ' . $this->createMobileUrl('store', array(
-                        'sid' => $store['id']
-                    )));
+                            'sid' => $store['id']
+                        )));
                 } else {
                     header('location: ' . $this->createMobileUrl('dish', array(
-                        'mode' => $store['forward_mode'],
-                        'sid' => $store['id']
-                    )));
+                            'mode' => $store['forward_mode'],
+                            'sid' => $store['id']
+                        )));
                 }
                 exit();
             }
@@ -1672,7 +1672,7 @@ class Str_takeoutModuleSite extends WeModuleSite
         check_trash($sid);
         $mode = intval($_GPC['mode']);
         if (!$mode) {
-           $mode = 2;
+            $mode = 2;
         }
         isetcookie('__z', 0, -10000);
         if ($mode == 1) {
@@ -1745,6 +1745,7 @@ class Str_takeoutModuleSite extends WeModuleSite
             $di['member_price']      = dish_group_price($di['price']);
             $di['price']             = iunserializer($di['price']);
             $info = pdo_get('str_spec_dish',array('did'=>$di['id']));
+            $di['total'] == 0 ? $di['status'] = 0 : $di['status'] = 1;
             $di['spec'] = $info?true:false;
             $cate_dish[$di['cid']][] = $di;
         }
@@ -1760,7 +1761,7 @@ class Str_takeoutModuleSite extends WeModuleSite
         } else {
             $is_first_order = 0;
         }
-        
+
         checkauth();
         $sid = intval($_GPC['sid']);
         check_trash($sid);
@@ -1808,6 +1809,14 @@ class Str_takeoutModuleSite extends WeModuleSite
             $data['msg'] = '参数错误';
             echo json_encode($data);exit;
         }
+        $dishInfo = pdo_get('str_dish',array('id'=>$did),array('title','price'));
+        $price = unserialize($dishInfo['price']);
+        foreach ($price as $kp => $vp) {
+            if($kp > 0){
+                $dishInfo['price'] = $vp;
+            }
+        }
+        $dishData['dishInfo'] = $dishInfo;
         $specInfo = pdo_get('str_spec_dish',array('did'=>$did));
         if(!empty($specInfo)){
             $list = unserialize($specInfo['list']);
@@ -1825,9 +1834,11 @@ class Str_takeoutModuleSite extends WeModuleSite
             }
         }
         $dataList = array_values($dataList);
+        $dishData['datalist'] = $dataList?$dataList:[];
         $data['status'] = 1;
-        $data['data'] = $dataList?$dataList:[];
+        $data['data'] = $dishData;
         $data['msg'] = '获取成功';
+        // var_dump($data);exit;
         echo json_encode($data);exit;
     }
 
@@ -1859,11 +1870,9 @@ class Str_takeoutModuleSite extends WeModuleSite
         }
         if(!$cartInfo){
             $amount = 0;
-            if(!empty($spec)){
-                foreach ($spec as $k => $v) {
-                    $specInfo = pdo_get('str_specification',['id'=>$v]);
-                    $amount += $amount+$specInfo['price'];
-                }
+            foreach ($spec as $k => $v) {
+                $specInfo = pdo_get('str_specification',['id'=>$v]);
+                $amount += $specInfo['price'];
             }
             $price = unserialize($info['price']);
             foreach ($price as $k => $v) {
@@ -2113,7 +2122,7 @@ class Str_takeoutModuleSite extends WeModuleSite
         $mode = intval($_GPC['mode']);
         checkclerk($sid);
         check_trash($sid);
-        
+
         $store              = pdo_fetch('SELECT * FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
             ':aid' => $_W['uniacid'],
             ':id' => $sid
@@ -2134,12 +2143,17 @@ class Str_takeoutModuleSite extends WeModuleSite
         } else {
             $is_first_order = 0;
         }
-        $cart = set_order_cart($sid); 
+        $cart = set_order_cart($sid);
+
 //        echo json_encode($cart);exit;
         if (is_error($cart)) {
             message($cart['message'], '', 'error');
         }
         $dishes    = $cart['data'];
+        $spec = unserialize($cart['spec']);
+        foreach ($spec as &$v){
+            $v = unserialize($v);
+        }
         $is_add    = 0;
         $recommend = pdo_fetchall('SELECT id FROM ' . tablename('str_dish') . ' WHERE uniacid = :uniacid AND sid = :sid AND recommend = 1 AND is_display = 1', array(
             ':uniacid' => $_W['uniacid'],
@@ -2167,12 +2181,27 @@ class Str_takeoutModuleSite extends WeModuleSite
                 ':aid' => $_W['uniacid'],
                 ':sid' => $sid
             ), 'id');
+            $specName = '';
             foreach ($dish_info as &$dis) {
+                $dishSpec = $spec[$dis['id']]['spec'];
+                $specTotal = 0;
+                foreach ($dishSpec as $kd => $vd) {
+                    $specPrice = pdo_get('str_specification',['id'=>$vd]);
+                    $specTotal += $specPrice['price'];
+                }
+                if($dishSpec){
+                    $specStr = implode(',',$dishSpec);
+                    $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
+                    foreach ($specInfo as $val){
+                        $specName .= $val['specName'].'，';
+                    }
+                }
+                $dis['spec'] = $specName;
                 $dis['price']        = iunserializer($dis['price']);
-                $dis['member_price'] = dish_group_price($dis['price']);
+                $dis['member_price'] = dish_group_price($dis['price']) + $specTotal;
             }
         }
-        
+        // var_dump($dish_info);exit;
         $address_id = intval($_GPC['address_id']);
         $address    = get_address($address_id);
         if (empty($address)) {
@@ -2190,7 +2219,7 @@ class Str_takeoutModuleSite extends WeModuleSite
     {
         global $_W, $_GPC;
         checkauth();
-        
+
         $sid  = intval($_GPC['sid']);
         $mode = intval($_GPC['mode']);
         if (!$_W['isajax']) {
@@ -2282,6 +2311,12 @@ class Str_takeoutModuleSite extends WeModuleSite
             $data['note']     = trim($_GPC['note']);
             $data['pay_type'] = '';
             $cart             = get_order_cart($sid);
+            if(isset($cart['spec'])){
+                $spec = unserialize($cart['spec']);
+                foreach ($spec as &$vs){
+                    $vs = unserialize($vs);
+                }
+            }
             if ($cart['num'] == 0) {
                 $out['errno'] = 1;
                 $out['error'] = '菜品为空';
@@ -2321,6 +2356,14 @@ class Str_takeoutModuleSite extends WeModuleSite
                         ':id' => $k
                     ));
                 }
+                if(isset($spec[$k]['spec'])){
+                    $specStr = implode(',',$spec[$k]['spec']);
+                    $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
+                    foreach ($specInfo as $val){
+                        $specName .= '/'.$val['specName'];
+                    }
+                }
+
                 $stat = array();
                 if ($k && $v) {
                     $stat['oid']        = $id;
@@ -2328,15 +2371,16 @@ class Str_takeoutModuleSite extends WeModuleSite
                     $stat['sid']        = $sid;
                     $stat['dish_id']    = $k;
                     $stat['dish_num']   = $v;
-                    $stat['dish_title'] = $dish_info[$k]['title'];
+                    $stat['dish_title'] = $dish_info[$k]['title'].'<br>'.$specName;
                     $stat['dish_price'] = ($v * dish_group_price($dish_info[$k]['price']));
                     $stat['addtime']    = TIMESTAMP;
+                    $stat['spec']    = serialize($spec[$k]['spec']);
                     pdo_insert('str_stat', $stat);
                 }
             }
             init_print_order($sid, $id, 'order');
             del_order_cart($sid);
-            
+
 
             if ($data['order_type'] == 1 && $data['table_id'] > 0) {
                 pdo_update('str_tables', array(
@@ -2357,7 +2401,7 @@ class Str_takeoutModuleSite extends WeModuleSite
             }
             exit(json_encode($out));
         }
-        
+
         include $this->template('orderconfirm');
     }
     public function doMobileOrderDetail()
@@ -2447,13 +2491,13 @@ class Str_takeoutModuleSite extends WeModuleSite
             ':id' => $id
         ));
         $item = pdo_fetch('SELECT * FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
-                    ':aid' => $_W['uniacid'],
-                    ':id' => $order['sid']
-                ));//获取门店信息
+            ':aid' => $_W['uniacid'],
+            ':id' => $order['sid']
+        ));//获取门店信息
         $store_print = pdo_fetch('SELECT * FROM ' . tablename('str_print') . ' WHERE uniacid = :aid AND sid = :id and type = :type', array(
-                    ':aid' => $_W['uniacid'],
-                    ':id' => $order['sid']
-                ));//获取门店打印机信息  
+            ':aid' => $_W['uniacid'],
+            ':id' => $order['sid']
+        ));//获取门店打印机信息
         if (empty($order)) {
             message('订单不存在或已删除', $this->createMobileUrl('myorder'), 'error');
         }
@@ -2480,9 +2524,9 @@ class Str_takeoutModuleSite extends WeModuleSite
             ));
             if(!empty($order['pay_type'])){
                 message('这个订单已经支付过了，无需重复支付！', '../../app/' . $this->createMobileUrl('orderdetail', array(
-                    'id' => $order['id'],
-                    'sid' => $order['sid']
-                )), 'success');
+                        'id' => $order['id'],
+                        'sid' => $order['sid']
+                    )), 'success');
             }
             $data['pay_type']   = $params['type'];
             $data['is_usecard'] = intval($params['is_usecard']);
@@ -2503,7 +2547,7 @@ class Str_takeoutModuleSite extends WeModuleSite
             set_order_log($order['id'], $sid, $note);
             init_print_order($order['sid'], $order['id'], 'pay');
             init_notice_order($order['sid'], $order['id'], 'order');
-            
+
             if ($order['order_type'] == 1 && $order['table_id'] > 0) {
                 pdo_update('str_tables', array(
                     'status' => '4'
@@ -2521,18 +2565,18 @@ class Str_takeoutModuleSite extends WeModuleSite
             //支付成功后如果后台选择打印支付订单，则在此打印
             $id=$params['tid'];
             $order = pdo_fetch('SELECT * FROM ' . tablename('str_order') . ' WHERE uniacid = :aid AND id = :id', array(
-            ':aid' => $_W['uniacid'],
-            ':id' => $id
-        ));
-        $item = pdo_fetch('SELECT * FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
-                    ':aid' => $_W['uniacid'],
-                    ':id' => $order['sid']
-                ));//获取门店信息
-        $store_print = pdo_fetch('SELECT * FROM ' . tablename('str_print') . ' WHERE uniacid = :aid AND sid = :id and type = :type', array(
-                    ':aid' => $_W['uniacid'],
-                    ':type' => 2,
-                    ':id' => $order['sid']
-                ));//获取门店打印机信新 睿 社 区 破 解    
+                ':aid' => $_W['uniacid'],
+                ':id' => $id
+            ));
+            $item = pdo_fetch('SELECT * FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
+                ':aid' => $_W['uniacid'],
+                ':id' => $order['sid']
+            ));//获取门店信息
+            $store_print = pdo_fetch('SELECT * FROM ' . tablename('str_print') . ' WHERE uniacid = :aid AND sid = :id and type = :type', array(
+                ':aid' => $_W['uniacid'],
+                ':type' => 2,
+                ':id' => $order['sid']
+            ));//获取门店打印机信新 睿 社 区 破 解
             if ($params['type'] == 'credit' || $params['type'] == 'delivery') {
                 message('支付成功！', $this->createMobileUrl('orderdetail', array(
                     'id' => $order['id'],
@@ -2540,9 +2584,9 @@ class Str_takeoutModuleSite extends WeModuleSite
                 )), 'success');
             } else {
                 message('支付成功！', '../../app/' . $this->createMobileUrl('orderdetail', array(
-                    'id' => $order['id'],
-                    'sid' => $order['sid']
-                )), 'success');
+                        'id' => $order['id'],
+                        'sid' => $order['sid']
+                    )), 'success');
             }
         }
     }
@@ -2631,10 +2675,10 @@ class Str_takeoutModuleSite extends WeModuleSite
                 );
                 foreach ($_GPC['score_data'] as $row) {
                     if ($row['id'] && in_array($row['id'], array(
-                        'taste',
-                        'speed',
-                        'serve'
-                    ))) {
+                            'taste',
+                            'speed',
+                            'serve'
+                        ))) {
                         $score              = intval($row['score']);
                         $insert[$row['id']] = $score;
                     }
@@ -2691,10 +2735,10 @@ class Str_takeoutModuleSite extends WeModuleSite
                     'uniacid' => $_W['uniacid'],
                     'id' => $order['id']
                 ));
-                
+
                 exit('success');
             }
-            
+
             exit('error');
         }
     }

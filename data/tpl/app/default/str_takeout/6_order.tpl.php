@@ -69,7 +69,7 @@
 						</div>
 						<div class="detalis_message">
 							<h3><?php  echo $li['title'];?></h3>
-							<div class="detalis">牛排，牛奶，正常冰</div>
+							<div class="detalis"><?php  echo $li['spec'];?></div>
 						</div>
 						<div class="num_box">×<span class="nums"><?php  echo $dishes[$li['id']];?></span></div>
 						<div class="price_box">$<span class="unit_price"><?php  echo $li['member_price'];?></span></div>
@@ -103,9 +103,9 @@
 					<div id="pay">現金支付</div>
 					<span></span>
 				</div> 
-				<div class="remarks">
+				<div class="remarks" id="remarkBtn">
 					<div>備註</div>
-					<div>備註加料、不辣等</div>
+					<div id="remarkTxt">點擊添加備註</div>
 					<span></span>
 				</div>
 			</div>
@@ -119,6 +119,16 @@
 	</form>
 	<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('footerbar', TEMPLATE_INCLUDEPATH)) : (include template('footerbar', TEMPLATE_INCLUDEPATH));?>
 </div>
+	
+	<div class="addres_box" id="remarkBox">
+		<ul>
+			<li><textarea class="txt max" placeholder="请填写备注" id="userMark"></textarea></li>
+			<li class="btns_wrap">
+				<span><a href="javascript:void(0);" class="comm_btn higher disabled" id="cancleRemark">取消</a></span>
+				<span><a href="javascript:void(0);" class="comm_btn higher" id="saveRemark">确认</a></span>
+			</li>
+		</ul>
+	</div>
 
 <!-- <div class="confirm_box" style="" id="emptyBox">
 	<p>确定清空已选菜品吗？</p>
@@ -221,11 +231,12 @@
 				} else if(order_type == 2) {
 					var send_price = parseFloat("<?php  echo $store['send_price'];?>");
 					var cart_price = parseFloat("<?php  echo $cart['price'];?>");
-					if(cart_price < send_price) {
-						_dishBox.dialog({title: '确定提交'});
-						$(this).removeClass('disabled');
-						return false;
-					}
+					// if(cart_price < send_price) {
+					// 	_dishBox.dialog({title: '确定提交'});
+					// 	$(this).removeClass('disabled');
+						
+					// 	return false;
+					// }
 					
 					var address_id = $("#address_id").val();
 					if(!address_id) {
@@ -234,7 +245,7 @@
 						return false;
 					}
 					var wo_memo = $.trim($("#remarkTxt").html());
-					if(wo_memo == '点击添加订单备注') {
+					if(wo_memo == '點擊添加備註') {
 						wo_memo = '';
 					}
 					var wo_delivery_time = $.trim($("#arriveTime").html());
@@ -248,7 +259,6 @@
 						'delivery_time':wo_delivery_time,
 					}
 				}
-
 				$.post("<?php  echo $this->createMobileUrl('orderconfirm', array('sid' => $sid));?>", param, function(e){
 					if(e.errno == 0) {
 						$("#submit_order").html('已提交');
@@ -264,7 +274,22 @@
 			return false;
 		});
 	});
+	$('#remarkBtn').bind('click', function(){
+		var remark = $('#remarkTxt').text();
+		if(remark == '點擊添加備註') remark = '';
+		$('#userMark').val(remark);
+		$('#remarkBox').dialog({title: '添加备注'});
+	});
 
+	$('#cancleRemark').bind('click', function(){
+		$('#remarkBox').dialog('close');
+	});
+
+	$('#saveRemark').bind('click', function(){
+		$('#remarkTxt').text($('#remarkBox').find('textarea').val());
+		$('#remarkBox').find('textarea').val('');
+		$('#remarkBox').dialog('close');
+	});
 	//支付方式
 	$('.pay').click(function(){
 		$('.confirm_box').show();

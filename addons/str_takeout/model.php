@@ -248,8 +248,8 @@ function set_order_log($id, $sid, $note)
         '3' => '订单完成',
         '4' => '订单已取消',
         '5' => '订单支付成功(管理员操作)',
-		'8' => '订单已申请退款',
-		'9' => '订单已退款成功'
+        '8' => '订单已申请退款',
+        '9' => '订单已退款成功'
     );
     $status = intval($note);
     if ($status > 0) {
@@ -413,46 +413,45 @@ function get_mine_order()
 function set_order_cart($sid)
 {
     global $_W, $_GPC;
-    if(empty($_GPC['dish'])){
-    	$_GPC['dish'] = $_SESSION['dish'];
-    }
-    if (!empty($_GPC['dish'])) {
-        $num          = 0;
-        $price        = 0;
-        $ids_str      = implode(',', array_keys($_GPC['dish']));
-        $dish_info    = pdo_fetchall('SELECT * FROM ' . tablename('str_dish') . " WHERE uniacid = :aid AND sid = :sid AND id IN ($ids_str)", array(
-            ':aid' => $_W['uniacid'],
-            ':sid' => $sid
-        ), 'id');
+    $where['uid'] = $_W['member']['uid'];
+    $where['sid'] = $sid;
+    $cartInfo = pdo_getall('str_cart',$where);
+    $total = 0;
+    $num = 0;
+    if($cartInfo){
         $grant_credit = 0;
-        foreach ($_GPC['dish'] as $k => $v) {
-            $k = intval($k);
-            $v = intval($v);
-            if ($k && $v) {
-                $dishes[$k] = $v;
-                $num += $v;
-                $price += dish_group_price($dish_info[$k]['price']) * $v;
-                $grant_credit += ($dish_info[$k]['grant_credit'] * $v);
-            }
+        foreach ($cartInfo as $item){
+            $dishInfo = pdo_get('str_dish',['id'=>$item['did']]);
+            $grant_credit += $dishInfo['grant_credit'] * $item['quantity'];
+            $total += $item['amount'];
+            $num += $item['quantity'];
+            $spec['did'] = $item['did'];
+            $spec['spec'] = unserialize($item['spec']);
+            $dishes[$item['did']] = $item['quantity'];
+            $specData[$item['did']] = serialize($spec);
         }
-        $isexist = pdo_fetchcolumn('SELECT id FROM ' . tablename('str_order_cart') . " WHERE uniacid = :aid AND sid = :sid AND uid = :uid", array(
-            ':aid' => $_W['uniacid'],
-            ':sid' => $sid,
-            ':uid' => $_W['member']['uid']
-        ));
+
         $data    = array(
             'uniacid' => $_W['uniacid'],
             'sid' => $sid,
             'uid' => $_W['member']['uid'],
             'groupid' => $_W['member']['groupid'],
             'num' => $num,
-            'price' => $price,
+            'price' => $total,
             'grant_credit' => $grant_credit,
             'data' => iserializer($dishes),
-            'addtime' => TIMESTAMP
+            'addtime' => TIMESTAMP,
+            'spec' => serialize($specData)
         );
+        $isexist = pdo_fetchcolumn('SELECT id FROM ' . tablename('str_order_cart') . " WHERE uniacid = :aid AND sid = :sid AND uid = :uid", array(
+            ':aid' => $_W['uniacid'],
+            ':sid' => $sid,
+            ':uid' => $_W['member']['uid']
+        ));
+
         if (empty($isexist)) {
             pdo_insert('str_order_cart', $data);
+            pdo_delete('str_cart',['uid'=>$_W['member']['uid']]);
         } else {
             pdo_update('str_order_cart', $data, array(
                 'uniacid' => $_W['uniacid'],
@@ -475,6 +474,7 @@ function get_order_cart($sid)
         ':sid' => $sid,
         ':uid' => $_W['member']['uid']
     ));
+//    var_dump($cart);exit;
     if (empty($cart)) {
         return array(
             'num' => 0,
@@ -621,8 +621,8 @@ function print_order($id, $force = false)
     if (empty($prints)) {
         return error(-1, '没有有效的打印机');
     }
-	$num = 0;
-	//$num += jinyun_print($order, $store);
+    $num = 0;
+    //$num += jinyun_print($order, $store);
     $p = 0;
     foreach ($prints as $li) {
         $printnum = $prints[$p]['print_nums'];
@@ -708,7 +708,7 @@ function jinyun_print($order, $store,$print)
     $orderinfo .= "<S1>下单时间：" . date('Y-m-d H:i', $order['addtime']) . "</S1>";
     $i = 0;
        $status = printer($orderinfo,'',$print['type']);
-		if ($status) {
+        if ($status) {
             $i++;
             $data = array(
                 'uniacid' => $_W['uniacid'],
@@ -1027,8 +1027,8 @@ function wechat_notice_order($sid, $id, $status)
         '3' => 'end',
         '4' => 'cancel',
         '5' => 'pay',
-		'8' => 'tk',
-		'9' =>'tuikuan'
+        '8' => 'tk',
+        '9' =>'tuikuan'
     );
     $type      = $types_arr[$status];
     $store     = get_store($sid, array(
@@ -1073,11 +1073,11 @@ function wechat_notice_order($sid, $id, $status)
             $header    = "【{$store['title']}】订单进度通知\n";
             $orderinfo = "您的点餐订单，订单号【{$orderid}】已于" . date('Y-m-d H:i', time()) . "取消";
         }
-		if ($type == 'tk') {
+        if ($type == 'tk') {
             $header    = "【{$store['title']}】订单进度通知\n";
             $orderinfo = "您的点餐订单，订单号【{$orderid}】已于" . date('Y-m-d H:i', time()) . "申请。我们会尽快处理！";
         }
-		if ($type == 'tuikuan') {
+        if ($type == 'tuikuan') {
             $header    = "【{$store['title']}】订单进度通知\n";
             $orderinfo = "您的点餐订单，订单号【{$orderid}】已于" . date('Y-m-d H:i', time()) . "成功退款。点餐费用已退至您的余额账户！";
         }

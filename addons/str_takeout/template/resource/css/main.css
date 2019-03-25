@@ -14,6 +14,44 @@ a{text-decoration:none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.35); color:
 body{word-break:break-all; font-size: 20px; background-color: #f8f8f8; color: #535353;}
 
 html, body{height: 100%;}
+html {
+    font-size : 20px;
+}
+@media only screen and (min-width: 401px){
+    html {
+        font-size: 25px !important;
+    }
+}
+@media only screen and (min-width: 428px){
+    html {
+        font-size: 26.75px !important;
+    }
+}
+@media only screen and (min-width: 481px){
+    html {
+        font-size: 30px !important; 
+    }
+}
+@media only screen and (min-width: 569px){
+    html {
+        font-size: 35px !important; 
+    }
+}
+@media only screen and (min-width: 641px){
+    html {
+        font-size: 40px !important; 
+    }
+}
+@media only screen and (min-width: 768px){
+    html {
+        font-size: 45px !important; 
+    }
+}
+@media only screen and (min-width: 1024px){
+    html {
+        font-size: 50px !important; 
+    }
+}
 .fl{float: left;}
 .fr{float: right;}
 .clearfix:after{content:".";display:block;height:0;font-size:0;clear:both;visibility:hidden;}
@@ -198,8 +236,7 @@ html, body{height: 100%;}
 .menu_list li .top > div:first-child{width: 90px; position:relative;}
 .menu_list li .top > div:first-child .dish_label{position:absolute; width:35px; padding-left:3px; background: url(../images/tag.png) no-repeat; background-size: 35px auto; font-size: 10px; color:#FFF;}
 .menu_list li .top > div:first-child img{width: 100%;height:83px;}
-.menu_list li .top > div:nth-of-type(3){text-align: right; width: 64px;vertical-align: bottom;}
-.menu_list li .top > div:nth-of-type(3) div{width: 56px;height: 22px;display: block;background: rgba(43,163,220,1);border-radius: 12px;font-size: 13px;color: #fff;text-align: center;line-height: 22px;position: relative;display: grid;}
+.menu_list li .top > div:nth-of-type(3){text-align: right; width: 56px;height:22px;vertical-align: bottom;background: rgba(43,163,220,1);border-radius: 12px;font-size: 13px;color: #fff;text-align: center;line-height: 10px;position: relative;display:inline-block;float: right;bottom: -70px;}
 .menu_list li .bottom{margin-top:-4px; padding:0px 10px 6px 10px; text-align:right;}
 .menu_list li .bottom > div{display:inline-block; margin-left:10px; font-size:12px; color:#979797;}
 
@@ -293,8 +330,9 @@ border:1px solid rgba(255,255,255,1);border-radius: 50%;font-size: 14px;color:#f
 .ico_close{position: absolute; right: 15px; top: 9px; width: 23px; height: 23px; background-position: 0 0;}
 .menu_detail .choice_box{margin-bottom: 20px;}
 .menu_detail .choice_box .title{height:20px;font-size:14px;font-weight:400;color:rgba(51,51,51,1);line-height:20px;margin-bottom: 10px;}
-.choice_box .types input{display: none;}
+/*.choice_box .types input{display: none;}*/
 .choice_box .types label{padding: 3px 13px;background-color: #fff;color: #333;border-radius: 15px;border:1px solid #D2D2D2;font-size: 14px;margin-right: 10px;}
+.choice_box .types input[type='radio']:checked{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;border:none;}
 .choice_box .types .isChecked{padding: 3px 13px;background-color: #2BA3DC;color: #fff;border-radius: 15px;font-size: 14px;margin-right: 10px;border:none;}
 .choice_box .types label span{color: #2BA3DC;margin-left: 2px;}
 
