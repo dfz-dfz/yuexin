@@ -334,11 +334,11 @@
 					<div class="col-sm-9 col-xs-9 col-md-9">
 						<input type="hidden" name="dish_style" value="<?php  echo $item['dish_style'];?>" id="dish_style">
 						<a href="javascript:;" data-id="1" class="thumbnail <?php  if($item['dish_style'] == 1 || !$item['dish_style']) { ?>active<?php  } ?>" style="width:200px; float:left; margin-right:20px;">
-							<img src="../addons/str_takeout/template/resource/images/dish_b.png">
+							<img src="../addons/str_takeout/template/resource/images/dish_c.jpg">
 						</a>
-						<a href="javascript:;" data-id="2" class="thumbnail" <?php  if($item['dish_style'] == 2) { ?>active<?php  } ?> style="width:200px; float:left; margin-right:20px;">
+						<!-- <a href="javascript:;" data-id="2" class="thumbnail" <?php  if($item['dish_style'] == 2) { ?>active<?php  } ?> style="width:200px; float:left; margin-right:20px;">
 							<img src="../addons/str_takeout/template/resource/images/dish_a.png">
-						</a>
+						</a> -->
 					</div>	
 				</div>
 				<div class="form-group">
@@ -612,9 +612,9 @@
 								<?php  } ?>
 							</td>
 							<td style="text-align:right;">
-								<a href="javascript:;" class="btn btn-default show-qrcode" data-sys="<?php  echo $item['sys_url'];?>" data-wx="<?php  echo $item['wx_url'];?>" data-id="<?php  echo $item['id'];?>">二维码</a>								<a href="<?php  echo $this->createWebUrl('store', array('op' => 'post', 'id' => $item['id']))?>" class="btn btn-default btn-sm" title="编辑" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit"> </i> 编辑</a>
-								<a href="<?php  echo $this->createWebUrl('store', array('op' => 'del', 'id' => $item['id']))?>" class="btn btn-default btn-sm" title="删除" data-toggle="tooltip" data-placement="top" onclick="if(!confirm('删除后将不可恢复，确定删除吗?')) return false;"><i class="fa fa-times"> </i> 删除</a>
-								<a href="<?php  echo $this->createWebUrl('switch', array('sid' => $item['id']))?>" class="btn btn-default btn-sm" title="管理门店" data-toggle="tooltip" data-placement="top" style="color:#D9534F;"><i class="fa fa-cog fa-spin"> </i> 管理</a>
+								<a href="javascript:;" class="btn btn-default show-qrcode" data-sys="<?php  echo $item['sys_url'];?>" data-wx="<?php  echo $item['wx_url'];?>" data-id="<?php  echo $item['id'];?>" title="二维码"><i class="glyphicon glyphicon-qrcode"> </i></a>								<a href="<?php  echo $this->createWebUrl('store', array('op' => 'post', 'id' => $item['id']))?>" class="btn btn-default btn-sm" title="编辑" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit"> </i></a>
+								<a href="<?php  echo $this->createWebUrl('store', array('op' => 'del', 'id' => $item['id']))?>" class="btn btn-default btn-sm" title="删除" data-toggle="tooltip" data-placement="top" onclick="if(!confirm('删除后将不可恢复，确定删除吗?')) return false;"><i class="glyphicon glyphicon-trash"> </i></a>
+								<a href="<?php  echo $this->createWebUrl('switch', array('sid' => $item['id']))?>" class="btn btn-default btn-sm" title="管理门店" data-toggle="tooltip" data-placement="top" style="color:#D9534F;"><i class="fa fa-cog fa-spin"> </i></a>
 							</td>
 						</tr>
 						<?php  } } ?>

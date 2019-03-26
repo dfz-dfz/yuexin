@@ -2,7 +2,7 @@
 <?php  if(FRAME == 'system') { ?>
 <?php  cache_build_frame_menu();?>
 <?php  } ?>
-<div data-skin="default" class="skin-default <?php  if($_GPC['main-lg']) { ?> main-lg-body <?php  } ?>">
+<div data-skin="default" class="skin-default <?php  if(!$_GPC['main-lg']) { ?> main-lg-body <?php  } ?>">
 <?php  $frames = buildframes(FRAME);_calc_current_frames($frames);?>
 <div class="head">
 	<nav class="navbar navbar-default" role="navigation">
@@ -78,7 +78,7 @@
 <div class="main">
 <?php  if(!defined('IN_MESSAGE')) { ?>
 <div class="container">
-	<a href="javascript:;" class="js-big-main button-to-big color-gray" title="加宽"><?php  if($_GPC['main-lg']) { ?>正常<?php  } else { ?>宽屏<?php  } ?></a>
+	<a href="javascript:;" class="js-big-main button-to-big color-gray" title="加宽"><?php  if(!$_GPC['main-lg']) { ?>正常<?php  } else { ?>宽屏<?php  } ?></a>
 	<?php  if(in_array(FRAME, array('account', 'system', 'wxapp', 'site', 'store', 'webapp', 'phoneapp')) && !in_array($_GPC['a'], array('news-show', 'notice-show'))) { ?>
 	<div class="panel panel-content main-panel-content <?php  if(!empty($frames['section']['platform_module_menu']['plugin_menu'])) { ?>panel-content-plugin<?php  } ?>">
 		<div class="content-head panel-heading main-panel-heading">
