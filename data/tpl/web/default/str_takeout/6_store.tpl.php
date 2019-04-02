@@ -27,9 +27,9 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<ul class="nav nav-pills">
-				<li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="pill">基本信息</a></li>
-				<li role="presentation"><a href="#high" aria-controls="high" role="tab" data-toggle="pill">高级设置</a></li>
-				<li role="presentation"><a href="#page" aria-controls="page" role="tab" data-toggle="pill">页面设置</a></li>
+				<li role="presentation" id="base" class="list active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="pill">基本信息</a></li>
+				<li role="presentation" id="setting" class="list"><a href="#high" aria-controls="high" role="tab" data-toggle="pill">高级设置</a></li>
+				<li role="presentation" id="webpage" class="list"><a href="#page" aria-controls="page" role="tab" data-toggle="pill">页面设置</a></li>
 			</ul>
 		</div>
 	</div>
@@ -37,26 +37,26 @@
 		<div class="panel panel-default tab-pane active" role="tabpanel" id="basic">
 			<div class="panel-heading">门店基本信息</div>
 			<div class="panel-body">
-				<div class="form-group">
+				<div class="form-group" id="title">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店名称</label>
 					<div class="col-sm-9 col-xs-12">
 						<input type="text" class="form-control" name="title" value="<?php  echo $item['title'];?>">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="logo">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店LOGO</label>
 					<div class="col-sm-9 col-xs-12">
 						<?php  echo tpl_form_field_image('logo', $item['logo']);?>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="desc">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店描述</label>
 					<div class="col-sm-9 col-xs-12">
-						<textarea class="form-control" name="content"><?php  echo $item['content'];?></textarea>
+						<textarea class="form-control" id="content" name="content"><?php  echo $item['content'];?></textarea>
 						<div class="help-block">粉丝分享时调用</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="phone">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店电话</label>
 					<div class="col-sm-9 col-xs-12">
 						<input type="text" class="form-control" name="telephone" value="<?php  echo $item['telephone'];?>">
@@ -104,14 +104,14 @@
 						<div class="help-block">请完善营业时间信息。最多可添加3个时间段</div>
 					</div>	
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="feature">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店特色</label>
 					<div class="col-sm-9 col-xs-9 col-md-9">
-						<textarea class="form-control richtext" name="description"><?php  echo $item['description'];?></textarea>
+						<textarea class="form-control richtext" id="description" name="description"><?php  echo $item['description'];?></textarea>
 					</div>	
 				</div>
 				<div class="form-group">
-					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店实景</label>
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">门店实景</label>
 					<div class="col-sm-9 col-xs-9 col-md-9 thumbs">
 						<a href="javascript:;" class="btn btn-primary" id="selectImage">选择图片</a>
 						<br>
@@ -137,20 +137,20 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group" id="area">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>门店所在地区</label>
 					<div class="col-sm-9 col-xs-9 col-md-9">
 						<?php  echo tpl_form_field_district('reside', $item['reside']);?>
 					</div>	
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="address">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>详细地址</label>
 					<div class="col-sm-9 col-xs-9 col-md-9">
 						<input type="text" name="address" class="form-control" value="<?php  echo $item['address'];?>">
 						<div class="help-block">请勿重复填写省市区信息</div>
 					</div>	
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>所属区域</label>
 					<div class="col-sm-9 col-xs-9 col-md-9">
 						<select class="form-control" id="area_id" name="area_id">
@@ -161,7 +161,7 @@
 						</select>
 						<div class="help-block">还没有区域，点击 <a href="<?php  echo $this->createWebUrl('area');?>" target="_blank">添加区域</a></div>
 					</div>	
-				</div>
+				</div> -->
 				<div class="form-group">
 					<label class="col-xs-12 col-sm-3 col-md-2 control-label">地图标识</label>
 					<div class="col-sm-9 col-xs-9 col-md-9">
@@ -253,16 +253,16 @@
 					</div>
 				</div>
 				<div id="takeout" <?php  if($item['is_takeout'] == 2) { ?>style="display:none"<?php  } ?>>
-					<div class="form-group">
+					<div class="form-group" id="send_price">
 						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>起送价</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<div class="input-group">
-								<input type="text" class="form-control" name="send_price" value="<?php  echo $item['send_price'];?>">
+								<input type="text" class="form-control" id="send_price" name="send_price" value="<?php  echo $item['send_price'];?>">
 								<span class="input-group-addon">元</span>
 							</div>
 						</div>	
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="delivery_price">
 						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>配送费</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<div class="input-group">
@@ -271,7 +271,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="delivery_time">
 						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>预计送达时间</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<div class="input-group">
@@ -280,7 +280,7 @@
 							</div>
 						</div>	
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="serve_radius">
 						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>服务半径</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<div class="input-group">
@@ -289,7 +289,7 @@
 							</div>
 						</div>	
 					</div>
-					<div class="form-group">
+					<div class="form-group" id="delivery_area">
 						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>配送区域</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<input type="text" class="form-control" name="delivery_area" value="<?php  echo $item['delivery_area'];?>">
@@ -416,7 +416,7 @@
 		return false;
 	}
 	$(function(){
-		$(':text[name="map[lng]"]').css('margin-left', '-15px');
+		// $(':text[name="map[lng]"]').css('margin-left', '-15px');
 		$('#hour-add').click(function(){
 			var hour_length = $('#hour .hour-item').length;
 			if(hour_length < 3) {
@@ -467,33 +467,54 @@
 		u.editor($('.richtext')[0]);
 		$('#form1').submit(function(){
 			if($.trim($(':text[name="title"]').val()) == '') {
-				u.message('请填写门店名称');
+				u.message('請填寫門店名稱');
+				setClass('base','basic','title');
 				return false;
 			}
 			if($.trim($(':text[name="logo"]').val()) == '') {
-				u.message('请上传门店LOGO');
+				u.message('請上傳門店LOGO');
+				setClass('base','basic','logo');
+				return false;
+			}
+			if($.trim($('#content').val()) == '') {
+				u.message('請填寫門店描述');
+				setClass('base','basic','desc');
 				return false;
 			}
 			if($.trim($(':text[name="telephone"]').val()) == '') {
-				u.message('请填写门店电话');
+				u.message('請填寫門店電話');
+				setClass('base','basic','phone');
 				return false;
 			}
-			if($.trim($(':text[name="telephone"]').val()) == '') {
-				u.message('请填写门店电话');
-				return false;
-			}
-			var hour_flag = false;
+			var hour_flag = 0;
 			$(':text[name="business_start_hours[]"]').each(function(i){
 				if($.trim($(this).val()) != '' && $.trim($(this).next().next().val()) != '') {
-					hour_flag = true;
+					hour_flag = 1;
 				} 
 			});
 			if(!hour_flag) {
 				u.message('请填写有效的营业时间段');
 				return false;
 			}
-			if($.trim(u.editor($('.richtext')[0]).getContent()) == "") {
-				u.message('请填写门店特色说明');
+			var ue = UE.getEditor('description');
+			var main = '';
+			ue.ready(function() {
+			    main = ue.getContent();
+			});
+			if($.trim(main) == "") {
+				u.message('請填寫門店特色');
+				setClass('base','basic','feature');
+				return false;
+			}
+			
+			if(!$('select[name="reside[province]"]').val() || !$('select[name="reside[city]"]').val()) {
+				u.message("请选择省市区信息");
+				setClass('base','basic','area');
+				return false;
+			}
+			if(!$.trim($(':text[name="address"]').val())) {
+				u.message("请填写详细地址");
+				setClass('base','basic','address');
 				return false;
 			}
 			var is_takeout = $.trim($(':radio[name="is_takeout"]:checked').val());
@@ -501,39 +522,44 @@
 				var send_price = parseInt($.trim($(':text[name="send_price"]').val()));
 				if(isNaN(send_price)) {
 					u.message("起送价必须为数字");
+					setClass('setting','high','send_price');
 					return false;
 				}
 				var delivery_price = parseInt($.trim($(':text[name="delivery_price"]').val()));
 				if(isNaN(delivery_price)) {
 					u.message("配送费必须为数字");
+					setClass('setting','high','delivery_price');
 					return false;
 				}
 				var delivery_time = parseInt($.trim($(':text[name="delivery_time"]').val()));
 				if(isNaN(delivery_time)) {
 					u.message("预计送达时间必须为数字");
+					setClass('setting','high','delivery_time');
 					return false;
 				}
 				var serve_radius = parseInt($.trim($(':text[name="serve_radius"]').val()));
 				if(isNaN(serve_radius)) {
 					u.message("服务半径必须为数字");
+					setClass('setting','high','serve_radius');
 					return false;
 				}
 				if($(':text[name="delivery_area"]').val() == '') {
 					u.message("请填写配送区域");
+					setClass('setting','high','delivery_area');
 					return false;
 				}
-			}
-			if(!$('select[name="reside[province]"]').val() || !$('select[name="reside[city]"]').val()) {
-				u.message("请选择省市区信息");
-				return false;
-			}
-			if(!$.trim($(':text[name="address"]').val())) {
-				u.message("请填写详细地址");
-				return false;
 			}
 			return true;
 		});
 	});
+function setClass(tab,main,item){
+	$('.list').removeClass('active');
+	$('#'+tab).addClass('active');
+	$(".tab-pane").removeClass('active');
+	$('#'+main).addClass('active');
+	$('#'+item).addClass('has-error');
+	location.href="#"+item;
+}
 </script>
 <?php  } else if($op == 'list') { ?>
 <style type="text/css">

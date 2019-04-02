@@ -979,9 +979,10 @@ class Str_takeoutModuleSite extends WeModuleSite
                     'addtime'=>'下單時間'
                 );
 
+                $time = ['starttime'=>$starttime,'endtime'=>$endtime];
                 //执行导出
 //              export2excel($header,$data,'订单数据');
-                $this->exportExcel($header,$data);
+                $this->exportExcel($header,$data,$time);
                 echo 'ok';
                 exit;
             }
@@ -2011,6 +2012,7 @@ class Str_takeoutModuleSite extends WeModuleSite
         $where['sid'] = $_GPC['sid'];
         $cartInfo = pdo_getall('str_cart',$where);
         foreach ($cartInfo as $k => &$v){
+            $arr = [];
             $productInfo = pdo_get('str_dish',array('id'=>$v['did']));
             $v['title'] = $productInfo['title'];
             if($v['spec']){
@@ -3093,6 +3095,7 @@ class Str_takeoutModuleSite extends WeModuleSite
      * 数据导出
      * @param array $title   标题行名称
      * @param array $data   导出数据
+     * @param array $time   导出订单时间范围
      * @param string $fileName 文件名
      * @param string $savePath 保存路径
      * @param $type   是否下载  false--保存   true--下载
@@ -3100,7 +3103,7 @@ class Str_takeoutModuleSite extends WeModuleSite
      * @throws PHPExcel_Exception
      * @throws PHPExcel_Reader_Exception
      */
-    function exportExcel($title=array(), $data=array(), $fileName='', $savePath='./', $isDown=true){
+    function exportExcel($title=array(), $data=array(), $time=array(), $fileName='', $savePath='./', $isDown=true){
         load()->library('phpexcel/PHPExcel');
         $obj = new PHPExcel();
 
@@ -3111,10 +3114,18 @@ class Str_takeoutModuleSite extends WeModuleSite
         $_row = 1;   //设置纵向单元格标识
         $rowName = array_values($title);
         $rowKey = array_keys($title);
+        if(isset($time['starttime']) && isset($time['endtime'])){
+            $starttime = date('Y-m-d H:i:s',$time['starttime']);
+            $endtime = date('Y-m-d H:i:s',$time['endtime']);
+            $headerTitel = $starttime." 至 ".$endtime;
+        }else{
+            $headerTitel = date('Y-m-d H:i:s');
+        }
+
         if($rowName){
             $_cnt = count($title);
             $obj->getActiveSheet(0)->mergeCells('A'.$_row.':'.$cellName[$_cnt-1].$_row);   //合并单元格
-            $obj->setActiveSheetIndex(0)->setCellValue('A'.$_row, '数据导出：'.date('Y-m-d H:i:s'));  //设置合并后的单元格内容
+            $obj->setActiveSheetIndex(0)->setCellValue('A'.$_row, '導出訂單時間範圍：'.$headerTitel);  //设置合并后的单元格内容
             $_row++;
             $i = 0;
             foreach($title AS $v){   //设置列标题
