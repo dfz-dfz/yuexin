@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /imcs_files
+Disallow: /scr
+Disallow: /scr/csc
+Disallow: /scr/scr
+Disallow: /trad
+Disallow: /xf

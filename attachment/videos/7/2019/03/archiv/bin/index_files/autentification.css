@@ -1,0 +1,854 @@
+.identificationpart {
+	background-color:#0b6ba8;
+}
+.identificationpro {
+	background-color:#a63950;
+}
+
+.identificationpro  .identificationpart{
+	margin-bottom:5px;
+	text-align:left;
+	color:#ffffff;
+	width:100%;
+	padding:0px 0px 0px 10px;
+	font-size:1em;
+	display:table;
+	position:initial;
+}
+
+label{
+    font: Arial,sans-serif;
+    color:#333;
+    margin:0;
+    padding-bottom:0,5em;
+    font-size:1em
+    line-height:2em;
+ }
+h1, h2, h3, h4 { font-family:"Lato", Arial, sans-serif }
+h1,h2{
+    font-size:1.5em;
+    font-family:"Lato",Arial,sans-serif;
+}
+h1.titre { 
+    font-size:1.5em; 
+    margin:0 0 20pt 0; 
+    border-bottom:2px solid #0B6BA8 ;
+    padding-bottom: 0.3em;
+    padding-top: 1em;
+    text-align:center;
+    }
+h1.titre1 { 
+    font-size:1.5em; 
+    margin:0 0 20pt 0; 
+    padding-bottom: 0.3em;
+    padding-top: 1em;
+    text-align:center;
+    }
+h1.titre2 { 
+    font-size:1.5em; 
+
+    text-align:center;
+    }
+h4.titre {text-align:left }
+h1, h2 { font-weight:normal }
+p{
+
+   font-size:1em 
+}
+footer{
+ margin-top:2em;
+ background-color: white;
+ 
+ }
+footer>p{
+text-align:center;
+margin:0;
+}
+
+select>option, select>option:selected{
+ font:10.5pt Arial,sans-serif;
+    color:#333;
+    margin:0;
+    padding:0;
+    font-size:1em
+    }
+/* Login Form-> pesronaldata*/
+
+#personalData  { 
+    border-radius: 4px;
+     background-color:White;
+     }
+ /* Login Form-> option demat*/
+#optionsForm { 
+    border-radius: 4px;
+     background-color:transparent;
+     margin-left:0.1em;
+     }
+    
+  form-group{
+    padding-top: 2em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    
+}
+.formAvecEntete
+{
+    background-color:white;
+    padding-right: 0em;
+    padding-left: 0em;
+    border-radius: 4px;
+    
+}
+.optionmere{
+    padding-right: 0em;
+    padding-left: 0em;
+    background-color:white;
+    border-radius: 1%;
+    margin-left: 2%;
+}
+
+.optionmere1{
+    padding-right: 0em;
+    padding-left: 0em;
+    background-color:white;
+    border-radius: 1%;
+    margin-left: 2%;
+}
+.modal-header{
+     border-bottom:2px solid #0B6BA8 ;
+}
+
+.container{
+    padding-right: 1.3em;
+    padding-left: 1.3em;
+    
+}
+ li{
+padding-bottom: 0.5em;
+ 
+ }
+ li>a{
+ font-size:1em;
+ }
+ 
+.erreur {
+    color: #b42400;
+    padding: 4pt 10pt;
+    margin: 0 0 1em 0;
+    display: inline-block;
+    background-color: #fee1e5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+     border-radius: 4px;
+     width: 100%;
+   /*  visibility: hidden;*/
+}
+#champsObligatoire{
+	width:100%;
+}
+ 
+.formAvecEntete ul, .optionmere ul
+ {
+     padding-left:1em;
+     list-style-type:square;
+     color:#337ab7;
+ }
+ .noBottomPadding{
+ padding-bottom: 0em;
+ padding-left: 0em;
+ }
+ .noPadding{
+ padding: 0;
+ }
+ /* infobulles d'aide*/
+a.info {
+   position: relative;
+   text-decoration:none;
+   outline: 0 none;
+}
+a.info span {
+   display: none; /* On masque l'infobulle. */
+  bottom:20pt;
+   position:absolute;
+   padding:15pt;
+   font-size:10pt;
+   width:150pt;
+   right: -75pt;
+   border-radius:3pt;
+}
+a.info:hover, a.info:focus {
+   background:none;
+   z-index:99999;
+-webkit-transform:scale(1) rotateZ(0);-moz-transform:scale(1) rotate(0);-ms-transform:scale(1) rotateZ(0);-o-transform:scale(1) rotate(0);transform:scale(1) rotateZ(0);
+}
+a.info:hover span, a.info:focus span {
+   display: inline; /* On affiche l'infobulle. */
+   position:absolute;
+   opacity:1;
+   background:black;
+   color:white;
+   
+}
+a.info ::before{
+  content:'';
+    position:absolute;
+    bottom:-8pt;left:65pt;
+    border-left:7px solid transparent;
+    border-right:7px solid transparent;
+    margin-left: 25%;
+}
+
+/**Input de la page de connexion**/
+input.saisie {
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 102%;
+}
+
+.saisie1 {
+    width: 102%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.saisie2 {
+    width: 32.42%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.saisie22 {
+    width: 40%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.saisie3 {
+    width: 49.25%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px
+}
+
+.saisie4 {
+    width: 59%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.saisie5 {
+    width: 39.5%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.saisie6 {
+    width: 102%;
+    padding: 8px;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fbfbfb;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+.saisie >label{
+text-align:left;
+padding-bottom:0.5em;
+}
+.saisie > button{
+width:30%; min-width: 9em;
+}
+ 
+body{
+position: relative;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom:0%;
+}
+
+.old-browser {
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top:20px;
+    color: #a63950;
+    background-color :#f5f5f5; 
+}
+       
+ /* Breadcrumb */
+#breadcrumb ul {
+    padding-top:0.2em ;
+    padding-bottom:0.2em;
+    padding-left:0em;
+    }
+#breadcrumb li { 
+    display:inline;
+    padding-left:0em;
+ }
+#breadcrumb li + li:before {
+    content:" > " ;
+     padding-left:0em;
+     }
+#breadcrumb li ~ li:before { 
+    content:" > " ;
+     padding-left:0em;}
+#breadcrumb li a, table a { color:black }
+/**ADAPTATION DE L'AFICHAGE IE 6,7,8**/
+ @media \0screen\,screen\9 {
+ td{
+ background-color:White;
+ width:33.33%;
+ padding-left: 1em;
+ padding-bottom: 1em;
+ padding-top: 1em;
+ -webkit-border-radius: 2em;
+ -moz-border-radius: 2em;
+ -ms-border-radius: 2em;
+ border-radius: 0.5em;
+ -moz-box-shadow: -2px 0px 5px 0px #656565;
+ -ms-box-shadow: -2px 0px 5px 0px #656565;
+-webkit-box-shadow: -2px 0px 5px 0px #656565;
+-o-box-shadow: -2px 0px 5px 0px #656565;
+box-shadow: -2px 0px 5px 0px #656565;
+behavior: url(../css/PIE.html);
+}
+
+.formAvecEntete
+{
+    background-color:white;
+    padding-right: 0em;
+    padding-left: 0em;
+    border-radius: 4px;
+    behavior: url(../css/PIE.html);
+}
+.optionmere{
+    padding-right: 0em;
+    padding-left: 0em;
+     background-color:white;
+     border-radius: 4px;
+     behavior: url(../css/PIE.html);
+}
+.erreur {
+    color: red;
+    padding: 4pt 10pt;
+    margin: 0 0 1em 0;
+    display: inline-block;
+    background-color: #fee1e5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+     border-radius: 4px;
+     behavior: url(../css/PIE.html);
+   /*  visibility: hidden;*/
+}
+
+ }
+
+/*Style pour le logo*/
+header{
+padding-top:0em;
+}
+#impotsgouv{
+padding:0;
+height:100pt;
+background-image: url("Logo-Marianne_impots-gouv-fr.svg");
+background-size: contain;
+-webkit-background-size: contain;
+background-repeat:no-repeat;
+background-position:0%;
+
+}
+
+#accesEspace > ul{
+list-style-type:none;
+text-align:right;
+float:right;
+}
+
+
+}
+.btn{
+border:0;
+}
+
+.btn11 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 2.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: transparent;
+    border-radius: 5%;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 2.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background-color: #337ab7;
+    
+    border-radius: 5%;
+}
+
+
+a .btn-primary: hover{
+border-color: inherit;
+}
+a .btn-danger: hover{
+border-color: inherit;
+}
+
+.invisible {
+width:80%;
+display: none;
+margin:0;
+}
+/*Couleur du main*/
+main{
+background-color:#e8e8e8;
+}
+#lmdp>div, #creation > div{
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align:left;
+   text-align: none;
+}
+
+#lmdp{ 
+  text-align:center
+}
+  
+#LMDP_Spi_tmp{
+    width:100%;
+}
+#identifiant{
+    width:100%;
+}
+#LMDP_Password_tmp{
+    margin-right: 1em;
+    width:60%;
+}
+#motdepasse{
+    margin-right: 1em;
+    width:60%;
+}
+
+.TroisSChamps{
+   width:100%;
+}
+.paddingTop{
+padding-top:3em;
+}
+
+#lmdp div.payer {
+    
+    border-top: 0.5em solid #e8e8e8; 
+    margin-top:2em;
+    padding:0.5em 1em 0 1em;
+    text-align:center;
+    }
+    
+#lmdp div.payer button { 
+    display:block; 
+    margin:10px auto 0 auto;
+     }
+/*Espace dans l'affichage deux colonnes*/
+#creation{
+   text-align: center;
+   border-radius: 4px;
+}
+#partPriv.btn-primary {
+border-radius: 0px;
+padding-right:2.45em;
+background-color:#0b6ba8;
+margin-top:1em;
+
+}
+
+#proPriv.btn-danger {
+background-color: #a63950;
+padding-right:2.45em;
+border-radius: 0px;
+}
+#payer.btn-success{
+background-color: #008000;
+}
+/*Hover button submit*/
+button[type="submit"]:hover,#payer:hover{
+background-color:#178FEB !important;
+color:#fff !important;
+transition:all 2s;
+}
+/*center le bouton valider*/
+#validation{
+text-align:center;
+}
+#validation > button{
+width:102%; min-width: 9em;
+}
+/**fiche des modale obli pwd et oublispi**/
+/*Pour afficher le span en entier*/
+.modal-dialog{
+margin-top:8em;
+}
+.modale .modal-dialog {
+    width: 35em;
+}
+.modal-body > div{
+    text-align:center;
+    padding:1em;
+    border-radius:3px;
+    -webkit-box-shadow:inset 0px 0px 1em rgba(0,0,0,0.3), 0 1px rgba(255,255,255,0.1);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset, 0px 1px rgba(255, 255, 255,0.1);
+}
+/*bouton de fermeture de la fenetre modale*/
+.close img{
+width:9pt;
+height:9pt;
+}
+.close{
+opacity:1;
+}
+.close :hover{
+     opacity:1;
+    transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -webkit-transform: rotate(90deg); /* Safari */
+    transition:all 1s;
+}
+#pass input{
+  width:100%;
+}
+#pass{
+  text-align:left;
+}
+#verfy{
+  text-align:left;
+}
+#fisc input{
+  width:100%;
+}
+#fisc{
+  text-align:left;
+}
+
+.captcha-container{
+    padding: 2em 3em 2em 3em;
+	text-align:center;
+}
+.captcha-container > div{
+	padding:0;
+}
+/*Accueil>authentification*/
+#cheminDeFer{
+padding-top:1em;
+padding-left:0;
+}
+/**CSS POUR la fenetre de connexion**/
+/* Oubli SPI/MDP */
+.lost a { text-decoration:underline }
+.lost{text-align:center}
+.captcha{
+
+width: min-content
+}
+.modal-footer{
+text-align:center;
+}
+.lienCcaptcha{
+padding-right:3em; padding-left:0em; margin-left:0em;
+}
+/**Dacaller le logo pour les ecrans assez grands**/
+@media screen and (min-width: 992px){
+#logoImage{
+  padding-left:9.5em;
+   }
+}
+input.oubliSaisie {
+    border: 2px solid #f22;
+}
+#banniereSmart{
+height:95px;
+background:#E1EBEF;
+font-size:0;
+}
+
+.faqSom h2 {
+padding: 15px;
+}
+#triangle-droit {
+  width: 0;
+  height: 0;
+  border-up: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
+}
+.faqSom li{
+padding-bottom: 0em;
+}
+.faqSom ul {
+    margin: 0.75em 0;
+    padding: 1 0em;
+    list-style: none;
+}
+.faqSom li:before { 
+
+     content: "\25BA";  
+    margin-right: 0.5em;
+    color:#aaaaaa;
+} 
+
+#banniereSmartContenu{
+min-width:300px;
+margin:0 auto;
+display:block;
+/* float:left; */
+font-size:0;
+}
+#banniereSmartFermer{
+float:left;
+display:inline-block;
+margin:0px 0px 0px 0px;
+padding:0px 0px 0px 0px;
+width:14px;
+}
+#closeBanSmart{
+width:14px;
+}
+#banniereSmartLogo{
+float:left;
+display:inline-block;
+margin-top:20px;
+margin-left:0px;
+padding: 0 0 0 0;
+width:47px;
+}
+#banniereSmartTexte{
+margin-right:60px; 
+/*margin-top: 10px; */
+/* margin-left:80px; */
+text-align:center;
+font-size:8pt;
+color:#444;
+font-weight:normal;
+/* padding-top:15px;  */
+padding-left:5px;
+padding-right:5px;
+position: absolute;
+display: inline-block;
+vertical-align: middle;
+}
+#banniereSmartTexte.span {
+display: inline-block;
+vertical-align: middle;
+line-height: normal;
+}
+
+#banniereSmartDownload{
+margin-top:15px;
+vertical-align:middle;
+margin-right:13px;
+margin-left:0px;
+width:55px;
+float:right;
+}
+img.aide {
+        width: 15pt;
+        height: 15pt;
+}
+
+/*Fenetre de l'aide*/
+#aide > h1{
+margin:0;
+padding:0;
+text-align:left;
+}
+
+#sommaire{
+	display:  groupbox;
+	display: -moz-groupbox;
+}
+#sommaireCrop div{
+text-align:left;
+margin-bottom:1em;
+}
+#sommaireCrop h2{
+text-align:center;
+}
+.centerContent{
+text-align:center;
+}
+#exploitation{
+width:100%;
+}
+#exploitation  td {
+padding:5px;border:1px solid #eee;
+}
+#exploitation  th{
+background:#eee;border-top-left-radius:5px;padding:5px;
+}
+#helpFooter{
+text-align:left;
+}
+caption {
+    display:none;
+}
+
+/*Pas de decallage pour les petit ecran ou les deux colonnes s'affiche en deux colonne*/
+@media screen and (max-width: 992px){
+    
+    #creation{
+    padding-right:0em;
+    padding-left: 0em;
+    border-left:0em;
+}
+}
+
+@media screen and (max-width:768px){
+
+#accesEspace > ul{
+list-style-type:none;
+text-align:center;
+margin-top:1em;
+}
+#impotsgouv{
+padding:0;
+height:50pt;
+background-image:url("impots_gouv_fr_header-Sans fond.svg");
+background-size: contain;
+-webkit-background-size: contain;
+background-repeat:no-repeat;
+background-position:50%;
+
+}
+#accesEspace li{
+display:inline-flex;
+}
+
+}
+@media screen and (max-width:500px){
+
+#accesEspace li{
+display:inherit;
+}
+#accesEspace a{
+width:100%;
+background-image:url("../images/Cadenas.svg");
+background-repeat:no-repeat;
+background-position:10pt;
+background-size: 10%;
+
+}
+
