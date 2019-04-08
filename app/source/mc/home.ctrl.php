@@ -62,5 +62,5 @@ if ($do == 'display') {
 		}
 	}
 }
-
+$storeId = isset($_COOKIE['storeId'])?$_COOKIE['storeId']:0;
 template('mc/home');

@@ -340,8 +340,8 @@
 						<thead class="navbar-inner">
 							<tr>
 								<th>菜品</th>
-								<th>份数</th>
-								<th>小计(元)</th>
+								<th>份數</th>
+								<th>小計(元)</th>
 								<th></th>
 							</tr>
 							{if !empty($order['dish'])}
@@ -362,7 +362,7 @@
 			</div>
 			{if !empty($logs)}
 			<div class="panel panel-default">
-				<div class="panel-heading">订单日志</div>
+				<div class="panel-heading">訂單日記</div>
 				<div class="panel-body table-responsive">
 					<table class="table table-hover table-log">
 						{loop $logs $log}
@@ -376,57 +376,65 @@
 			{/if}
 			<div class="col-lg-6" style="padding:0;">
 				<div class="panel panel-default">
-					<div class="panel-heading">订单信息</div>
+					<div class="panel-heading">訂單信息</div>
 					<div class="panel-body">
 						{if $order['order_type'] == 1}
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">订单类型:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">訂單類型:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
-									<label class="label label-success">店内订餐</label>
+									<label class="label label-success">店内就餐</label>
 								</div>	
 							</div>
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">桌台信息:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">桌臺信息:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
 									<label class="label label-success">{$order['table_info']}</label>
 								</div>	
 							</div>
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">总计:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">總計:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
 									<p class="form-control-static">{$order['price']} 元</p>
 								</div>	
 							</div>
 							{if $order['is_usecard'] == 1}
 								<div class="form-group">
-									<label class="col-xs-12 col-sm-3 col-md-2 control-label">实际支付:</label>
+									<label class="col-xs-12 col-sm-3 col-md-2 control-label">實際支付:</label>
 									<div class="col-sm-9 col-xs-9 col-md-9">
 										<p class="form-control-static">{$order['card_fee']} 元 <i class="fa fa-info-circle"></i> 使用优惠券减免{php echo $order['price'] - $order['card_fee'];}元</p>
 									</div>	
 								</div>
 							{/if}
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">就餐人数:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">就餐人數:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
 									<p class="form-control-static">{$order['person_num']} 人</p>
 								</div>	
 							</div>
 						{elseif $order['order_type'] == 2}
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">订单类型:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">訂單類型:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
 									<p class="form-control-static">
-										<label class="label label-success">外卖订餐</label>
+										<label class="label label-success">外賣訂餐</label>
 									</p>
 								</div>	
 							</div>
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">配送费:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">配送費:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
 									<p class="form-control-static">
 									{$order['delivery_fee']}元
 									</p>
 								</div>	
+							</div>
+							<div class="form-group">
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">餐盒費:</label>
+								<div class="col-sm-9 col-xs-9 col-md-9">
+									<p class="form-control-static">
+										{$order['box_fee']}元
+									</p>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-xs-12 col-sm-3 col-md-2 control-label">菜品金额:</label>
@@ -437,16 +445,16 @@
 								</div>	
 							</div>
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 col-md-2 control-label">总价:</label>
+								<label class="col-xs-12 col-sm-3 col-md-2 control-label">總價:</label>
 								<div class="col-sm-9 col-xs-9 col-md-9">
 									<p class="form-control-static">
-									{php echo ($order['price'] + $order['delivery_fee'])}元
+									{php echo ($order['price'] + $order['delivery_fee']+$order['box_fee'])}元
 									</p>
 								</div>	
 							</div>
 							{if $order['is_usecard'] == 1}
 								<div class="form-group">
-									<label class="col-xs-12 col-sm-3 col-md-2 control-label">实际支付:</label>
+									<label class="col-xs-12 col-sm-3 col-md-2 control-label">實際支付:</label>
 									<div class="col-sm-9 col-xs-9 col-md-9">
 										<p class="form-control-static">{$order['card_fee']}元 <i class="fa fa-info-circle"></i> 使用优惠券减免{php echo $order['price'] - $order['card_fee'];}元</p>
 									</div>	

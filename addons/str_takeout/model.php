@@ -248,8 +248,8 @@ function set_order_log($id, $sid, $note)
         '3' => '订单完成',
         '4' => '订单已取消',
         '5' => '订单支付成功(管理员操作)',
-        '8' => '订单已申请退款',
-        '9' => '订单已退款成功'
+		'8' => '订单已申请退款',
+		'9' => '订单已退款成功'
     );
     $status = intval($note);
     if ($status > 0) {
@@ -427,8 +427,11 @@ function set_order_cart($sid)
             $num += $item['quantity'];
             $spec['did'] = $item['did'];
             $spec['spec'] = unserialize($item['spec']);
+            $spec['quantity'] = $item['quantity'];
+            $spec['amount'] = $item['amount'];
+            $spec['price'] = $item['price'];
             $dishes[$item['did']] = $item['quantity'];
-            $specData[$item['did']] = serialize($spec);
+            $specData[] = serialize($spec);
         }
 
         $data    = array(
@@ -577,7 +580,7 @@ function get_dish($oid, $cancel = false)
     $data = pdo_fetchall('SELECT * FROM ' . tablename('str_stat') . ' WHERE uniacid = :aid AND oid = :oid' . $condition, array(
         ':aid' => $_W['uniacid'],
         ':oid' => $oid
-    ), 'dish_id');
+    ));
     return $data;
 }
 function get_clerks($sid)
@@ -621,8 +624,8 @@ function print_order($id, $force = false)
     if (empty($prints)) {
         return error(-1, '没有有效的打印机');
     }
-    $num = 0;
-    //$num += jinyun_print($order, $store);
+	$num = 0;
+	//$num += jinyun_print($order, $store);
     $p = 0;
     foreach ($prints as $li) {
         $printnum = $prints[$p]['print_nums'];
@@ -708,7 +711,7 @@ function jinyun_print($order, $store,$print)
     $orderinfo .= "<S1>下单时间：" . date('Y-m-d H:i', $order['addtime']) . "</S1>";
     $i = 0;
        $status = printer($orderinfo,'',$print['type']);
-        if ($status) {
+		if ($status) {
             $i++;
             $data = array(
                 'uniacid' => $_W['uniacid'],
@@ -1027,8 +1030,8 @@ function wechat_notice_order($sid, $id, $status)
         '3' => 'end',
         '4' => 'cancel',
         '5' => 'pay',
-        '8' => 'tk',
-        '9' =>'tuikuan'
+		'8' => 'tk',
+		'9' =>'tuikuan'
     );
     $type      = $types_arr[$status];
     $store     = get_store($sid, array(
@@ -1073,11 +1076,11 @@ function wechat_notice_order($sid, $id, $status)
             $header    = "【{$store['title']}】订单进度通知\n";
             $orderinfo = "您的点餐订单，订单号【{$orderid}】已于" . date('Y-m-d H:i', time()) . "取消";
         }
-        if ($type == 'tk') {
+		if ($type == 'tk') {
             $header    = "【{$store['title']}】订单进度通知\n";
             $orderinfo = "您的点餐订单，订单号【{$orderid}】已于" . date('Y-m-d H:i', time()) . "申请。我们会尽快处理！";
         }
-        if ($type == 'tuikuan') {
+		if ($type == 'tuikuan') {
             $header    = "【{$store['title']}】订单进度通知\n";
             $orderinfo = "您的点餐订单，订单号【{$orderid}】已于" . date('Y-m-d H:i', time()) . "成功退款。点餐费用已退至您的余额账户！";
         }

@@ -153,6 +153,7 @@ class Str_takeoutModuleSite extends WeModuleSite
                     'description' => htmlspecialchars_decode($_GPC['description']),
                     'send_price' => intval($_GPC['send_price']),
                     'delivery_price' => intval($_GPC['delivery_price']),
+                    'box_fee' => floatval($_GPC['box_fee']),
                     'delivery_time' => intval($_GPC['delivery_time']),
                     'serve_radius' => intval($_GPC['serve_radius']),
                     'delivery_area' => trim($_GPC['delivery_area']),
@@ -1486,7 +1487,7 @@ class Str_takeoutModuleSite extends WeModuleSite
                 $member['openid']   = $fans['openid'];
                 $_W['member']       = $member;
             }
-            $store        = pdo_fetch('SELECT id,title FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
+            $store        = pdo_fetch('SELECT id,title,box_fee,delivery_price FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
                 ':aid' => $_W['uniacid'],
                 ':id' => $sid
             ));
@@ -1555,7 +1556,9 @@ class Str_takeoutModuleSite extends WeModuleSite
             $data['table_id']   = $table['id'];
             $data['table_info'] = $table['ctitle'] . '-' . $table['title'];
             $data['price']      = $price;
-            $data['card_fee']   = $price;
+            $data['card_fee']   = $price+$store['box_fee']+$store['delivery_price'];
+            $data['box_fee']    = $store['box_fee'];
+            $data['delivery_fee']    = $store['delivery_price'];
             $data['num']        = $num;
             $data['addtime']    = TIMESTAMP;
             $data['status']     = 1;
@@ -1671,6 +1674,7 @@ class Str_takeoutModuleSite extends WeModuleSite
         checkauth();
         checkclerk($sid);
         check_trash($sid);
+        setcookie('storeId',$sid);
         $mode = intval($_GPC['mode']);
         if (!$mode) {
             $mode = 2;
@@ -2078,6 +2082,7 @@ class Str_takeoutModuleSite extends WeModuleSite
     {
         global $_W, $_GPC;
         $sid = intval($_GPC['sid']);
+        setcookie('storeId',$sid);
         checkclerk($sid);
         check_trash($sid);
         $store                        = pdo_fetch('SELECT * FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
@@ -2177,32 +2182,48 @@ class Str_takeoutModuleSite extends WeModuleSite
                 }
             }
         }
-        if (!empty($dishes)) {
-            $ids_str   = implode(',', array_keys($dishes));
-            $dish_info = pdo_fetchall('SELECT * FROM ' . tablename('str_dish') . " WHERE uniacid = :aid AND sid = :sid AND id IN ($ids_str)", array(
-                ':aid' => $_W['uniacid'],
-                ':sid' => $sid
-            ), 'id');
+        foreach ($spec as $val){
+            $df = pdo_get('str_dish',['id'=>$val['did']]);
             $specName = '';
-            foreach ($dish_info as &$dis) {
-                $dishSpec = $spec[$dis['id']]['spec'];
-                $specTotal = 0;
-                foreach ($dishSpec as $kd => $vd) {
-                    $specPrice = pdo_get('str_specification',['id'=>$vd]);
-                    $specTotal += $specPrice['price'];
+            if(isset($val['spec'])){
+                $specStr = implode(',',$val['spec']);
+                $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
+                foreach ($specInfo as $vs){
+                    $specName .= $vs['specName'].'，';
                 }
-                if($dishSpec){
-                    $specStr = implode(',',$dishSpec);
-                    $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
-                    foreach ($specInfo as $val){
-                        $specName .= $val['specName'].'，';
-                    }
-                }
-                $dis['spec'] = $specName;
-                $dis['price']        = iunserializer($dis['price']);
-                $dis['member_price'] = dish_group_price($dis['price']) + $specTotal;
             }
+            $df['spec'] = $specName;
+            $df['price']        = $val['price'];
+            $df['member_price'] = $val['price'];
+            $dish_info[] = $df;
         }
+//        var_dump($spec);exit;
+//        if (!empty($dishes)) {
+//            $ids_str   = implode(',', array_keys($dishes));
+//            $dish_info = pdo_fetchall('SELECT * FROM ' . tablename('str_dish') . " WHERE uniacid = :aid AND sid = :sid AND id IN ($ids_str)", array(
+//                ':aid' => $_W['uniacid'],
+//                ':sid' => $sid
+//            ), 'id');
+//            $specName = '';
+//            foreach ($dish_info as &$dis) {
+//                $dishSpec = $spec[$dis['id']]['spec'];
+//                $specTotal = 0;
+//                foreach ($dishSpec as $kd => $vd) {
+//                    $specPrice = pdo_get('str_specification',['id'=>$vd]);
+//                    $specTotal += $specPrice['price'];
+//                }
+//                if($dishSpec){
+//                    $specStr = implode(',',$dishSpec);
+//                    $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
+//                    foreach ($specInfo as $val){
+//                        $specName .= $val['specName'].'，';
+//                    }
+//                }
+//                $dis['spec'] = $specName;
+//                $dis['price']        = iunserializer($dis['price']);
+//                $dis['member_price'] = dish_group_price($dis['price']) + $specTotal;
+//            }
+//        }
         // var_dump($dish_info);exit;
         $address_id = intval($_GPC['address_id']);
         $address    = get_address($address_id);
@@ -2279,7 +2300,7 @@ class Str_takeoutModuleSite extends WeModuleSite
             $member['mobile']   = !empty($order_member['mobile']) ? $order_member['mobile'] : $member['mobile'];
             $member['address']  = !empty($order_member['address']) ? $order_member['address'] : $member['address'];
         } else {
-            $store        = pdo_fetch('SELECT title,delivery_price FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
+            $store        = pdo_fetch('SELECT title,delivery_price,box_fee FROM ' . tablename('str_store') . ' WHERE uniacid = :aid AND id = :id', array(
                 ':aid' => $_W['uniacid'],
                 ':id' => $sid
             ));
@@ -2309,6 +2330,7 @@ class Str_takeoutModuleSite extends WeModuleSite
                 $data['address']       = trim($address['address']);
                 $data['delivery_time'] = trim($_GPC['delivery_time']) ? trim($_GPC['delivery_time']) : '尽快送出';
                 $data['delivery_fee']  = $store['delivery_price'];
+                $data['box_fee']       = $store['box_fee'];
             }
             $data['note']     = trim($_GPC['note']);
             $data['pay_type'] = '';
@@ -2326,7 +2348,7 @@ class Str_takeoutModuleSite extends WeModuleSite
             }
             $data['num']          = $cart['num'];
             $data['price']        = $cart['price'];
-            $data['card_fee']     = $cart['price'];
+            $data['card_fee']     = $cart['price']+$store['delivery_price']+$store['box_fee'];
             $data['groupid']      = $cart['groupid'];
             $data['addtime']      = TIMESTAMP;
             $data['status']       = 1;
@@ -2338,47 +2360,46 @@ class Str_takeoutModuleSite extends WeModuleSite
             $id = pdo_insertid();
             set_order_log($id, $sid, '用户提交订单');
             set_order_user($sid, $mobile, $realname);
-            if (!empty($cart['data'])) {
-                $ids_str   = implode(',', array_keys($cart['data']));
-                $dish_info = pdo_fetchall('SELECT id,title,price,grant_credit,total FROM ' . tablename('str_dish') . " WHERE uniacid = :aid AND sid = :sid AND id IN ($ids_str)", array(
+
+            foreach ($spec as $val){
+                $df = pdo_get('str_dish',['id'=>$val['did']]);
+                $specName = '';
+                if(isset($val['spec']) && $val['spec']){
+                    $specStr = implode(',',$val['spec']);
+                    $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
+//                    var_dump($specInfo);
+                    for($i=0;$i<count($specInfo);$i++){
+                        $specName .= $specInfo[$i]['specName'].'，';
+                    }
+//                    foreach ($specInfo as $vs){
+//                        $specName .= $vs['specName'].'，';
+//                    }
+                }
+                $df['spec'] = $specName;
+                $df['price']        = $val['price'];
+                $df['member_price'] = $val['price'];
+                $dish_info[] = $df;
+                pdo_query('UPDATE ' . tablename('str_dish') . " set sailed = sailed + 1 WHERE uniacid = :aid AND id = :id", array(
                     ':aid' => $_W['uniacid'],
-                    ':sid' => $sid
-                ), 'id');
-            }//新 睿 社 区 破 解
-            foreach ($cart['data'] as $k => $v) {
-                $k = intval($k);
-                $v = intval($v);
-                pdo_query('UPDATE ' . tablename('str_dish') . " set sailed = sailed + {$v} WHERE uniacid = :aid AND id = :id", array(
-                    ':aid' => $_W['uniacid'],
-                    ':id' => $k
+                    ':id' => $val['did']
                 ));
-                if ($dish_info[$k]['total'] != -1 && $dish_info[$k]['total'] > 0) {
-                    pdo_query('UPDATE ' . tablename('str_dish') . " set total = total - {$v} WHERE uniacid = :aid AND id = :id", array(
+                if ($df['total'] != -1 && $df['total'] > 0) {
+                    pdo_query('UPDATE ' . tablename('str_dish') . " set total = total - 1 WHERE uniacid = :aid AND id = :id", array(
                         ':aid' => $_W['uniacid'],
-                        ':id' => $k
+                        ':id' => $val['did']
                     ));
                 }
-                if(isset($spec[$k]['spec'])){
-                    $specStr = implode(',',$spec[$k]['spec']);
-                    $specInfo = pdo_fetchall('SELECT specName FROM ' . tablename('str_specification') . " WHERE id IN ($specStr)");
-                    foreach ($specInfo as $val){
-                        $specName .= '/'.$val['specName'];
-                    }
-                }
-
                 $stat = array();
-                if ($k && $v) {
-                    $stat['oid']        = $id;
-                    $stat['uniacid']    = $_W['uniacid'];
-                    $stat['sid']        = $sid;
-                    $stat['dish_id']    = $k;
-                    $stat['dish_num']   = $v;
-                    $stat['dish_title'] = $dish_info[$k]['title'].'<br>'.$specName;
-                    $stat['dish_price'] = ($v * dish_group_price($dish_info[$k]['price']));
-                    $stat['addtime']    = TIMESTAMP;
-                    $stat['spec']    = serialize($spec[$k]['spec']);
-                    pdo_insert('str_stat', $stat);
-                }
+                $stat['oid']        = $id;
+                $stat['uniacid']    = $_W['uniacid'];
+                $stat['sid']        = $sid;
+                $stat['dish_id']    = $val['did'];
+                $stat['dish_num']   = $val['quantity'];
+                $stat['dish_title'] = $df['title'].'<br>'.$specName;
+                $stat['dish_price'] = $val['amount'];
+                $stat['addtime']    = TIMESTAMP;
+                $stat['spec']       = serialize($val['spec']);
+                pdo_insert('str_stat', $stat);
             }
             init_print_order($sid, $id, 'order');
             del_order_cart($sid);
@@ -2512,7 +2533,7 @@ class Str_takeoutModuleSite extends WeModuleSite
         $params['tid']     = $order['id'];
         $params['ordersn'] = $order['id'];
         $params['user']    = $_W['member']['uid'];
-        $params['fee']     = $order['price'] + $order['delivery_fee'];
+        $params['fee']     = $order['price'] + $order['delivery_fee']+$order['box_fee'];
         $params['title']   = $_W['account']['name'] . "外卖订单{$order['ordersn']}";
         $this->pay($params);
     }

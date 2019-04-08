@@ -6,10 +6,10 @@
 
 <div class="addres_box" id="remarkBox">
 	<ul>
-		<li><textarea class="txt max" placeholder="请填写备注" id="userMark"></textarea></li>
+		<li><textarea class="txt max" placeholder="請填寫備註" id="userMark"></textarea></li>
 		<li class="btns_wrap">
 			<span><a href="javascript:void(0);" class="comm_btn higher disabled" id="cancleRemark">取消</a></span>
-			<span><a href="javascript:void(0);" class="comm_btn higher" id="saveRemark">确认</a></span>
+			<span><a href="javascript:void(0);" class="comm_btn higher" id="saveRemark">確認</a></span>
 		</li>
 	</ul>
 </div>

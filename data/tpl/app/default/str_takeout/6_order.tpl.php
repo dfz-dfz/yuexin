@@ -20,6 +20,8 @@
 	.confirm_box li .cash_pay{background:url('../addons/str_takeout/template/resource/images/cash_pay.png') 0 0 no-repeat;background-position-y: 15px;background-position-x: 2px;}
 	.confirm_box li .weixin_pay{background:url('../addons/str_takeout/template/resource/images/weixin_pay.png') 0 0 no-repeat;background-position-y: 15px;background-position-x: 1px;}
 	.menu_list li .top > div:nth-of-type(3){background: none;}
+	#orderList li > div{position: relative;}
+	.menu_wrap .menu_list li .top .num_box{position: absolute;bottom: 10%;right: 16%;}
 </style>
 <header class="menus">
 	<span></span>
@@ -279,7 +281,7 @@
 		var remark = $('#remarkTxt').text();
 		if(remark == '點擊添加備註') remark = '';
 		$('#userMark').val(remark);
-		$('#remarkBox').dialog({title: '添加备注'});
+		$('#remarkBox').dialog({title: '添加備註'});
 	});
 
 	$('#cancleRemark').bind('click', function(){

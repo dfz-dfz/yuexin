@@ -16,7 +16,7 @@
 	    -webkit-box-orient: horizontal;
 	    border-top: 1px solid #e7e7e7;
 	    min-width: 320px;
-	    max-width: 640px;
+	    /*max-width: 640px;*/
 	    padding: 0;
     	margin-block-end: inherit;
 	}
@@ -104,7 +104,7 @@
 			</li>
 			<?php  if(empty($profile_hide)) { ?>
 			<li class="mui-table-view-cell">
-				<a href="" class="mui-navigate-right">我的評價</a>
+				 <a <?php if($storeId) { ?> href="./index.php?i=<?php echo $_GPC['i']?>&c=entry&sid=<?php echo $storeId ?>&do=comment_list&mode=2&m=str_takeout"<?php  } else { ?>href="./index.php?i=<?php echo $_GPC['i']?>&c=entry&do=index&m=str_takeout" <?php } ?> class="mui-navigate-right">我的評價</a>
 			</li>
 			<?php  } ?>
 			<li class="mui-table-view-cell">
@@ -115,26 +115,26 @@
 		</ul>
 
 		<ul class="box_nav">
-			<li class="more">
-				<a class="tab-item external" href="./index.php?i=6&amp;c=entry&amp;do=index&amp;m=str_takeout">
-					<img src="../addons/str_takeout/template/resource/images/dianpu1.png" alt="">
-					<label>首頁</label>
-				</a>
-			</li>
-			<li class="">
-				<a class="tab-item external" href="./index.php?i=6&amp;c=entry&amp;sid=13&amp;do=myorder&amp;m=str_takeout">
-					<img src="../addons/str_takeout/template/resource/images/dingdan1.png" alt="">
-					<label>訂單</label>
-					<!-- <span class="badge">2</span> -->
-				</a>
-			</li>
-			<li class="more on">
-				<a class="tab-item external active" href="./index.php?i=6&amp;c=mc&amp;a=home&amp;">
-					<img src="../addons/str_takeout/template/resource/images/wode.png" alt="">
-					<label>我的</label>
-				</a>
-			</li>
-		</ul>
+            <li class="more">
+                <a class="tab-item external" <?php  if($storeId) { ?> href="./index.php?i=<?php echo $_GPC['i']?>&c=entry&sid=<?php echo $storeId ?>&do=dish&mode=2&m=str_takeout"<?php  } else { ?>href="./index.php?i=<?php echo $_GPC['i']?>&c=entry&do=index&m=str_takeout" <?php } ?>>
+                    <img src="../addons/str_takeout/template/resource/images/dianpu1.png" alt="">
+                    <label>首頁</label>
+                </a>
+            </li>
+            <li class="">
+                <a class="tab-item external" <?php  if($storeId) { ?> href="./index.php?i=<?php echo $_GPC['i']?>&c=entry&sid=<?php echo $storeId ?>&do=myorder&m=str_takeout"<?php  } else { ?>href="./index.php?i=<?php echo $_GPC['i']?>&c=entry&do=index&m=str_takeout" <?php } ?>>
+                    <img src="../addons/str_takeout/template/resource/images/dingdan1.png" alt="">
+                    <label>訂單</label>
+                    <!-- <span class="badge">2</span> -->
+                </a>
+            </li>
+            <li class="more on">
+                <a class="tab-item external active" href="./index.php?i=<?php echo $_GPC['i']?>&c=mc&a=home">
+                    <img src="../addons/str_takeout/template/resource/images/wode.png" alt="">
+                    <label>我的</label>
+                </a>
+            </li>
+        </ul>
 
 		<!-- <div class="mui-table mui-table-inline mui-mt15 nav-action">
 			<div class="mui-table-cell">

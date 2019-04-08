@@ -263,7 +263,7 @@
 						</div>	
 					</div>
 					<div class="form-group" id="delivery_price">
-						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>配送费</label>
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>配送費</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<div class="input-group">
 								<input type="text" class="form-control" name="delivery_price" value="{$item['delivery_price']}">
@@ -271,8 +271,17 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group" id="delivery_price">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>餐盒費</label>
+						<div class="col-sm-9 col-xs-9 col-md-9">
+							<div class="input-group">
+								<input type="text" class="form-control" name="box_fee" value="{$item['box_fee']}">
+								<span class="input-group-addon">元</span>
+							</div>
+						</div>
+					</div>
 					<div class="form-group" id="delivery_time">
-						<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">* </span>预计送达时间</label>
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">預計送達時間</label>
 						<div class="col-sm-9 col-xs-9 col-md-9">
 							<div class="input-group">
 								<input type="text" class="form-control" name="delivery_time" value="{$item['delivery_time']}">

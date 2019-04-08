@@ -4,6 +4,16 @@
 <style type="text/css">
 	.line a:hover, .line a:focus{color:#FFF; text-decoration:none}
 	.nav_common li>a>span{float: none;}
+	.info .line{
+		display: flex;
+		align-items: center;
+	}
+	.info .line span{
+		width: 3rem;
+	}
+	.info .line input{
+		margin-bottom: 0;
+	}
 </style>
 <header class="mui-bar mui-bar-nav" style="box-shadow: none;margin-bottom: 1px;background-color: #fff;">
 	<div class="mui-row fixed-bar">
@@ -44,13 +54,18 @@
 <div data-role="container" class="container addressedit" style="margin-top: 44px;">
 	<section data-role="body">
 		<div class="info">
-			<div class="line"><input type="text" name="realname" value="<?php  echo $address['realname'];?>" placeholder="姓名"></div>
-			<div class="line"><input type="text" name="mobile" value="<?php  echo $address['mobile'];?>" placeholder="手机"></div>
+			<div class="line">
+				<span>姓名：</span><input type="text" name="realname" value="<?php  echo $address['realname'];?>" placeholder="姓名">
+			</div>
+			<div class="line">
+				<span>手機：</span><input type="text" name="mobile" value="<?php  echo $address['mobile'];?>" placeholder="手機">
+			</div>
 			<?php  if($store['mobile_verify']['takeout_verify'] && !$address['is_verify'] && $_W['str_takeout']['sms']['status'] == 1) { ?>
 				<div class="line"><a href="javascript:;" class="comm_btn" id="send_code" style="width:100%; text-align:center;">获取验证码</a></div>
 				<div class="line"><input type="text" name="code" value="" placeholder="短信验证码"></div>
 			<?php  } ?>
-			<div class="line address addr1"><input name="address" value="<?php  echo $address['address'];?>" type="text" placeholder="详细地址">
+			<div class="line address addr1">
+				<span>地址：</span><input name="address" value="<?php  echo $address['address'];?>" type="text" placeholder="詳細地址">
 				<i class="getposition"></i>
 			</div>
 		</div>
@@ -104,8 +119,8 @@
 				alert('请输入手机号');
 				return false;
 			}
-			var reg = /^[123456789][0-9]{10}/;
-			if(!reg.test(mobile)) {
+			var regs = /^[1][3-8]\d{9}$|^([6|9])\d{7}$|^[0][9]\d{8}$|^[6]([8|6])\d{6}$/;
+			if(!regs.test(mobile)) {
 				alert('手机号格式错误');
 				return false;
 			}
@@ -146,8 +161,8 @@
 				alert('手机号不能为空');
 				return false;
 			}
-            var reg = /^[123456789][0-9]{10}/;
-			if(!reg.test(mobile)) {
+            var regs = /^[1][3-8]\d{9}$|^([6|9])\d{7}$|^[0][9]\d{8}$|^[6]([8|6])\d{6}$/;
+			if(!regs.test(mobile)) {
 				alert('手机号格式错误');
 				return false;
 			}

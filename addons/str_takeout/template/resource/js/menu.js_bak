@@ -1,0 +1,98 @@
+
+$(function(){
+	$('#icoMenu').click(function(){
+		$('#sideNav').toggle();
+	});
+
+	$('#menuWrap .add').each(function(){
+		$(this).amount(0, $.amountCb());
+		for(var i = 0, num = parseInt($(this).data('num')); i < num; i++){
+			$(this).click();
+		}
+	});
+
+	var dialogTarget;
+	// $(document).on('click', '#menuWrap .price_wrap', function(e){
+	// 	e.stopPropagation();
+	// });
+	
+	// $('input:radio[name="Fruit"]:checked').parent().css({
+	// 	padding: '3px 13px',
+	// 	backgroundColor: '#2BA3DC',
+	// 	color: '#fff',
+	// 	borderRadius: '15px',
+	// 	fontSize: '14px',
+	// 	marginRight: '10px',
+	// 	border: 'none'
+	// })
+
+});
+
+$('#menuDetail').on('click', 'label', function(event) {
+	$(this).css('color','red');
+	/* Act on the event */
+});
+
+function showDetail(obj) {
+	var id = obj.id;
+	var _wraper = $('#menuDetail');
+
+	$.get('http://122.152.226.249/app/index.php?i=6&c=entry&sid=13&do=GetSpec&m=str_takeout&did='+id+'', function(ret) {
+		var ret = JSON.parse(ret);
+		// alert(JSON.stringify(ret))
+		if(ret.status == 1){
+			if(ret.data == ''){
+				
+			}else{
+				var datas = ret.data,
+					html = '';
+				for(var i in datas){
+					html += '<div class="choice_box">';
+						html += '<div class="title">'+datas[i].cateName+'</div>';
+						html += '<div class="types">';
+							for(var list in datas[i].list){
+								html += '<label id="'+datas[i].list[list].id+'"><input name="Fruit" type="radio" value="" />'+datas[i].list[list].specName+'</label>';
+							}
+						html += '</div>';
+					html += '</div>';
+				}
+
+				$('.checkBox').html(html)
+				$('.types label:first-child').addClass('isChecked');
+
+
+				var _this = $(obj),
+					F = function(str){return _this.find(str);},
+					title = F('h3').text(),
+					imgUrl = F('img').attr('src'),
+					price = F('.unit_price').text(),
+					sales = F('.sales strong').attr('class'),
+					saleNum = F('.sale_num').text(),
+					info = F('.info').text(),
+					_detailImg = _wraper.find('img');
+				saleunit=F('.sale_unit').text();
+
+				_wraper.find('.price').text(price).end()
+					.find('.sales strong').attr('class', sales).end()
+					.find('.sale_num').text(saleNum).end()
+					.find('.info').text(info);
+
+				_wraper.parents('.dialog').find('.dialog_tt').text(title);
+
+				if(F('.add').length){
+					$('#detailBtn').removeClass('disabled').text('加入購物車');
+				}else{
+					$('#detailBtn').addClass('disabled').text('已售完');
+				}
+
+				dialogTarget = _this;
+
+				_wraper.dialog({title: title, closeBtn: true});
+			}
+		}else{
+			alert('網絡請求失敗!')
+			return false;
+		}
+	});
+
+}

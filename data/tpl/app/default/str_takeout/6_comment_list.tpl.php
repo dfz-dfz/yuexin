@@ -4,21 +4,7 @@
 <script src="../addons/str_takeout/template/resource/js/main.js"></script>
 <script src="../addons/str_takeout/template/resource/js/menu.js"></script>
 <div class="container comment-container" onselectstart="return true;" ondragstart="return false;">
-	<header class="comment-stat clearfix">
-		<div class="left">
-			<span><?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%</span>
-			<div>好評率</div>
-		</div>
-		<div class="right">
-			<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%"></strong></span>
-			<div>共有123人評價</div>
-			<!-- <ul>
-				<li>口味：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_taste']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_taste'];?>分</li>
-				<li>服务：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_serve']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_serve'];?>分</li>
-				<li>速度：<span class="sales"><strong class="sale_9" style="width:<?php  echo round($comment_stat['avg_speed']/5, 2) * 100?>%"></strong></span><?php  echo $comment_stat['avg_speed'];?>分</li>
-			</ul> -->
-		</div>
-	</header>
+	<header class="top_nav"><a href="<?php  echo $_W['siteroot'];?>app/index.php?i=<?php  echo $_W['uniacid'];?>&c=entry&&do=index&m=<?php  echo $_W['current_module']['name'];?>"><img src="../addons/str_takeout/template/resource/images/close.png" alt=""></a>我的評價</header>
 	<section>
 		<ul class="comment_list">
 			<?php  if(is_array($data)) { foreach($data as $ds) { ?>

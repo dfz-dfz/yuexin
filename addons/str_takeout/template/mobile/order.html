@@ -28,6 +28,7 @@
 						</div>
 						<div>
 							<h3>{$li['title']}</h3>
+							<h6>{$li['spec']}</h6>
 							<div>
 								<div class="fr" max="{$li['total']}" data-first-order-limit="{$li['first_order_limit']}" data-buy-limit="{$li['buy_limit']}" data-first-order="{$is_first_order}">
 									<a href="javascript:void(0);" class="btn_n add active"></a>
@@ -72,7 +73,7 @@
 		<footer class="order_fixed">
 			<div class="fixed">
 				<p>
-					<span class="fr">总计：<strong>￥<span id="totalPrice"></span></strong> / <span id="cartNum" class="has_num"></span>份</span>
+					<span class="fr">总计：<strong>￥<span id="totalPrice"></span></strong></span>
 					{if $_GPC['mode'] == 2}
 						配送费：￥{$store['delivery_price']}
 					{else}
