@@ -62,18 +62,18 @@
 				<?php  } ?>
 				<div class="lunch_box">
 					<div>餐盒費</div>
-					<div class="lunch_price">$5</div>
+					<div class="lunch_price">$<?php echo $store['box_fee']?></div>
 				</div>
 				<div class="dispatching_box">
 					<div>配送費</div>
 					<?php  if($_GPC['mode'] == 2) { ?>
 						<div class="dispatching_price">$<?php  echo $store['delivery_price'];?></div>
 					<?php  } else { ?>
-						<div class="dispatching_price">$0</div>
+						<div class="dispatching_price">$<?php  echo $store['delivery_price'];?></div>
 					<?php  } ?>
 				</div>
 			</ul>
-			<div class="pay_total">實付&nbsp;&nbsp;&nbsp;$<?php  echo $order['price'];?></div>
+			<div class="pay_total">實付&nbsp;&nbsp;&nbsp;$<?php  echo $order['card_fee'];?></div>
 			<?php  if($order['is_usecard'] == 1) { ?>
 				<div class="pay_total">實付&nbsp;&nbsp;&nbsp;$<?php  echo $order['card_fee'];?></div>
 			<?php  } ?>

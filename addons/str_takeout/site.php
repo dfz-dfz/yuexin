@@ -2354,8 +2354,8 @@ class Str_takeoutModuleSite extends WeModuleSite
             $data['status']       = 1;
             $data['is_notice']    = 0;
             $data['grant_credit'] = $cart['grant_credit'];
-            ;
             $data['is_grant'] = 0;
+            
             pdo_insert('str_order', $data);
             $id = pdo_insertid();
             set_order_log($id, $sid, '用户提交订单');

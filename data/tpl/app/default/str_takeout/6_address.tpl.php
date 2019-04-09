@@ -94,6 +94,7 @@
 <?php  } ?>
 <script type="text/javascript">
 	$(function(){
+        var at = GetUrlParam('at');
 		var r = "<?php  echo $_GPC['r'];?>";
 		var return_url = "<?php  echo $this->createMobileUrl('order', array('sid' => $sid, 'r' => 1, 'mode' => $_GPC['mode']));?>";
 		$('.addressChecked').click(function(){
@@ -110,6 +111,13 @@
 			return false;
 		});
 
+       	$('.mui-action-back').click(function(){
+            if(at){
+                location.href = "<?php  echo $this->createMobileUrl('dish', array('sid' => $sid, 'mode' => $_GPC['mode']));?>"
+            }else{
+                location.href=return_url;
+            }
+        })
 		$('#send_code').click(function(){
 			if($(this).hasClass('disabled')) {
 				return false;
@@ -211,6 +219,23 @@
 			});
 		});
 	});
+	function GetUrlParam(paraName) {
+        var url = document.location.toString();
+        var arrObj = url.split("?");
+        if (arrObj.length > 1) {
+            var arrPara = arrObj[1].split("&");
+            var arr;
+            for (var i = 0; i < arrPara.length; i++) {
+                arr = arrPara[i].split("=");
+                if (arr != null && arr[0] == paraName) {
+                    return arr[1];
+                }
+            }
+            return "";
+        }else {
+            return "";
+        }
+    }
 </script>
 <?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('common', TEMPLATE_INCLUDEPATH)) : (include template('common', TEMPLATE_INCLUDEPATH));?>
 <?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('common/footer', TEMPLATE_INCLUDEPATH)) : (include template('common/footer', TEMPLATE_INCLUDEPATH));?>

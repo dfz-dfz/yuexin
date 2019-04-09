@@ -82,7 +82,7 @@
 			<?php  } } ?>
 				<div class="lunch_box">
 					<div>餐盒費</div>
-					<div class="lunch_price">$5</div>
+					<div class="lunch_price">$<?php echo $store['box_fee']?></div>
 				</div>
 				<div class="dispatching_box">
 					<div>配送費</div>
